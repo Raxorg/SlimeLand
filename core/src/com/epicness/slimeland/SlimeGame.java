@@ -3,21 +3,21 @@ package com.epicness.slimeland;
 import com.badlogic.gdx.Game;
 import com.epicness.firebase.CoreFirestore;
 import com.epicness.fundamentals.SharedResources;
-import com.epicness.slimeland.game.GameAssets;
-import com.epicness.slimeland.game.GameInitializer;
+import com.epicness.slimeland.splash.SplashInitializer;
 
 public class SlimeGame extends Game {
 
-    private String phoneID;
-    private CoreFirestore firestore;
+    private final String phoneID;
+    private final CoreFirestore firestore;
 
     public SlimeGame(String phoneID, CoreFirestore firestore) {
-
+        this.phoneID = phoneID;
+        this.firestore = firestore;
     }
 
     @Override
     public void create() {
-        new GameInitializer(new GameAssets()).initialize(new SharedResources(this));
+        new SplashInitializer().initialize(new SharedResources(this));
     }
 
     public String getPhoneID() {
