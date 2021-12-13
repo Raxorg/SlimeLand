@@ -20,6 +20,7 @@ public abstract class Initializer {
     public void initialize(SharedResources sharedResources) {
         SharedScreen screen = sharedResources.getScreen();
 
+        logic.setGame(sharedResources.getGame());
         logic.setAssets(assets);
         logic.setSharedAssets(sharedResources.getAssets());
         logic.setInput(sharedResources.getInput());

@@ -1,5 +1,6 @@
 package com.epicness.fundamentals.logic;
 
+import com.badlogic.gdx.Game;
 import com.epicness.fundamentals.SharedScreen;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.assets.SharedAssets;
@@ -17,6 +18,10 @@ public abstract class Logic {
     public abstract void initialLogic();
 
     public abstract void update(float delta);
+
+    public void setGame(Game game) {
+
+    }
 
     public void setAssets(Assets assets) {
 

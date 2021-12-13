@@ -9,6 +9,7 @@ import com.epicness.fundamentals.stuff.SharedStuff;
 
 public class SharedResources {
 
+    private final Game game;
     private final SharedAssets assets;
     private final SharedLogic logic;
     private final SharedInput input;
@@ -17,6 +18,7 @@ public class SharedResources {
     private final Array<Initializer> initializers;
 
     public SharedResources(Game game) {
+        this.game = game;
         assets = new SharedAssets();
         input = new SharedInput();
         logic = new SharedLogic();
@@ -35,6 +37,10 @@ public class SharedResources {
         stuff.initializeStuff();
 
         game.setScreen(screen);
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     public SharedAssets getAssets() {
