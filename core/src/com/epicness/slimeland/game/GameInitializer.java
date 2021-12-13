@@ -8,7 +8,8 @@ import com.epicness.slimeland.game.stuff.GameStuff;
 
 public class GameInitializer extends Initializer {
 
-    public GameInitializer(Assets assets) {
+
+    public GameInitializer(GameAssets assets) {
         super(assets);
     }
 
