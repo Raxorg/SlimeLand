@@ -88,6 +88,10 @@ public class DualSprited implements Buttonable, Scrollable {
         background.setScale(scale);
     }
 
+    public Color getBackgroundColor() {
+        return background.getColor();
+    }
+
     public Color getForegroundColor() {
         return foreground.getColor();
     }
