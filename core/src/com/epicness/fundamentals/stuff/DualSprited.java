@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class DualSprited implements Buttonable {
+public class DualSprited implements Buttonable, Scrollable {
 
     private final Sprite background, foreground;
 
@@ -31,6 +31,23 @@ public class DualSprited implements Buttonable {
         return background.getBoundingRectangle().contains(x, y);
     }
 
+    @Override
+    public float getY() {
+        return background.getY();
+    }
+
+    @Override
+    public void setY(float y) {
+        background.setY(y);
+        foreground.setY(y);
+    }
+
+    @Override
+    public void translateY(float amount) {
+        background.translateY(amount);
+        foreground.translateY(amount);
+    }
+
     public float getX() {
         return background.getX();
     }
@@ -38,15 +55,6 @@ public class DualSprited implements Buttonable {
     public void setX(float x) {
         background.setX(x);
         foreground.setX(x);
-    }
-
-    public float getY() {
-        return background.getY();
-    }
-
-    public void setY(float y) {
-        background.setY(y);
-        foreground.setY(y);
     }
 
     public void setPosition(float x, float y) {
@@ -59,13 +67,12 @@ public class DualSprited implements Buttonable {
         foreground.translateX(amount);
     }
 
-    public void translateY(float amount) {
-        background.translateY(amount);
-        foreground.translateY(amount);
-    }
-
     public void setBackgroundSize(float size) {
         background.setSize(size, size);
+    }
+
+    public float getHeight() {
+        return background.getHeight();
     }
 
     public void setSize(float size) {
