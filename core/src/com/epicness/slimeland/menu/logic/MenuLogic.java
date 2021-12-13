@@ -1,15 +1,18 @@
 package com.epicness.slimeland.menu.logic;
 
+import com.badlogic.gdx.Game;
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.PreferencesHandler;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.logic.behaviors.ScrollBehavior;
 import com.epicness.fundamentals.stuff.Stuff;
+import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.menu.stuff.MenuStuff;
 
 public class MenuLogic extends Logic {
 
+    private final ColorSelectionHandler colorSelectionHandler;
     private final MenuInputHandler menuInputHandler;
     private final PlayerChecker playerChecker;
     private final SlimeGridHandler slimeGridHandler;
@@ -19,6 +22,7 @@ public class MenuLogic extends Logic {
 
     public MenuLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
+        colorSelectionHandler = new ColorSelectionHandler();
         menuInputHandler = new MenuInputHandler();
         playerChecker = new PlayerChecker();
         slimeGridHandler = new SlimeGridHandler();
@@ -48,7 +52,14 @@ public class MenuLogic extends Logic {
     }
 
     @Override
+    public void setGame(Game game) {
+        SlimeGame slimeGame = (SlimeGame) game;
+        colorSelectionHandler.setGame(slimeGame);
+    }
+
+    @Override
     public void setInput(SharedInput input) {
+        colorSelectionHandler.setInput(input);
         menuInputHandler.setInput(input);
         playerChecker.setInput(input);
     }
@@ -56,8 +67,13 @@ public class MenuLogic extends Logic {
     @Override
     public void setStuff(Stuff stuff) {
         MenuStuff menuStuff = (MenuStuff) stuff;
+        colorSelectionHandler.setStuff(menuStuff);
         playerChecker.setStuff(menuStuff);
         slimeGridHandler.setStuff(menuStuff);
+    }
+
+    public ColorSelectionHandler getColorSelectionHandler() {
+        return colorSelectionHandler;
     }
 
     public SlimeGridHandler getSlimeGridHandler() {

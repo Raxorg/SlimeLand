@@ -43,8 +43,14 @@ public class SlimeGridHandler {
         }
     }
 
-    public void touchDragged() {
+    public void touchDragged(float x, float y) {
         ignoreTouchUp = true;
+        if (selectedSlime == null) {
+            return;
+        }
+        if (!selectedSlime.contains(x, y)) {
+            stuff.getSlimeSelector().setColor(Color.WHITE);
+        }
     }
 
     public void touchUp(float x, float y) {
@@ -58,14 +64,22 @@ public class SlimeGridHandler {
             for (int row = 0; row < SLIME_ROWS; row++) {
                 DualSprited slime = slimes[column][row];
                 if (slime.contains(x, y)) {
-                    float yPosition = slime.getY() + slime.getHeight() / 2f - CHECK_SIZE / 2f;
-                    stuff.getSlimeSelector().setPosition(slime.getX(), yPosition);
-                    selectedSlime = slime;
+                    slimeSelected(slime);
                     return;
                 }
             }
         }
         selectedSlime = null;
+    }
+
+    private void slimeSelected(DualSprited slime) {
+        if (selectedSlime == slime) {
+            logic.getColorSelectionHandler().claimColor(slime.getBackgroundColor(), slime.getForegroundColor());
+            return;
+        }
+        float yPosition = slime.getY() + slime.getHeight() / 2f - CHECK_SIZE / 2f;
+        stuff.getSlimeSelector().setPosition(slime.getX(), yPosition);
+        selectedSlime = slime;
     }
 
     // Structure

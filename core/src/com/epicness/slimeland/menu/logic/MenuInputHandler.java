@@ -14,7 +14,7 @@ public class MenuInputHandler extends InputHandler {
     @Override
     public void touchDragged(float x, float y) {
         MenuLogic logic = (MenuLogic) this.logic;
-        logic.getSlimeGridHandler().touchDragged();
+        logic.getSlimeGridHandler().touchDragged(x, y);
         logic.getScrollBehavior().touchDragged(y);
     }
 
