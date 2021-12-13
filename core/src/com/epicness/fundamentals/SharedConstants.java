@@ -1,0 +1,31 @@
+package com.epicness.fundamentals;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+
+public class SharedConstants {
+
+    // Camera
+    public static final float RATIO = (float) Gdx.graphics.getWidth() / (float) Gdx.graphics.getHeight();
+    public static final float CAMERA_HEIGHT = 1000;
+    public static final float CAMERA_WIDTH = CAMERA_HEIGHT * RATIO;
+    // Asset paths
+    public static final String EXPLOSION_PATH = "fundamentals/audio/explosionSound.wav";
+
+    public static final String PIXEL_FONT_PATH = "fundamentals/fonts/pixelFont.fnt";
+
+    public static final String GLOW_PATH = "fundamentals/images/glow.png";
+    public static final String PIXEL_PATH = "fundamentals/images/pixel.png";
+    public static final String SQUARE_32_PATH = "fundamentals/images/square32.png";
+    public static final String SQUARE_32_INVERTED_PATH = "fundamentals/images/square32Inverted.png";
+    public static final String WEIRD_SHAPE_PATH = "fundamentals/images/weirdShape.png";
+    // Colors
+    public static final Color TRANSPARENT = Color.BLACK.cpy().lerp(Color.CLEAR, 0.5f);
+    public static final Color HALF_TRANSPARENT = Color.BLACK.cpy().lerp(Color.CLEAR, 0.75f);
+    public static final Color OPAQUE_TRANSPARENT = Color.BLACK.cpy().lerp(Color.CLEAR, 0.25f);
+    public static final Color DIRT = new Color(0xeea160ff);
+    public static final Color LIGHT_DIRT = new Color(0xf4cca1ff);
+    public static final Color GRASS = new Color(0x71aa34ff);
+    public static final Color LIGHT_GRASS = new Color(0xb6d53cff);
+    public static final Color DARK_GRASS = new Color(0x003000ff);
+}
