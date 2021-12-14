@@ -18,6 +18,9 @@ public class GameRenderer extends Renderer {
 
         spriteBatch.begin();
         stuff.getGrid().draw(spriteBatch);
+        for (int i = 0; i < stuff.getSlimes().size; i++) {
+            stuff.getSlimes().get(i).draw(spriteBatch);
+        }
         for (int i = 0; i < stuff.getClouds().length; i++) {
             stuff.getClouds()[i].drawBackground(spriteBatch);
         }
