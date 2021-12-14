@@ -7,8 +7,8 @@ import com.epicness.slimeland.menu.stuff.MenuStuff;
 
 public class MenuInitializer extends Initializer {
 
-    public MenuInitializer(MenuAssets assets) {
-        super(assets);
+    public MenuInitializer() {
+        super(new MenuAssets());
     }
 
     @Override

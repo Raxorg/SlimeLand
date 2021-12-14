@@ -13,7 +13,7 @@ public class SplashLogic extends Logic {
 
     @Override
     public void initialLogic() {
-        sharedLogic.getTransitionHandler().startTransition(new MenuInitializer(new MenuAssets()));
+        sharedLogic.getTransitionHandler().startTransition(new MenuInitializer());
         sharedLogic.getTransitionHandler().allowTransition();
     }
 
