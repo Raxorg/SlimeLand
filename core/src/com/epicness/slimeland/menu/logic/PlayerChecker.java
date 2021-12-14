@@ -19,16 +19,19 @@ public class PlayerChecker {
     private SharedLogic sharedLogic;
     private MenuLogic logic;
     private MenuStuff stuff;
+    // Logic
+    private String name;
+    private String colors;
 
     public void checkPlayer() {
         input.setEnabled(false);
-        String colors = logic.getPreferencesHandler().loadString(PREFS_PATH, COLORS_PREF_KEY);
+        colors = logic.getPreferencesHandler().loadString(PREFS_PATH, COLORS_PREF_KEY);
         if (colors.equals("")) {
             stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);
             logic.getNamePrompter().promptName();
             return;
         }
-        String name = logic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
+        name = logic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
         stuff.getOverlay().setText(WELCOME_BACK_MESSAGE + " " + name);
         stuff.getOverlay().setPosition(0f, 0f);
         input.setEnabled(true);
@@ -36,7 +39,7 @@ public class PlayerChecker {
 
     public void touchUp() {
         if (stuff.getOverlay().getText().startsWith(WELCOME_BACK_MESSAGE)) {
-            sharedLogic.getTransitionHandler().startTransition(new GameInitializer());
+            sharedLogic.getTransitionHandler().startTransition(new GameInitializer(name, colors));
             sharedLogic.getTransitionHandler().allowTransition();
         }
     }

@@ -14,7 +14,6 @@ import com.epicness.slimeland.menu.stuff.MenuStuff;
 public class MenuLogic extends Logic {
 
     private final BackgroundUpdater backgroundUpdater;
-    private final ColorSelectionHandler colorSelectionHandler;
     private final MenuInputHandler menuInputHandler;
     private final NamePrompter namePrompter;
     private final PlayerChecker playerChecker;
@@ -27,7 +26,6 @@ public class MenuLogic extends Logic {
     public MenuLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
         backgroundUpdater = new BackgroundUpdater();
-        colorSelectionHandler = new ColorSelectionHandler();
         menuInputHandler = new MenuInputHandler();
         namePrompter = new NamePrompter();
         playerChecker = new PlayerChecker();
@@ -40,7 +38,6 @@ public class MenuLogic extends Logic {
         playerChecker.setSharedLogic(sharedLogic);
         playerRegistrator.setSharedLogic(sharedLogic);
 
-        colorSelectionHandler.setLogic(this);
         menuInputHandler.setLogic(this);
         namePrompter.setLogic(this);
         playerChecker.setLogic(this);
@@ -91,10 +88,6 @@ public class MenuLogic extends Logic {
         playerChecker.setStuff(menuStuff);
         playerRegistrator.setStuff(menuStuff);
         slimeGridHandler.setStuff(menuStuff);
-    }
-
-    public ColorSelectionHandler getColorSelectionHandler() {
-        return colorSelectionHandler;
     }
 
     public NamePrompter getNamePrompter() {

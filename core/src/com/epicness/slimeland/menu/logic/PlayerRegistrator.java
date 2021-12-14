@@ -43,7 +43,7 @@ public class PlayerRegistrator {
             if (success) {
                 logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
                 logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
-                sharedLogic.getTransitionHandler().startTransition(new GameInitializer());
+                sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
                 sharedLogic.getTransitionHandler().allowTransition();
             }
         }, errorMessage -> {

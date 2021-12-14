@@ -1,5 +1,6 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.fundamentals.utils.ColorUtils.stringFromColor;
 import static com.epicness.slimeland.menu.MenuConstants.CHECK_SIZE;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
@@ -76,7 +77,10 @@ public class SlimeGridHandler {
 
     private void slimeSelected(DualSprited slime) {
         if (selectedSlime == slime) {
-            logic.getColorSelectionHandler().claimColorPair(slime.getBackgroundColor(), slime.getForegroundColor());
+            String color1 = stringFromColor(slime.getBackgroundColor());
+            String color2 = stringFromColor(slime.getForegroundColor());
+            logic.getPlayerRegistrator().assignPlayerColors(color1 + "-" + color2);
+            logic.getPlayerRegistrator().registerPlayer();
             return;
         }
         float yPosition = slime.getY() + slime.getHeight() / 2f - CHECK_SIZE / 2f;
