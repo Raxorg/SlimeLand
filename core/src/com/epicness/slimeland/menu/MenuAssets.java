@@ -4,7 +4,6 @@ import static com.epicness.fundamentals.SharedConstants.PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.CHECK_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
-import static com.epicness.slimeland.AssetPaths.SLIME_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -17,7 +16,7 @@ public class MenuAssets extends Assets {
     // Fonts
     private BitmapFont pixelFont, biggerPixelFont;
     // Sprites
-    private Sprite slimeLeftHalf, slimeRightHalf, slime, check;
+    private Sprite slimeLeftHalf, slimeRightHalf, check;
 
     @Override
     public void queueAssetLoading() {
@@ -27,7 +26,6 @@ public class MenuAssets extends Assets {
         // Sprites
         assetManager.load(SLIME_LEFT_HALF_PATH, Texture.class);
         assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
-        assetManager.load(SLIME_PATH, Texture.class);
         assetManager.load(CHECK_PATH, Texture.class);
     }
 
@@ -41,7 +39,6 @@ public class MenuAssets extends Assets {
         // Sprites
         slimeLeftHalf = new Sprite(assetManager.get(SLIME_LEFT_HALF_PATH, Texture.class));
         slimeRightHalf = new Sprite(assetManager.get(SLIME_RIGHT_HALF_PATH, Texture.class));
-        slime = new Sprite(assetManager.get(SLIME_PATH, Texture.class));
         check = new Sprite(assetManager.get(CHECK_PATH, Texture.class));
     }
 
@@ -61,10 +58,6 @@ public class MenuAssets extends Assets {
 
     public Sprite getSlimeRightHalf() {
         return slimeRightHalf;
-    }
-
-    public Sprite getSlime() {
-        return slime;
     }
 
     public Sprite getCheck() {
