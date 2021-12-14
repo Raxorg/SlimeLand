@@ -15,6 +15,7 @@ public class AssetPaths {
     public static final String BLUE_ORNAMENT_PATH = "slimeland/images/blueOrnament.png";
     public static final String GREEN_ORNAMENT_PATH = "slimeland/images/greenOrnament.png";
     public static final String ORANGE_ORNAMENT_PATH = "slimeland/images/orangeOrnament.png";
+    public static final String PURPLE_ORNAMENT_PATH = "slimeland/images/purpleOrnament.png";
     public static final String RED_ORNAMENT_PATH = "slimeland/images/redOrnament.png";
 
 }

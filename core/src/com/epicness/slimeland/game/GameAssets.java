@@ -5,6 +5,7 @@ import static com.epicness.slimeland.AssetPaths.CLOUD_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
 import static com.epicness.slimeland.AssetPaths.GREEN_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.ORANGE_ORNAMENT_PATH;
+import static com.epicness.slimeland.AssetPaths.PURPLE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.RED_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
@@ -17,7 +18,7 @@ public class GameAssets extends Assets {
 
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow;
-    private Sprite blueOrnament, greenOrnament, orangeOrnament, redOrnament;
+    private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
     @Override
     public void queueAssetLoading() {
@@ -28,6 +29,7 @@ public class GameAssets extends Assets {
         assetManager.load(BLUE_ORNAMENT_PATH, Texture.class);
         assetManager.load(GREEN_ORNAMENT_PATH, Texture.class);
         assetManager.load(ORANGE_ORNAMENT_PATH, Texture.class);
+        assetManager.load(PURPLE_ORNAMENT_PATH, Texture.class);
         assetManager.load(RED_ORNAMENT_PATH, Texture.class);
     }
 
@@ -41,6 +43,7 @@ public class GameAssets extends Assets {
         blueOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
         greenOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
         orangeOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
+        purpleOrnament = new Sprite(assetManager.get(PURPLE_ORNAMENT_PATH, Texture.class));
         redOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
     }
 
@@ -71,6 +74,10 @@ public class GameAssets extends Assets {
 
     public Sprite getOrangeOrnament() {
         return orangeOrnament;
+    }
+
+    public Sprite getPurpleOrnament() {
+        return purpleOrnament;
     }
 
     public Sprite getRedOrnament() {
