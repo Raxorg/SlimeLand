@@ -2,6 +2,7 @@ package com.epicness.slimeland;
 
 import com.badlogic.gdx.Game;
 import com.epicness.firebase.CoreFirestore;
+import com.epicness.firebase.FirebaseUtils;
 import com.epicness.fundamentals.SharedResources;
 import com.epicness.slimeland.splash.SplashInitializer;
 
@@ -11,7 +12,7 @@ public class SlimeGame extends Game {
 
     public SlimeGame(CoreFirestore firestore) {
         this.firestore = firestore;
-        //FirebaseUtils.work();
+        FirebaseUtils.work();
     }
 
     @Override
