@@ -1,8 +1,8 @@
 package com.epicness.firebase;
 
+import com.epicness.slimeland.menu.stuff.Player;
+
 public interface CoreFirestore {
 
-    void registerPlayer(String playerID, ResultListener<Boolean> listener);
-
-    void claimColor(String color, ResultListener<Boolean> listener);
+    void registerPlayer(Player player, ResultListener<Boolean> successListener, ResultListener<String> errorListener);
 }

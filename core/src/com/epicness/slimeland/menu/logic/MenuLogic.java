@@ -14,7 +14,9 @@ public class MenuLogic extends Logic {
 
     private final ColorSelectionHandler colorSelectionHandler;
     private final MenuInputHandler menuInputHandler;
+    private final NamePrompter namePrompter;
     private final PlayerChecker playerChecker;
+    private final PlayerRegistrator playerRegistrator;
     private final SlimeGridHandler slimeGridHandler;
 
     private final PreferencesHandler preferencesHandler;
@@ -24,17 +26,22 @@ public class MenuLogic extends Logic {
         super(sharedLogic);
         colorSelectionHandler = new ColorSelectionHandler();
         menuInputHandler = new MenuInputHandler();
+        namePrompter = new NamePrompter();
         playerChecker = new PlayerChecker();
+        playerRegistrator = new PlayerRegistrator();
         slimeGridHandler = new SlimeGridHandler();
 
         preferencesHandler = new PreferencesHandler();
         scrollBehavior = new ScrollBehavior();
 
-        colorSelectionHandler.setSharedLogic(sharedLogic);
         playerChecker.setSharedLogic(sharedLogic);
+        playerRegistrator.setSharedLogic(sharedLogic);
 
+        colorSelectionHandler.setLogic(this);
         menuInputHandler.setLogic(this);
+        namePrompter.setLogic(this);
         playerChecker.setLogic(this);
+        playerRegistrator.setLogic(this);
         slimeGridHandler.setLogic(this);
     }
 
@@ -42,6 +49,7 @@ public class MenuLogic extends Logic {
     public void initialLogic() {
         menuInputHandler.setupInput();
         playerChecker.checkPlayer();
+        playerRegistrator.init();
         slimeGridHandler.setup();
     }
 
@@ -57,21 +65,22 @@ public class MenuLogic extends Logic {
     @Override
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
-        colorSelectionHandler.setGame(slimeGame);
+        playerRegistrator.setGame(slimeGame);
     }
 
     @Override
     public void setInput(SharedInput input) {
-        colorSelectionHandler.setInput(input);
         menuInputHandler.setInput(input);
+        namePrompter.setInput(input);
         playerChecker.setInput(input);
+        playerRegistrator.setInput(input);
     }
 
     @Override
     public void setStuff(Stuff stuff) {
         MenuStuff menuStuff = (MenuStuff) stuff;
-        colorSelectionHandler.setStuff(menuStuff);
         playerChecker.setStuff(menuStuff);
+        playerRegistrator.setStuff(menuStuff);
         slimeGridHandler.setStuff(menuStuff);
     }
 
@@ -79,8 +88,16 @@ public class MenuLogic extends Logic {
         return colorSelectionHandler;
     }
 
+    public NamePrompter getNamePrompter() {
+        return namePrompter;
+    }
+
     public PlayerChecker getPlayerChecker() {
         return playerChecker;
+    }
+
+    public PlayerRegistrator getPlayerRegistrator() {
+        return playerRegistrator;
     }
 
     public SlimeGridHandler getSlimeGridHandler() {

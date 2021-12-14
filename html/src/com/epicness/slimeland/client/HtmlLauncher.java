@@ -6,6 +6,7 @@ import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 import com.epicness.firebase.CoreFirestore;
 import com.epicness.firebase.ResultListener;
 import com.epicness.slimeland.SlimeGame;
+import com.epicness.slimeland.menu.stuff.Player;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -19,13 +20,13 @@ public class HtmlLauncher extends GwtApplication {
 
     @Override
     public ApplicationListener createApplicationListener() {
-        return new SlimeGame("", new HTMLFirestore());
+        return new SlimeGame(new HTMLFirestore());
     }
 
     static class HTMLFirestore implements CoreFirestore {
 
         @Override
-        public void registerPlayer(String playerID, ResultListener<Boolean> listener) {
+        public void registerPlayer(Player player, ResultListener<Boolean> successListener, ResultListener<String> errorListener) {
 
         }
     }

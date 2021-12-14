@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.epicness.firebase.CoreFirestore;
 import com.epicness.firebase.ResultListener;
 import com.epicness.slimeland.SlimeGame;
+import com.epicness.slimeland.menu.stuff.Player;
 
 public class DesktopLauncher {
 
@@ -12,13 +13,13 @@ public class DesktopLauncher {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.forceExit = false;
 
-        new LwjglApplication(new SlimeGame("", new DesktopFirestore()), config);
+        new LwjglApplication(new SlimeGame(new DesktopFirestore()), config);
     }
 
     static class DesktopFirestore implements CoreFirestore {
 
         @Override
-        public void registerPlayer(String playerID, ResultListener<Boolean> listener) {
+        public void registerPlayer(Player player, ResultListener<Boolean> successListener, ResultListener<String> errorListener) {
 
         }
     }

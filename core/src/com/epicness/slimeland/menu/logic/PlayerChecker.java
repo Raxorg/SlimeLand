@@ -3,6 +3,7 @@ package com.epicness.slimeland.menu.logic;
 import static com.epicness.slimeland.menu.MenuConstants.COLORS_PREF_KEY;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
+import static com.epicness.slimeland.menu.MenuConstants.NAME_PREF_KEY;
 import static com.epicness.slimeland.menu.MenuConstants.PREFS_PATH;
 import static com.epicness.slimeland.menu.MenuConstants.WELCOME_BACK_MESSAGE;
 
@@ -18,31 +19,26 @@ public class PlayerChecker {
     private SharedLogic sharedLogic;
     private MenuLogic logic;
     private MenuStuff stuff;
-    // Logic
-    private String colors;
 
     public void checkPlayer() {
         input.setEnabled(false);
-        colors = logic.getPreferencesHandler().loadString(PREFS_PATH, COLORS_PREF_KEY);
+        String colors = logic.getPreferencesHandler().loadString(PREFS_PATH, COLORS_PREF_KEY);
         if (colors.equals("")) {
             stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);
-            input.setEnabled(true);
+            logic.getNamePrompter().promptName();
             return;
         }
-        stuff.getOverlay().setText(WELCOME_BACK_MESSAGE);
+        String name = logic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
+        stuff.getOverlay().setText(WELCOME_BACK_MESSAGE + " " + name);
         stuff.getOverlay().setPosition(0f, 0f);
+        input.setEnabled(true);
     }
 
-    public void touchDown() {
-        if (stuff.getOverlay().getText().equals(WELCOME_BACK_MESSAGE)) {
-            joinGame(colors);
+    public void touchUp() {
+        if (stuff.getOverlay().getText().startsWith(WELCOME_BACK_MESSAGE)) {
+            sharedLogic.getTransitionHandler().startTransition(new GameInitializer());
+            sharedLogic.getTransitionHandler().allowTransition();
         }
-    }
-
-    private void joinGame(String colors) {
-        sharedLogic.getTransitionHandler().startTransition(new GameInitializer());
-        sharedLogic.getTransitionHandler().allowTransition();
-        System.out.println(colors);
     }
 
     // Structure

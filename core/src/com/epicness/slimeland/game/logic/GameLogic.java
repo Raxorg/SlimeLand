@@ -1,23 +1,24 @@
 package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
+import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.slimeland.SlimeGame;
 
 public class GameLogic extends Logic {
 
-    private final PlayerRegistrator playerRegistrator;
+    private final GameInputHandler gameInputHandler;
 
     public GameLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
 
-        playerRegistrator = new PlayerRegistrator();
+        gameInputHandler = new GameInputHandler();
     }
 
     @Override
     public void initialLogic() {
-
+        gameInputHandler.setupInput();
     }
 
     @Override
@@ -28,10 +29,10 @@ public class GameLogic extends Logic {
     @Override
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
-        playerRegistrator.setGame(slimeGame);
     }
 
-    public PlayerRegistrator getPlayerRegistrator() {
-        return playerRegistrator;
+    @Override
+    public void setInput(SharedInput input) {
+        gameInputHandler.setInput(input);
     }
 }

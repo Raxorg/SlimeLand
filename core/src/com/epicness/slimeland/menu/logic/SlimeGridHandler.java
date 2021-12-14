@@ -23,7 +23,9 @@ public class SlimeGridHandler {
 
     public void setup() {
         stuff.getSlimeSelector().setPosition(HIDDEN_X, HIDDEN_Y);
+        stuff.getSlimeSelector().setColor(Color.WHITE);
         logic.getScrollBehavior().setup(stuff.getSlimeGrid(), SLIME_GRID_SCROLL_MIN_Y, SLIME_GRID_SCROLL_MAX_Y);
+        selectedSlime = null;
     }
 
     public void update() {
@@ -74,7 +76,7 @@ public class SlimeGridHandler {
 
     private void slimeSelected(DualSprited slime) {
         if (selectedSlime == slime) {
-            logic.getColorSelectionHandler().claimColor(slime.getBackgroundColor(), slime.getForegroundColor());
+            logic.getColorSelectionHandler().claimColorPair(slime.getBackgroundColor(), slime.getForegroundColor());
             return;
         }
         float yPosition = slime.getY() + slime.getHeight() / 2f - CHECK_SIZE / 2f;

@@ -7,6 +7,7 @@ public class MenuConstants {
 
     // Prefs path
     public static final String PREFS_PATH = "EpicnessSlimeLandPrefs";
+    public static final String NAME_PREF_KEY = "name";
     public static final String COLORS_PREF_KEY = "colors";
     // Overlay
     public static final String WELCOME_BACK_MESSAGE = "Welcome back";
