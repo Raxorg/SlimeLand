@@ -30,6 +30,7 @@ public class MenuLogic extends Logic {
         preferencesHandler = new PreferencesHandler();
         scrollBehavior = new ScrollBehavior();
 
+        colorSelectionHandler.setSharedLogic(sharedLogic);
         playerChecker.setSharedLogic(sharedLogic);
 
         menuInputHandler.setLogic(this);

@@ -1,8 +1,13 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
+import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
+
 import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.input.SharedInput;
+import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.slimeland.SlimeGame;
+import com.epicness.slimeland.game.GameInitializer;
 import com.epicness.slimeland.menu.stuff.MenuStuff;
 
 public class ColorSelectionHandler {
@@ -10,6 +15,7 @@ public class ColorSelectionHandler {
     // Structure
     private SlimeGame game;
     private SharedInput input;
+    private SharedLogic sharedLogic;
     private MenuStuff stuff;
 
     public void claimColor(Color color1, Color color2) {
@@ -17,9 +23,21 @@ public class ColorSelectionHandler {
         stuff.getOverlay().setPosition(0f, 0f);
 
         String colors = stringFromColor(color1) + "-" + stringFromColor(color2);
-        game.getFirestore().claimColor(colors, aBoolean -> {
-
+        game.getFirestore().claimColor(colors, success -> {
+            if (success) {
+                sharedLogic.getTransitionHandler().startTransition(new GameInitializer());
+                sharedLogic.getTransitionHandler().allowTransition();
+            } else {
+                input.setEnabled(true);
+                stuff.getOverlay().setText("Color unavailable");
+            }
         });
+    }
+
+    public void touchDown() {
+        if (stuff.getOverlay().getText().equals("Color unavailable")) {
+            stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);
+        }
     }
 
     private String stringFromColor(Color color) {
@@ -75,6 +93,10 @@ public class ColorSelectionHandler {
 
     public void setInput(SharedInput input) {
         this.input = input;
+    }
+
+    public void setSharedLogic(SharedLogic sharedLogic) {
+        this.sharedLogic = sharedLogic;
     }
 
     public void setStuff(MenuStuff stuff) {
