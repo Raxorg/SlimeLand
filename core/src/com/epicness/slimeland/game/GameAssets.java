@@ -8,6 +8,7 @@ import com.epicness.fundamentals.assets.Assets;
 
 public class GameAssets extends Assets {
 
+    // Sprites
     private Sprite slime;
 
     @Override
@@ -20,6 +21,7 @@ public class GameAssets extends Assets {
         slime = new Sprite(assetManager.get(SLIME_PATH, Texture.class));
     }
 
+    // Sprites
     public Sprite getSlime() {
         return slime;
     }
