@@ -5,7 +5,9 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 public class GameConstants {
 
-    public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
+    // Preferences
+    public static final String PREFS_PATH = "EpicnessSlimeLandPrefs";
+    public static final String QUANTITY_PREF_KEY = "quantity";
     // Clouds
     public static final float CLOUD_WIDTH = 104f;
     public static final float CLOUD_HEIGHT = CLOUD_WIDTH / 2f;
@@ -20,4 +22,7 @@ public class GameConstants {
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
+    // Other
+    public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
+    public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;
 }

@@ -5,7 +5,7 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 public class MenuConstants {
 
-    // Prefs path
+    // Preferences
     public static final String PREFS_PATH = "EpicnessSlimeLandPrefs";
     public static final String NAME_PREF_KEY = "name";
     public static final String COLORS_PREF_KEY = "colors";
@@ -30,6 +30,7 @@ public class MenuConstants {
     public static final float SLIME_GRID_SCROLL_MAX_Y = SLIME_GRID_HEIGHT - SLIME_HEIGHT;
     // Selector
     public static final float CHECK_SIZE = SLIME_WIDTH;
+    // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
     public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;
 }
