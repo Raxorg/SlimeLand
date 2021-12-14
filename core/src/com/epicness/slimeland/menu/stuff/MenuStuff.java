@@ -19,7 +19,7 @@ public class MenuStuff extends Stuff {
     private SlimeGrid slimeGrid;
     private Sprited slimeSelector;
     private SpritedText chooseText;
-    private SpritedText loadingOverlay;
+    private SpritedText overlay;
 
     @Override
     public void initializeStuff() {
@@ -36,10 +36,10 @@ public class MenuStuff extends Stuff {
         chooseText.setColor(TRANSPARENT);
         chooseText.setText("Choose your colors");
 
-        loadingOverlay = new SpritedText(sharedAssets.getPixel(), assets.getBiggerPixelFont());
-        loadingOverlay.setSize(CAMERA_WIDTH,CAMERA_HEIGHT);
-        loadingOverlay.setColor(OPAQUE_TRANSPARENT);
-        loadingOverlay.setText("Thonking");
+        overlay = new SpritedText(sharedAssets.getPixel(), assets.getBiggerPixelFont());
+        overlay.setSize(CAMERA_WIDTH,CAMERA_HEIGHT);
+        overlay.setColor(OPAQUE_TRANSPARENT);
+        overlay.setText("Thonking");
     }
 
     public SlimeGrid getSlimeGrid() {
@@ -54,7 +54,7 @@ public class MenuStuff extends Stuff {
         return chooseText;
     }
 
-    public SpritedText getLoadingOverlay() {
-        return loadingOverlay;
+    public SpritedText getOverlay() {
+        return overlay;
     }
 }

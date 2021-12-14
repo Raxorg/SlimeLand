@@ -9,6 +9,7 @@ public class MenuInputHandler extends InputHandler {
         MenuLogic logic = (MenuLogic) this.logic;
         logic.getSlimeGridHandler().touchDown(x, y);
         logic.getScrollBehavior().touchDown(y);
+        logic.getPlayerChecker().touchDown();
     }
 
     @Override

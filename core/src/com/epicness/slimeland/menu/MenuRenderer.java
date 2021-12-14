@@ -19,7 +19,7 @@ public class MenuRenderer extends Renderer {
         stuff.getSlimeGrid().draw(spriteBatch);
         stuff.getSlimeSelector().draw(spriteBatch);
         stuff.getChooseText().draw(spriteBatch);
-        stuff.getLoadingOverlay().draw(spriteBatch);
+        stuff.getOverlay().draw(spriteBatch);
         spriteBatch.end();
     }
 }

@@ -14,7 +14,7 @@ public class ColorSelectionHandler {
 
     public void claimColor(Color color1, Color color2) {
         input.setEnabled(false);
-        stuff.getLoadingOverlay().setPosition(0f, 0f);
+        stuff.getOverlay().setPosition(0f, 0f);
 
         String colors = stringFromColor(color1) + "-" + stringFromColor(color2);
         game.getFirestore().claimColor(colors, aBoolean -> {

@@ -30,6 +30,8 @@ public class MenuLogic extends Logic {
         preferencesHandler = new PreferencesHandler();
         scrollBehavior = new ScrollBehavior();
 
+        playerChecker.setSharedLogic(sharedLogic);
+
         menuInputHandler.setLogic(this);
         playerChecker.setLogic(this);
         slimeGridHandler.setLogic(this);
@@ -74,6 +76,10 @@ public class MenuLogic extends Logic {
 
     public ColorSelectionHandler getColorSelectionHandler() {
         return colorSelectionHandler;
+    }
+
+    public PlayerChecker getPlayerChecker() {
+        return playerChecker;
     }
 
     public SlimeGridHandler getSlimeGridHandler() {
