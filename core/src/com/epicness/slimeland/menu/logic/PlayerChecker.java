@@ -4,6 +4,7 @@ import static com.epicness.slimeland.menu.MenuConstants.COLORS_PREF_KEY;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
 import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
 import static com.epicness.slimeland.menu.MenuConstants.PREFS_PATH;
+import static com.epicness.slimeland.menu.MenuConstants.WELCOME_BACK_MESSAGE;
 
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.SharedLogic;
@@ -28,12 +29,12 @@ public class PlayerChecker {
             input.setEnabled(true);
             return;
         }
-        stuff.getOverlay().setText("Welcome back");
+        stuff.getOverlay().setText(WELCOME_BACK_MESSAGE);
         stuff.getOverlay().setPosition(0f, 0f);
     }
 
     public void touchDown() {
-        if (stuff.getOverlay().getText().equals("Welcome back")) {
+        if (stuff.getOverlay().getText().equals(WELCOME_BACK_MESSAGE)) {
             joinGame(colors);
         }
     }

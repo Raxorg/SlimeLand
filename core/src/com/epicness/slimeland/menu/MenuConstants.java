@@ -8,6 +8,8 @@ public class MenuConstants {
     // Prefs path
     public static final String PREFS_PATH = "EpicnessSlimeLandPrefs";
     public static final String COLORS_PREF_KEY = "colors";
+    // Overlay
+    public static final String WELCOME_BACK_MESSAGE = "Welcome back";
     // Choose text
     public static final float CHOOSE_TEXT_WIDTH = CAMERA_WIDTH;
     public static final float CHOOSE_TEXT_HEIGHT = 100f;
