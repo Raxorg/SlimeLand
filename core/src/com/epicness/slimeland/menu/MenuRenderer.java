@@ -16,6 +16,7 @@ public class MenuRenderer extends Renderer {
         spriteBatch.setProjectionMatrix(screen.getStaticCamera().combined);
 
         spriteBatch.begin();
+        sharedStuff.getAnimatedBackground().draw(spriteBatch);
         stuff.getSlimeGrid().draw(spriteBatch);
         stuff.getSlimeSelector().draw(spriteBatch);
         stuff.getChooseText().draw(spriteBatch);

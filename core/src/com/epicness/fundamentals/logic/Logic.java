@@ -5,6 +5,7 @@ import com.epicness.fundamentals.SharedScreen;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.assets.SharedAssets;
 import com.epicness.fundamentals.input.SharedInput;
+import com.epicness.fundamentals.stuff.SharedStuff;
 import com.epicness.fundamentals.stuff.Stuff;
 
 public abstract class Logic {
@@ -23,11 +24,11 @@ public abstract class Logic {
 
     }
 
-    public void setAssets(Assets assets) {
+    public void setSharedAssets(SharedAssets sharedAssets) {
 
     }
 
-    public void setSharedAssets(SharedAssets sharedAssets) {
+    public void setAssets(Assets assets) {
 
     }
 
@@ -36,6 +37,10 @@ public abstract class Logic {
     }
 
     public void setScreen(SharedScreen screen) {
+
+    }
+
+    public void setSharedStuff(SharedStuff sharedStuff) {
 
     }
 

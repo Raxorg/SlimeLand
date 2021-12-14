@@ -21,12 +21,14 @@ public abstract class Initializer {
         SharedScreen screen = sharedResources.getScreen();
 
         logic.setGame(sharedResources.getGame());
-        logic.setAssets(assets);
         logic.setSharedAssets(sharedResources.getAssets());
+        logic.setAssets(assets);
         logic.setInput(sharedResources.getInput());
         logic.setScreen(screen);
+        logic.setSharedStuff(sharedResources.getStuff());
         logic.setStuff(stuff);
         renderer.setScreen(screen);
+        renderer.setSharedStuff(sharedResources.getStuff());
         renderer.setStuff(stuff);
         screen.setLogic(logic);
         screen.setRenderer(renderer);
