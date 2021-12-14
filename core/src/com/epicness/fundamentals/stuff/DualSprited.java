@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DualSprited implements Buttonable, Scrollable {
 
-    private final Sprite background, foreground;
+    protected final Sprite background, foreground;
 
     public DualSprited(Sprite backgroundSprite, Sprite foregroundSprite) {
         background = new Sprite(backgroundSprite);
@@ -71,6 +71,10 @@ public class DualSprited implements Buttonable, Scrollable {
         background.setSize(size, size);
     }
 
+    public float getWidth() {
+        return background.getWidth();
+    }
+
     public float getHeight() {
         return background.getHeight();
     }
@@ -88,16 +92,21 @@ public class DualSprited implements Buttonable, Scrollable {
         background.setScale(scale);
     }
 
+    public void centerBackgroundOrigin() {
+        background.setOriginCenter();
+    }
+
+    public void setFlip(boolean flipX, boolean flipY) {
+        background.setFlip(flipX, flipY);
+        foreground.setFlip(flipX, flipY);
+    }
+
     public Color getBackgroundColor() {
         return background.getColor();
     }
 
     public Color getForegroundColor() {
         return foreground.getColor();
-    }
-
-    public void centerBackgroundOrigin() {
-        background.setOriginCenter();
     }
 
     public void setBackgroundColor(Color color) {
