@@ -17,6 +17,7 @@ public class GameRenderer extends Renderer {
         spriteBatch.setProjectionMatrix(screen.getStaticCamera().combined);
 
         spriteBatch.begin();
+        stuff.getGrid().draw(spriteBatch);
         for (int i = 0; i < stuff.getClouds().length; i++) {
             stuff.getClouds()[i].drawBackground(spriteBatch);
         }
