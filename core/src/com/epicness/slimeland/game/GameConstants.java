@@ -22,6 +22,10 @@ public class GameConstants {
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
+    public static final float SLIME_STARTING_X = CAMERA_WIDTH / 2f - SLIME_WIDTH / 2f;
+    public static final float SLIME_STARTING_Y = CAMERA_HEIGHT / 2f - SLIME_HEIGHT / 2f;
+    public static final float SLIME_MIN_SPEED = -500f;
+    public static final float SLIME_MAX_SPEED = 500f;
     // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
     public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;

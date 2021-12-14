@@ -1,7 +1,5 @@
 package com.epicness.slimeland.game.stuff;
 
-import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
-import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 import static com.epicness.fundamentals.SharedConstants.DIRT;
 import static com.epicness.fundamentals.SharedConstants.LIGHT_DIRT;
 import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
@@ -14,6 +12,8 @@ import static com.epicness.slimeland.game.GameConstants.GRID_X;
 import static com.epicness.slimeland.game.GameConstants.GRID_Y;
 import static com.epicness.slimeland.game.GameConstants.HIDDEN_X;
 import static com.epicness.slimeland.game.GameConstants.SLIME_HEIGHT;
+import static com.epicness.slimeland.game.GameConstants.SLIME_STARTING_X;
+import static com.epicness.slimeland.game.GameConstants.SLIME_STARTING_Y;
 import static com.epicness.slimeland.game.GameConstants.SLIME_WIDTH;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
@@ -34,10 +34,12 @@ public class GameStuff extends Stuff {
 
         initializeGrid();
         slimes = new DelayedRemovalArray<>();
-        Slime slime = new Slime(assets.getLeftSlime(), assets.getRightSlime());
-        slime.setPosition(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f);
-        slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
-        slimes.add(slime);
+        for (int i = 0; i < 25; i++) {
+            Slime slime = new Slime(assets.getLeftSlime(), assets.getRightSlime());
+            slime.setPosition(SLIME_STARTING_X, SLIME_STARTING_Y);
+            slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
+            slimes.add(slime);
+        }
         initializeClouds(assets);
     }
 

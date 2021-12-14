@@ -13,6 +13,7 @@ public class GameLogic extends Logic {
 
     private final CloudHandler cloudHandler;
     private final GameInputHandler gameInputHandler;
+    private final SlimeHandler slimeHandler;
     private final StateHandler stateHandler;
 
     public GameLogic(SharedLogic sharedLogic) {
@@ -20,6 +21,7 @@ public class GameLogic extends Logic {
 
         cloudHandler = new CloudHandler();
         gameInputHandler = new GameInputHandler();
+        slimeHandler = new SlimeHandler();
         stateHandler = new StateHandler();
     }
 
@@ -35,6 +37,7 @@ public class GameLogic extends Logic {
     @Override
     public void update(float delta) {
         cloudHandler.update(delta);
+        slimeHandler.update(delta);
     }
 
     @Override
@@ -51,6 +54,7 @@ public class GameLogic extends Logic {
     public void setStuff(Stuff stuff) {
         GameStuff gameStuff = (GameStuff) stuff;
         cloudHandler.setStuff(gameStuff);
+        slimeHandler.setStuff(gameStuff);
         stateHandler.setStuff(gameStuff);
     }
 

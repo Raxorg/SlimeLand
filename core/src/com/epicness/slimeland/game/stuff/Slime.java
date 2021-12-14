@@ -7,13 +7,13 @@ import com.epicness.fundamentals.stuff.DualSprited;
 
 public class Slime extends DualSprited {
 
-    private float actionTime;
-    private final Vector2 origin, destination;
+    private float actionProgress;
+    private final Vector2 speed;
 
     public Slime(Sprite left, Sprite right) {
         super(left, right);
-        origin = new Vector2();
-        destination = new Vector2();
+        actionProgress = 1f;
+        speed = new Vector2();
     }
 
     public void setLeftColor(Color color) {
@@ -24,19 +24,15 @@ public class Slime extends DualSprited {
         setForegroundColor(color);
     }
 
-    public float getActionTime() {
-        return actionTime;
+    public float getActionProgress() {
+        return actionProgress;
     }
 
-    public void setActionTime(float actionTime) {
-        this.actionTime = actionTime;
+    public void setActionProgress(float actionProgress) {
+        this.actionProgress = actionProgress;
     }
 
-    public Vector2 getOrigin() {
-        return origin;
-    }
-
-    public Vector2 getDestination() {
-        return destination;
+    public Vector2 getSpeed() {
+        return speed;
     }
 }
