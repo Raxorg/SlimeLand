@@ -6,7 +6,8 @@ import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
 import static com.epicness.slimeland.AssetPaths.GREEN_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.ORANGE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.RED_ORNAMENT_PATH;
-import static com.epicness.slimeland.AssetPaths.SLIME_PATH;
+import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
+import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,12 +16,13 @@ import com.epicness.fundamentals.assets.Assets;
 public class GameAssets extends Assets {
 
     // Sprites
-    private Sprite slime, cloud, cloudShadow;
+    private Sprite leftSlime, rightSlime, cloud, cloudShadow;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, redOrnament;
 
     @Override
     public void queueAssetLoading() {
-        assetManager.load(SLIME_PATH, Texture.class);
+        assetManager.load(SLIME_LEFT_HALF_PATH, Texture.class);
+        assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
         assetManager.load(CLOUD_PATH, Texture.class);
         assetManager.load(CLOUD_SHADOW_PATH, Texture.class);
         assetManager.load(BLUE_ORNAMENT_PATH, Texture.class);
@@ -31,7 +33,8 @@ public class GameAssets extends Assets {
 
     @Override
     public void initializeAssets() {
-        slime = new Sprite(assetManager.get(SLIME_PATH, Texture.class));
+        leftSlime = new Sprite(assetManager.get(SLIME_LEFT_HALF_PATH, Texture.class));
+        rightSlime = new Sprite(assetManager.get(SLIME_RIGHT_HALF_PATH, Texture.class));
         cloud = new Sprite(assetManager.get(CLOUD_PATH, Texture.class));
         cloudShadow = new Sprite(assetManager.get(CLOUD_SHADOW_PATH, Texture.class));
 
@@ -42,8 +45,12 @@ public class GameAssets extends Assets {
     }
 
     // Sprites
-    public Sprite getSlime() {
-        return slime;
+    public Sprite getLeftSlime() {
+        return leftSlime;
+    }
+
+    public Sprite getRightSlime() {
+        return rightSlime;
     }
 
     public Sprite getCloud() {

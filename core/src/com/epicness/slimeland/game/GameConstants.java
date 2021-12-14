@@ -17,4 +17,7 @@ public class GameConstants {
     private static final float GRID_SIZE = GRID_COLUMNS * CELL_SIZE;
     public static final float GRID_X = CAMERA_WIDTH / 2f - GRID_SIZE / 2f;
     public static final float GRID_Y = CAMERA_HEIGHT / 2f - GRID_SIZE / 2f;
+    // Slimes
+    public static final float SLIME_WIDTH = 50f;
+    public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
 }
