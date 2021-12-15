@@ -1,6 +1,18 @@
 package com.epicness.slimeland.game.stuff.machines;
 
-public abstract class Machine {
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.epicness.fundamentals.stuff.DualSprited;
+
+public abstract class Machine extends DualSprited {
 
 
+    public Machine(Sprite backgroundSprite, Sprite foregroundSprite) {
+        super(backgroundSprite, foregroundSprite);
+    }
+
+    public void setColors(Color leftColor, Color rightColor) {
+        setBackgroundColor(leftColor);
+        setForegroundColor(rightColor);
+    }
 }
