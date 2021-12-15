@@ -17,9 +17,9 @@ public class StateHandler {
         this.color2 = color2;
 
         for (int i = 0; i < stuff.getSlimes().size; i++) {
-            stuff.getSlimes().get(i).setLeftColor(color1);
-            stuff.getSlimes().get(i).setRightColor(color2);
+            stuff.getSlimes().get(i).setColors(color1, color2);
         }
+        stuff.getBuildMenu().setColors(color1, color2);
     }
 
     public String getName() {

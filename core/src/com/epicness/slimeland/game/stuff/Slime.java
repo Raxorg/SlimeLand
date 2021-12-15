@@ -16,12 +16,9 @@ public class Slime extends DualSprited {
         speed = new Vector2();
     }
 
-    public void setLeftColor(Color color) {
-        setBackgroundColor(color);
-    }
-
-    public void setRightColor(Color color) {
-        setForegroundColor(color);
+    public void setColors(Color leftColor, Color rightColor) {
+        setBackgroundColor(leftColor);
+        setForegroundColor(rightColor);
     }
 
     public float getActionProgress() {
