@@ -26,6 +26,12 @@ public class GameConstants {
     public static final float SLIME_STARTING_Y = CAMERA_HEIGHT / 2f - SLIME_HEIGHT / 2f;
     public static final float SLIME_MIN_SPEED = -500f;
     public static final float SLIME_MAX_SPEED = 500f;
+    // Build menu
+    public static final float BUILD_MENU_WIDTH = CELL_SIZE * 2f;
+    public static final float BUILD_MENU_HEIGHT = CAMERA_HEIGHT;
+    public static final float BUILD_OPTION_SIZE = BUILD_MENU_WIDTH / 2f;
+    public static final float BUILD_OPTION_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_OPTION_SIZE / 2f;
+    public static final float BUILD_MENU_SPEED = 1000f;
     // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
     public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;

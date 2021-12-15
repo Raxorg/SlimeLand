@@ -2,6 +2,7 @@ package com.epicness.slimeland.game.stuff;
 
 import static com.epicness.fundamentals.SharedConstants.DIRT;
 import static com.epicness.fundamentals.SharedConstants.LIGHT_DIRT;
+import static com.epicness.fundamentals.SharedConstants.TRANSPARENT;
 import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
 import static com.epicness.slimeland.game.GameConstants.CLOUD_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.CLOUD_SHADOW_OFFSET;
@@ -17,6 +18,7 @@ import static com.epicness.slimeland.game.GameConstants.SLIME_STARTING_Y;
 import static com.epicness.slimeland.game.GameConstants.SLIME_WIDTH;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
@@ -25,8 +27,10 @@ import com.epicness.slimeland.game.GameAssets;
 public class GameStuff extends Stuff {
 
     private Grid grid;
+    private Sprited cellSelector;
     private DelayedRemovalArray<Slime> slimes;
     private Cloud[] clouds;
+    private BuildMenu buildMenu;
 
     @Override
     public void initializeStuff() {
@@ -40,7 +44,9 @@ public class GameStuff extends Stuff {
             slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
             slimes.add(slime);
         }
+        initializeCellSelector();
         initializeClouds(assets);
+        buildMenu = new BuildMenu(sharedAssets, assets);
     }
 
     private void initializeGrid() {
@@ -55,6 +61,12 @@ public class GameStuff extends Stuff {
         }
     }
 
+    private void initializeCellSelector() {
+        cellSelector = new Sprited(sharedAssets.getPixel());
+        cellSelector.setSize(CELL_SIZE, CELL_SIZE);
+        cellSelector.setColor(TRANSPARENT);
+    }
+
     private void initializeClouds(GameAssets assets) {
         clouds = new Cloud[10];
         for (int i = 0; i < clouds.length; i++) {
@@ -64,8 +76,13 @@ public class GameStuff extends Stuff {
         }
     }
 
+    // Getters
     public Grid getGrid() {
         return grid;
+    }
+
+    public Sprited getCellSelector() {
+        return cellSelector;
     }
 
     public DelayedRemovalArray<Slime> getSlimes() {
@@ -74,5 +91,9 @@ public class GameStuff extends Stuff {
 
     public Cloud[] getClouds() {
         return clouds;
+    }
+
+    public BuildMenu getBuildMenu() {
+        return buildMenu;
     }
 }
