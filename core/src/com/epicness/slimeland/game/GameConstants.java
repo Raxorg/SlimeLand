@@ -19,6 +19,8 @@ public class GameConstants {
     private static final float GRID_SIZE = GRID_COLUMNS * CELL_SIZE;
     public static final float GRID_X = CAMERA_WIDTH / 2f - GRID_SIZE / 2f;
     public static final float GRID_Y = CAMERA_HEIGHT / 2f - GRID_SIZE / 2f;
+    // Cell properties
+    public static final String MACHINE_PROPERTY = "Machine";
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
@@ -29,9 +31,13 @@ public class GameConstants {
     // Build menu
     public static final float BUILD_MENU_WIDTH = CELL_SIZE * 2f;
     public static final float BUILD_MENU_HEIGHT = CAMERA_HEIGHT;
+    public static final float BUILD_MENU_SPEED = 1000f;
+    // Build menu options
     public static final float BUILD_OPTION_SIZE = BUILD_MENU_WIDTH / 2f;
     public static final float BUILD_OPTION_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_OPTION_SIZE / 2f;
-    public static final float BUILD_MENU_SPEED = 1000f;
+    public static final int FACTORY_ID = 0;
+    public static final int WORKSHOP_ID = 1;
+    public static final int TOWER_ID = 2;
     // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
     public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;
