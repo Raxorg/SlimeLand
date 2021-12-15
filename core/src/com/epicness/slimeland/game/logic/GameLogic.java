@@ -2,15 +2,19 @@ package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
+import com.epicness.fundamentals.assets.Assets;
+import com.epicness.fundamentals.assets.SharedAssets;
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.slimeland.SlimeGame;
+import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.GameStuff;
 
 public class GameLogic extends Logic {
 
+    private final BuildingHandler buildingHandler;
     private final BuildMenuHandler buildMenuHandler;
     private final CloudHandler cloudHandler;
     private final GameInputHandler gameInputHandler;
@@ -21,6 +25,7 @@ public class GameLogic extends Logic {
     public GameLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
 
+        buildingHandler = new BuildingHandler();
         buildMenuHandler = new BuildMenuHandler();
         cloudHandler = new CloudHandler();
         gameInputHandler = new GameInputHandler();
@@ -28,6 +33,8 @@ public class GameLogic extends Logic {
         slimeHandler = new SlimeHandler();
         stateHandler = new StateHandler();
 
+        buildingHandler.setLogic(this);
+        buildMenuHandler.setLogic(this);
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
     }
@@ -56,6 +63,17 @@ public class GameLogic extends Logic {
     }
 
     @Override
+    public void setSharedAssets(SharedAssets sharedAssets) {
+        buildingHandler.setSharedAssets(sharedAssets);
+    }
+
+    @Override
+    public void setAssets(Assets assets) {
+        GameAssets gameAssets = (GameAssets) assets;
+        buildingHandler.setAssets(gameAssets);
+    }
+
+    @Override
     public void setInput(SharedInput input) {
         gameInputHandler.setInput(input);
     }
@@ -68,6 +86,10 @@ public class GameLogic extends Logic {
         gridHandler.setStuff(gameStuff);
         slimeHandler.setStuff(gameStuff);
         stateHandler.setStuff(gameStuff);
+    }
+
+    public BuildingHandler getBuildingHandler() {
+        return buildingHandler;
     }
 
     public BuildMenuHandler getBuildMenuHandler() {

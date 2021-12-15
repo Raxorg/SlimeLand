@@ -1,10 +1,13 @@
-package com.epicness.slimeland.game.stuff;
+package com.epicness.slimeland.game.stuff.buildmenu;
 
 import static com.epicness.fundamentals.SharedConstants.TRANSPARENT;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.BUILD_OPTION_SIZE;
 import static com.epicness.slimeland.game.GameConstants.BUILD_OPTION_X_OFFSET;
+import static com.epicness.slimeland.game.GameConstants.FACTORY_ID;
+import static com.epicness.slimeland.game.GameConstants.TOWER_ID;
+import static com.epicness.slimeland.game.GameConstants.WORKSHOP_ID;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,12 +22,13 @@ public class BuildMenu extends Sprited {
 
     public BuildMenu(SharedAssets sharedAssets, GameAssets assets) {
         super(sharedAssets.getPixel());
-        sprite.setSize(BUILD_MENU_WIDTH, BUILD_MENU_HEIGHT);
-        sprite.setColor(TRANSPARENT);
+        setSize(BUILD_MENU_WIDTH, BUILD_MENU_HEIGHT);
+        setColor(TRANSPARENT);
 
-        options = new DualSprited[2];
-        options[0] = new DualSprited(assets.getFactoryLeft(), assets.getFactoryRight());
-        options[1] = new DualSprited(assets.getTowerLeft(), assets.getTowerRight());
+        options = new DualSprited[3];
+        options[FACTORY_ID] = new DualSprited(assets.getFactoryLeft(), assets.getFactoryRight());
+        options[WORKSHOP_ID] = new DualSprited(assets.getFactoryLeft(), assets.getTowerRight());
+        options[TOWER_ID] = new DualSprited(assets.getTowerLeft(), assets.getTowerRight());
         float spacing = (BUILD_MENU_HEIGHT - (BUILD_OPTION_SIZE / 2f * options.length)) / (options.length + 1);
         for (int i = 0; i < options.length; i++) {
             options[i].setSize(BUILD_OPTION_SIZE);
@@ -61,5 +65,9 @@ public class BuildMenu extends Sprited {
             options[i].setBackgroundColor(color1);
             options[i].setForegroundColor(color2);
         }
+    }
+
+    public DualSprited[] getOptions() {
+        return options;
     }
 }

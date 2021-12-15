@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Sprited implements Buttonable, Parallaxable {
 
-    protected Sprite sprite;
+    private Sprite sprite;
 
     public Sprited(Sprite sprite) {
         this.sprite = new Sprite(sprite);

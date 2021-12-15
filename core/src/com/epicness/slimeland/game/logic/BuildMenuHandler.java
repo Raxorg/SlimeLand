@@ -3,20 +3,37 @@ package com.epicness.slimeland.game.logic;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_SPEED;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_WIDTH;
 
+import com.epicness.fundamentals.stuff.DualSprited;
 import com.epicness.fundamentals.stuff.grid.Cell;
-import com.epicness.slimeland.game.stuff.BuildMenu;
 import com.epicness.slimeland.game.stuff.GameStuff;
+import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
 
 public class BuildMenuHandler {
 
     // Structure
+    private GameLogic logic;
     private GameStuff stuff;
     // Logic
-    private Cell selectedCell;
     private boolean deploying, hiding, deployed;
+    private Cell selectedCell;
 
     public void setup() {
         stuff.getBuildMenu().setX(-BUILD_MENU_WIDTH);
+    }
+
+    public void show(Cell selectedCell) {
+        this.selectedCell = selectedCell;
+        if (deployed || deploying) {
+            return;
+        }
+        deploying = true;
+    }
+
+    public void hide() {
+        selectedCell = null;
+        deploying = false;
+        deployed = false;
+        hiding = true;
     }
 
     public void update(float delta) {
@@ -38,21 +55,21 @@ public class BuildMenuHandler {
         }
     }
 
-    public void show(Cell cell) {
-        selectedCell = cell;
-        if (deployed || deploying) {
-            return;
+    public void touchUp(float x, float y) {
+        DualSprited[] options = stuff.getBuildMenu().getOptions();
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].contains(x, y)) {
+                logic.getBuildingHandler().build(i, selectedCell);
+                return;
+            }
         }
-        deploying = true;
-    }
-
-    public void hide() {
-        deploying = false;
-        deployed = false;
-        hiding = true;
     }
 
     // Structure
+    public void setLogic(GameLogic logic) {
+        this.logic = logic;
+    }
+
     public void setStuff(GameStuff stuff) {
         this.stuff = stuff;
     }

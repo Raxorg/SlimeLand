@@ -23,6 +23,7 @@ import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
 import com.epicness.slimeland.game.GameAssets;
+import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
 
 public class GameStuff extends Stuff {
 
