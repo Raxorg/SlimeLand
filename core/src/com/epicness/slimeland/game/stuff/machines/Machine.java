@@ -6,9 +6,8 @@ import com.epicness.fundamentals.stuff.DualSprited;
 
 public abstract class Machine extends DualSprited {
 
-
-    public Machine(Sprite backgroundSprite, Sprite foregroundSprite) {
-        super(backgroundSprite, foregroundSprite);
+    public Machine(Sprite leftSprite, Sprite rightSprite) {
+        super(leftSprite, rightSprite);
     }
 
     public void setColors(Color leftColor, Color rightColor) {
