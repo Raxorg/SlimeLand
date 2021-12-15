@@ -55,6 +55,11 @@ public class SpritedText implements Buttonable, Scrollable {
         label.setPosition(x, y + background.getHeight() / 2f);
     }
 
+    public void translateX(float x) {
+        background.translateX(x);
+        label.translateX(x);
+    }
+
     public void setSize(float size) {
         setSize(size, size);
     }

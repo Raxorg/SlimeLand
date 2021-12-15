@@ -33,11 +33,18 @@ public class GameConstants {
     public static final float BUILD_MENU_HEIGHT = CAMERA_HEIGHT;
     public static final float BUILD_MENU_SPEED = 1000f;
     // Build menu options
+    public static final int OPTIONS = 3;
+    private static final int SPACES = OPTIONS + 2;
     public static final float BUILD_OPTION_SIZE = BUILD_MENU_WIDTH / 2f;
+    public static final float BUILD_OPTION_SPACING = (BUILD_MENU_HEIGHT - BUILD_OPTION_SIZE * (OPTIONS + 1)) / SPACES;
     public static final float BUILD_OPTION_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_OPTION_SIZE / 2f;
     public static final int FACTORY_ID = 0;
     public static final int WORKSHOP_ID = 1;
     public static final int TOWER_ID = 2;
+    // Build menu counter
+    public static final float BUILD_MENU_COUNTER_SIZE = BUILD_MENU_WIDTH / 2f;
+    public static final float BUILD_MENU_COUNTER_Y = CAMERA_HEIGHT - BUILD_MENU_COUNTER_SIZE - BUILD_OPTION_SPACING;
+    public static final float BUILD_MENU_COUNTER_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_MENU_COUNTER_SIZE / 2f;
     // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
     public static final float HIDDEN_Y = CAMERA_HEIGHT * 2f;

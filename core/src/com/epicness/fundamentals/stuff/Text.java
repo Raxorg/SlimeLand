@@ -44,18 +44,13 @@ public class Text implements Buttonable, Scrollable {
         );
     }
 
-    @Override
-    public boolean contains(float x, float y) {
-        return bounds.contains(x, y);
-    }
-
     protected void calculateSize() {
         bounds.height = TextUtils.getTextHeight(getFont(), text, bounds.width, horizontalAlignment, true, truncate);
     }
 
-    // Getters & Setters
-    public void setX(float x) {
-        bounds.x = x;
+    @Override
+    public boolean contains(float x, float y) {
+        return bounds.contains(x, y);
     }
 
     @Override
@@ -68,14 +63,22 @@ public class Text implements Buttonable, Scrollable {
         bounds.y = y;
     }
 
+    @Override
+    public void translateY(float y) {
+        bounds.y += y;
+    }
+
+    public void setX(float x) {
+        bounds.x = x;
+    }
+
     public void setPosition(float x, float y) {
         setX(x);
         setY(y);
     }
 
-    @Override
-    public void translateY(float y) {
-        bounds.y += y;
+    public void translateX(float x) {
+        bounds.x += x;
     }
 
     public BitmapFont getFont() {
