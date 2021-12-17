@@ -18,8 +18,8 @@ public class AssetPaths {
     public static final String CLOUD_SHADOW_PATH = "slimeland/images/decorative/cloudShadow.png";
     public static final String BUSH_PATH = "slimeland/images/decorative/bush.png";
 
-    public static final String FACTORY_LEFT_PATH = "slimeland/images/machines/factoryLeft.png";
-    public static final String FACTORY_RIGHT_PATH = "slimeland/images/machines/factoryRight.png";
+    public static final String FACTORY_EXTERIOR_PATH = "slimeland/images/machines/factoryExterior.png";
+    public static final String FACTORY_INTERIOR_PATH = "slimeland/images/machines/factoryInterior.png";
     public static final String WORKSHOP_EXTERIOR_PATH = "slimeland/images/machines/workshopExterior.png";
     public static final String WORKSHOP_INTERIOR_PATH = "slimeland/images/machines/workshopInterior.png";
     public static final String TOWER_LEFT_PATH = "slimeland/images/machines/towerLeft.png";

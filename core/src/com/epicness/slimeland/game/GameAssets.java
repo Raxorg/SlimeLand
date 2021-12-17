@@ -6,8 +6,8 @@ import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
 import static com.epicness.slimeland.AssetPaths.CHILL_MUSIC_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
-import static com.epicness.slimeland.AssetPaths.FACTORY_LEFT_PATH;
-import static com.epicness.slimeland.AssetPaths.FACTORY_RIGHT_PATH;
+import static com.epicness.slimeland.AssetPaths.FACTORY_EXTERIOR_PATH;
+import static com.epicness.slimeland.AssetPaths.FACTORY_INTERIOR_PATH;
 import static com.epicness.slimeland.AssetPaths.GREEN_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.MEDIUM_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.ORANGE_ORNAMENT_PATH;
@@ -51,8 +51,8 @@ public class GameAssets extends Assets {
         assetManager.load(CLOUD_SHADOW_PATH, Texture.class);
         assetManager.load(BUSH_PATH, Texture.class);
 
-        assetManager.load(FACTORY_LEFT_PATH, Texture.class);
-        assetManager.load(FACTORY_RIGHT_PATH, Texture.class);
+        assetManager.load(FACTORY_EXTERIOR_PATH, Texture.class);
+        assetManager.load(FACTORY_INTERIOR_PATH, Texture.class);
         assetManager.load(WORKSHOP_EXTERIOR_PATH, Texture.class);
         assetManager.load(WORKSHOP_INTERIOR_PATH, Texture.class);
         assetManager.load(TOWER_LEFT_PATH, Texture.class);
@@ -81,8 +81,8 @@ public class GameAssets extends Assets {
         cloudShadow = new Sprite(assetManager.get(CLOUD_SHADOW_PATH, Texture.class));
         bush = new Sprite(assetManager.get(BUSH_PATH, Texture.class));
 
-        factoryLeft = new Sprite(assetManager.get(FACTORY_LEFT_PATH, Texture.class));
-        factoryRight = new Sprite(assetManager.get(FACTORY_RIGHT_PATH, Texture.class));
+        factoryLeft = new Sprite(assetManager.get(FACTORY_EXTERIOR_PATH, Texture.class));
+        factoryRight = new Sprite(assetManager.get(FACTORY_INTERIOR_PATH, Texture.class));
         workshopExterior = new Sprite(assetManager.get(WORKSHOP_EXTERIOR_PATH, Texture.class));
         workshopInterior = new Sprite(assetManager.get(WORKSHOP_INTERIOR_PATH, Texture.class));
         towerLeft = new Sprite(assetManager.get(TOWER_LEFT_PATH, Texture.class));
