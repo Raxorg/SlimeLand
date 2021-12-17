@@ -41,13 +41,13 @@ public class PlayerRegistrator {
     public void registerPlayer() {
         awaitResponse();
         game.getFirestore().registerPlayer(player, success -> {
-            if (success) {
-                logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
-                logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
-                logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
-                sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
-                sharedLogic.getTransitionHandler().allowTransition();
-            }
+            logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
+            logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
+            logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
+            sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
+            sharedLogic.getTransitionHandler().allowTransition();
+        }, availableColors -> {
+
         }, errorMessage -> {
             stuff.getOverlay().setText(errorMessage);
             error = errorMessage;

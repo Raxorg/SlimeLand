@@ -7,6 +7,8 @@ import com.epicness.firebase.ResultListener;
 import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.menu.stuff.Player;
 
+import java.util.Map;
+
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
@@ -19,7 +21,13 @@ public class DesktopLauncher {
     static class DesktopFirestore implements CoreFirestore {
 
         @Override
-        public void registerPlayer(Player player, ResultListener<Boolean> successListener, ResultListener<String> errorListener) {
+        public void registerPlayer(Player player, ResultListener<Void> successListener, ResultListener<String> colorsListener,
+                                   ResultListener<String> errorListener) {
+
+        }
+
+        @Override
+        public void fetchPlayerData(ResultListener<Map<String, Object>> playerDataListener) {
 
         }
     }
