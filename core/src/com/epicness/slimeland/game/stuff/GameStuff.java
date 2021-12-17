@@ -83,7 +83,7 @@ public class GameStuff extends Stuff {
             do {
                 x = MathUtils.random(0, CAMERA_WIDTH);
                 y = MathUtils.random(0, CAMERA_HEIGHT);
-            } while (x >= GRID_X - BUSH_WIDTH && x <= GRID_X + GRID_SIZE && y >= GRID_Y - BUSH_HEIGHT && y <= GRID_Y + GRID_SIZE);
+            } while (x >= GRID_X - BUSH_WIDTH * 2.5f && x <= GRID_X + GRID_SIZE && y >= GRID_Y - BUSH_HEIGHT && y <= GRID_Y + GRID_SIZE);
             bush.setPosition(x, y);
             bush.setSize(BUSH_WIDTH, BUSH_HEIGHT);
             bush.setScale(MathUtils.random(1f, 2.5f));
