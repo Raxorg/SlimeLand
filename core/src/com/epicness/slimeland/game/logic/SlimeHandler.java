@@ -5,6 +5,7 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.SLIME_MAX_SPEED;
 import static com.epicness.slimeland.game.GameConstants.SLIME_MIN_SPEED;
 
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.slimeland.game.stuff.GameStuff;
@@ -29,10 +30,10 @@ public class SlimeHandler {
         if (actionTime < 0f) {
             slime.setActionProgress(actionTime + delta);
         } else if (actionTime < 1f) {
-            float x = slime.getX() + slime.getSpeed().x * delta;
-            float y = slime.getY() + slime.getSpeed().y * delta;
+            float x = slime.getX() + slime.getSpeed().x * delta * Interpolation.sine.apply(slime.getActionProgress() * 2f);
+            float y = slime.getY() + slime.getSpeed().y * delta * Interpolation.sine.apply(slime.getActionProgress() * 2f);
             slime.setPosition(x, y);
-            slime.setActionProgress(actionTime + delta);
+            slime.setActionProgress(actionTime + delta / MathUtils.random(1f, 2f));
         } else {
             float randomXSpeed = MathUtils.random(SLIME_MIN_SPEED, SLIME_MAX_SPEED);
             float randomYSpeed = MathUtils.random(SLIME_MIN_SPEED, SLIME_MAX_SPEED);
