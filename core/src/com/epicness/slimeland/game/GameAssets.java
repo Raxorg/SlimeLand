@@ -3,6 +3,7 @@ package com.epicness.slimeland.game;
 import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
+import static com.epicness.slimeland.AssetPaths.CHILL_MUSIC_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
 import static com.epicness.slimeland.AssetPaths.FACTORY_LEFT_PATH;
@@ -18,6 +19,7 @@ import static com.epicness.slimeland.AssetPaths.TOWER_RIGHT_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_EXTERIOR_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_INTERIOR_PATH;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,6 +27,8 @@ import com.epicness.fundamentals.assets.Assets;
 
 public class GameAssets extends Assets {
 
+    // Audio
+    private Music chillMusic;
     // Fonts
     private BitmapFont pixelFont;
     // Sprites
@@ -34,6 +38,8 @@ public class GameAssets extends Assets {
 
     @Override
     public void queueAssetLoading() {
+        // Audio
+        assetManager.load(CHILL_MUSIC_PATH, Music.class);
         // Fonts
         assetManager.load(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
         // Sprites
@@ -59,6 +65,8 @@ public class GameAssets extends Assets {
 
     @Override
     public void initializeAssets() {
+        // Audio
+        chillMusic = assetManager.get(CHILL_MUSIC_PATH, Music.class);
         // Fonts
         pixelFont = assetManager.get(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
         pixelFont.getData().setScale(5f);
@@ -81,6 +89,11 @@ public class GameAssets extends Assets {
         orangeOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
         purpleOrnament = new Sprite(assetManager.get(PURPLE_ORNAMENT_PATH, Texture.class));
         redOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
+    }
+
+    // Audio
+    public Music getChillMusic() {
+        return chillMusic;
     }
 
     // Fonts

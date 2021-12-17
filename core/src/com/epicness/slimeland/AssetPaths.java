@@ -2,6 +2,8 @@ package com.epicness.slimeland;
 
 public class AssetPaths {
 
+    // Audio
+    public static final String CHILL_MUSIC_PATH = "slimeland/audio/chill.mp3";
     // Fonts
     public static final String BIGGER_PIXEL_FONT_PATH = "slimeland/fonts/pixelFont.fnt";
     // Sprites
