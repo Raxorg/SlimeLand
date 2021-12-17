@@ -1,7 +1,7 @@
 package com.epicness.slimeland.game.logic;
 
-import static com.epicness.slimeland.game.GameConstants.HIDDEN_X;
-import static com.epicness.slimeland.game.GameConstants.HIDDEN_Y;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
 
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;

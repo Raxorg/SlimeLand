@@ -59,7 +59,7 @@ public class BuildMenuHandler {
         DualSprited[] options = stuff.getBuildMenu().getOptions();
         for (int i = 0; i < options.length; i++) {
             if (options[i].contains(x, y)) {
-                logic.getBuildingHandler().build(i, selectedCell);
+                logic.getBuildingHandler().buildWithCharge(i, selectedCell);
                 return;
             }
         }

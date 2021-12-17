@@ -1,10 +1,11 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
+import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.menu.MenuConstants.COLORS_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
 import static com.epicness.slimeland.menu.MenuConstants.NAME_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.PREFS_PATH;
 
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.SharedLogic;
@@ -43,6 +44,7 @@ public class PlayerRegistrator {
             if (success) {
                 logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
                 logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
+                logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
                 sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
                 sharedLogic.getTransitionHandler().allowTransition();
             }

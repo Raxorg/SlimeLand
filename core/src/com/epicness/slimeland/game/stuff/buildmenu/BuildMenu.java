@@ -2,9 +2,9 @@ package com.epicness.slimeland.game.stuff.buildmenu;
 
 import static com.epicness.fundamentals.SharedConstants.TRANSPARENT;
 import static com.epicness.fundamentals.SharedConstants.WHITE_OPAQUE_TRANSPARENT;
-import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_COUNTER_SIZE;
-import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_COUNTER_X_OFFSET;
-import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_COUNTER_Y;
+import static com.epicness.slimeland.game.GameConstants.BUILD_CHARGES_FRAME_SIZE;
+import static com.epicness.slimeland.game.GameConstants.BUILD_CHARGES_FRAME_X_OFFSET;
+import static com.epicness.slimeland.game.GameConstants.BUILD_CHARGES_FRAME_Y;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.BUILD_OPTION_SIZE;
@@ -25,7 +25,7 @@ import com.epicness.slimeland.game.GameAssets;
 
 public class BuildMenu extends Sprited {
 
-    private final SpritedText buildsCounter;
+    private final SpritedText buildChargesFrame;
     private final DualSprited[] options;
 
     public BuildMenu(SharedAssets sharedAssets, GameAssets assets) {
@@ -33,10 +33,10 @@ public class BuildMenu extends Sprited {
         setSize(BUILD_MENU_WIDTH, BUILD_MENU_HEIGHT);
         setColor(TRANSPARENT);
 
-        buildsCounter = new SpritedText(sharedAssets.getSquare(), sharedAssets.getPixelFont());
-        buildsCounter.setY(BUILD_MENU_COUNTER_Y);
-        buildsCounter.setSize(BUILD_MENU_COUNTER_SIZE);
-        buildsCounter.setColor(WHITE_OPAQUE_TRANSPARENT);
+        buildChargesFrame = new SpritedText(sharedAssets.getSquare(), assets.getPixelFont());
+        buildChargesFrame.setY(BUILD_CHARGES_FRAME_Y);
+        buildChargesFrame.setSize(BUILD_CHARGES_FRAME_SIZE);
+        buildChargesFrame.setColor(WHITE_OPAQUE_TRANSPARENT);
 
         options = new DualSprited[OPTIONS];
         options[FACTORY_ID] = new DualSprited(assets.getFactoryLeft(), assets.getFactoryRight());
@@ -51,7 +51,7 @@ public class BuildMenu extends Sprited {
     @Override
     public void draw(SpriteBatch spriteBatch) {
         super.draw(spriteBatch);
-        buildsCounter.draw(spriteBatch);
+        buildChargesFrame.draw(spriteBatch);
         for (int i = 0; i < options.length; i++) {
             options[i].draw(spriteBatch);
         }
@@ -60,7 +60,7 @@ public class BuildMenu extends Sprited {
     @Override
     public void setX(float x) {
         super.setX(x);
-        buildsCounter.setX(x + BUILD_MENU_COUNTER_X_OFFSET);
+        buildChargesFrame.setX(x + BUILD_CHARGES_FRAME_X_OFFSET);
         for (int i = 0; i < options.length; i++) {
             options[i].setX(x + BUILD_OPTION_X_OFFSET);
         }
@@ -69,7 +69,7 @@ public class BuildMenu extends Sprited {
     @Override
     public void translateX(float amount) {
         super.translateX(amount);
-        buildsCounter.translateX(amount);
+        buildChargesFrame.translateX(amount);
         for (int i = 0; i < options.length; i++) {
             options[i].translateX(amount);
         }
@@ -80,6 +80,14 @@ public class BuildMenu extends Sprited {
             options[i].setBackgroundColor(color1);
             options[i].setForegroundColor(color2);
         }
+    }
+
+    public int getBuildCharges() {
+        return Integer.parseInt(buildChargesFrame.getText());
+    }
+
+    public void setBuildCharges(int buildCharges) {
+        buildChargesFrame.setText(buildCharges + "");
     }
 
     public DualSprited[] getOptions() {

@@ -1,9 +1,9 @@
 package com.epicness.slimeland.menu.logic;
 
 import static com.epicness.fundamentals.utils.ColorUtils.stringFromColor;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
 import static com.epicness.slimeland.menu.MenuConstants.CHECK_SIZE;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_COLUMNS;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_GRID_SCROLL_MAX_Y;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_GRID_SCROLL_MIN_Y;

@@ -1,9 +1,13 @@
 package com.epicness.slimeland;
 
+import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
+import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
+
 import com.badlogic.gdx.Game;
 import com.epicness.firebase.CoreFirestore;
 import com.epicness.firebase.FirebaseUtils;
 import com.epicness.fundamentals.SharedResources;
+import com.epicness.fundamentals.logic.PreferencesHandler;
 import com.epicness.slimeland.splash.SplashInitializer;
 
 public class SlimeGame extends Game {
@@ -19,6 +23,7 @@ public class SlimeGame extends Game {
     public void create() {
         new SplashInitializer().initialize(new SharedResources(this));
         //new PreferencesHandler().clearData(PREFS_PATH);
+        //new PreferencesHandler().clearData(BUILDING_PREFS_PATH);
     }
 
     public CoreFirestore getFirestore() {

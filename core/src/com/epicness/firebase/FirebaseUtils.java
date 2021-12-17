@@ -6,6 +6,9 @@ import java.util.Arrays;
 public class FirebaseUtils {
 
     // Tettinger: Tetty salmon-teal
+    // DQ: purple-gray
+    // Zebra: white-purple
+    // Lyze: red-teal
 
     public static void work() {
         String result = "";

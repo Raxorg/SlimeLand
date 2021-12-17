@@ -33,6 +33,8 @@ public class GameLogic extends Logic {
         slimeHandler = new SlimeHandler();
         stateHandler = new StateHandler();
 
+        buildingHandler.setSharedLogic(sharedLogic);
+
         buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
         gameInputHandler.setLogic(this);
@@ -41,6 +43,7 @@ public class GameLogic extends Logic {
 
     @Override
     public void initialLogic() {
+        buildingHandler.loadState();
         buildMenuHandler.setup();
         gameInputHandler.setupInput();
         gridHandler.setup();
@@ -81,6 +84,7 @@ public class GameLogic extends Logic {
     @Override
     public void setStuff(Stuff stuff) {
         GameStuff gameStuff = (GameStuff) stuff;
+        buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
         cloudHandler.setStuff(gameStuff);
         gridHandler.setStuff(gameStuff);

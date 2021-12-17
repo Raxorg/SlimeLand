@@ -1,10 +1,10 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
+import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.menu.MenuConstants.COLORS_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_X;
-import static com.epicness.slimeland.menu.MenuConstants.HIDDEN_Y;
 import static com.epicness.slimeland.menu.MenuConstants.NAME_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.PREFS_PATH;
 import static com.epicness.slimeland.menu.MenuConstants.WELCOME_BACK_MESSAGE;
 
 import com.epicness.fundamentals.input.SharedInput;

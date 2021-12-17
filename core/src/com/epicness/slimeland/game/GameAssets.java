@@ -1,5 +1,6 @@
 package com.epicness.slimeland.game;
 
+import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
@@ -15,11 +16,14 @@ import static com.epicness.slimeland.AssetPaths.TOWER_LEFT_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_RIGHT_PATH;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.epicness.fundamentals.assets.Assets;
 
 public class GameAssets extends Assets {
 
+    // Fonts
+    private BitmapFont pixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow;
     private Sprite factoryLeft, factoryRight, towerLeft, towerRight;
@@ -27,6 +31,9 @@ public class GameAssets extends Assets {
 
     @Override
     public void queueAssetLoading() {
+        // Fonts
+        assetManager.load(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        // Sprites
         assetManager.load(SLIME_LEFT_HALF_PATH, Texture.class);
         assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
         assetManager.load(CLOUD_PATH, Texture.class);
@@ -46,6 +53,10 @@ public class GameAssets extends Assets {
 
     @Override
     public void initializeAssets() {
+        // Fonts
+        pixelFont = assetManager.get(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        pixelFont.getData().setScale(5f);
+        // Sprites
         leftSlime = new Sprite(assetManager.get(SLIME_LEFT_HALF_PATH, Texture.class));
         rightSlime = new Sprite(assetManager.get(SLIME_RIGHT_HALF_PATH, Texture.class));
         cloud = new Sprite(assetManager.get(CLOUD_PATH, Texture.class));
@@ -61,6 +72,11 @@ public class GameAssets extends Assets {
         orangeOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
         purpleOrnament = new Sprite(assetManager.get(PURPLE_ORNAMENT_PATH, Texture.class));
         redOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
+    }
+
+    // Fonts
+    public BitmapFont getPixelFont() {
+        return pixelFont;
     }
 
     // Sprites
