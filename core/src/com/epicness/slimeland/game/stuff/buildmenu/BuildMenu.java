@@ -40,7 +40,7 @@ public class BuildMenu extends Sprited {
 
         options = new DualSprited[OPTIONS];
         options[FACTORY_ID] = new DualSprited(assets.getFactoryLeft(), assets.getFactoryRight());
-        options[WORKSHOP_ID] = new DualSprited(assets.getFactoryLeft(), assets.getTowerRight());
+        options[WORKSHOP_ID] = new DualSprited(assets.getWorkshopExterior(), assets.getWorkshopInterior());
         options[TOWER_ID] = new DualSprited(assets.getTowerLeft(), assets.getTowerRight());
         for (int i = 0; i < options.length; i++) {
             options[i].setSize(BUILD_OPTION_SIZE);

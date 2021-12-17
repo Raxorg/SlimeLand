@@ -14,6 +14,8 @@ import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_LEFT_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_RIGHT_PATH;
+import static com.epicness.slimeland.AssetPaths.WORKSHOP_EXTERIOR_PATH;
+import static com.epicness.slimeland.AssetPaths.WORKSHOP_INTERIOR_PATH;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,7 +28,7 @@ public class GameAssets extends Assets {
     private BitmapFont pixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow;
-    private Sprite factoryLeft, factoryRight, towerLeft, towerRight;
+    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
     @Override
@@ -41,6 +43,8 @@ public class GameAssets extends Assets {
 
         assetManager.load(FACTORY_LEFT_PATH, Texture.class);
         assetManager.load(FACTORY_RIGHT_PATH, Texture.class);
+        assetManager.load(WORKSHOP_EXTERIOR_PATH, Texture.class);
+        assetManager.load(WORKSHOP_INTERIOR_PATH, Texture.class);
         assetManager.load(TOWER_LEFT_PATH, Texture.class);
         assetManager.load(TOWER_RIGHT_PATH, Texture.class);
 
@@ -64,6 +68,8 @@ public class GameAssets extends Assets {
 
         factoryLeft = new Sprite(assetManager.get(FACTORY_LEFT_PATH, Texture.class));
         factoryRight = new Sprite(assetManager.get(FACTORY_RIGHT_PATH, Texture.class));
+        workshopExterior = new Sprite(assetManager.get(WORKSHOP_EXTERIOR_PATH, Texture.class));
+        workshopInterior = new Sprite(assetManager.get(WORKSHOP_INTERIOR_PATH, Texture.class));
         towerLeft = new Sprite(assetManager.get(TOWER_LEFT_PATH, Texture.class));
         towerRight = new Sprite(assetManager.get(TOWER_RIGHT_PATH, Texture.class));
 
@@ -102,6 +108,14 @@ public class GameAssets extends Assets {
 
     public Sprite getFactoryRight() {
         return factoryRight;
+    }
+
+    public Sprite getWorkshopExterior() {
+        return workshopExterior;
+    }
+
+    public Sprite getWorkshopInterior() {
+        return workshopInterior;
     }
 
     public Sprite getTowerLeft() {
