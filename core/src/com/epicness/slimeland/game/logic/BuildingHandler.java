@@ -71,7 +71,7 @@ public class BuildingHandler {
                 machine = new Tower(assets.getFactoryLeft(), assets.getFactoryRight());
                 break;
             case WORKSHOP_ID:
-                machine = new Workshop(assets.getFactoryLeft(), assets.getTowerRight());
+                machine = new Workshop(assets.getWorkshopExterior(), assets.getWorkshopInterior());
                 break;
             default:
                 machine = new Factory(assets.getTowerLeft(), assets.getTowerRight(), sharedAssets.getPixelFont());
