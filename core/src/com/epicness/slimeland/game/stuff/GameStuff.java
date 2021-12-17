@@ -17,10 +17,6 @@ import static com.epicness.slimeland.game.GameConstants.GRID_ROWS;
 import static com.epicness.slimeland.game.GameConstants.GRID_SIZE;
 import static com.epicness.slimeland.game.GameConstants.GRID_X;
 import static com.epicness.slimeland.game.GameConstants.GRID_Y;
-import static com.epicness.slimeland.game.GameConstants.SLIME_HEIGHT;
-import static com.epicness.slimeland.game.GameConstants.SLIME_STARTING_X;
-import static com.epicness.slimeland.game.GameConstants.SLIME_STARTING_Y;
-import static com.epicness.slimeland.game.GameConstants.SLIME_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -31,6 +27,7 @@ import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
+import com.epicness.slimeland.game.stuff.slimes.Slime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +35,9 @@ import java.util.List;
 public class GameStuff extends Stuff {
 
     private Grid grid;
-    private List<Sprited> bushes;
     private Sprited cellSelector;
-    private DelayedRemovalArray<Slime> slimes;
+    private List<Sprited> bushes;
+    private DelayedRemovalArray<Slime> slimes, foreignSlimes;
     private Cloud[] clouds;
     private BuildMenu buildMenu;
 
@@ -49,15 +46,10 @@ public class GameStuff extends Stuff {
         GameAssets assets = (GameAssets) this.assets;
 
         initializeGrid();
+        initializeCellSelector();
         initializeBushes(assets);
         slimes = new DelayedRemovalArray<>();
-        for (int i = 0; i < 25; i++) {
-            Slime slime = new Slime(assets.getLeftSlime(), assets.getRightSlime());
-            slime.setPosition(SLIME_STARTING_X, SLIME_STARTING_Y);
-            slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
-            slimes.add(slime);
-        }
-        initializeCellSelector();
+        foreignSlimes = new DelayedRemovalArray<>();
         initializeClouds(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
     }
@@ -118,16 +110,20 @@ public class GameStuff extends Stuff {
         return grid;
     }
 
-    public List<Sprited> getBushes() {
-        return bushes;
-    }
-
     public Sprited getCellSelector() {
         return cellSelector;
     }
 
+    public List<Sprited> getBushes() {
+        return bushes;
+    }
+
     public DelayedRemovalArray<Slime> getSlimes() {
         return slimes;
+    }
+
+    public DelayedRemovalArray<Slime> getForeignSlimes() {
+        return foreignSlimes;
     }
 
     public Cloud[] getClouds() {

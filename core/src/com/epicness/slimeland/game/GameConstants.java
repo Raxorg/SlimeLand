@@ -29,10 +29,11 @@ public class GameConstants {
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
-    public static final float SLIME_STARTING_X = CAMERA_WIDTH / 2f - SLIME_WIDTH / 2f;
-    public static final float SLIME_STARTING_Y = GRID_Y / 2f - SLIME_HEIGHT / 2f;
     public static final float SLIME_MIN_SPEED = -400f;
     public static final float SLIME_MAX_SPEED = 400f;
+    public static final float SLIME_HIDING_SPEED = 200f;
+
+    public static final float FOREIGN_SLIME_SPEED = 100f;
     // Build menu
     public static final float BUILD_MENU_WIDTH = CELL_SIZE * 2f;
     public static final float BUILD_MENU_HEIGHT = CAMERA_HEIGHT;

@@ -3,10 +3,10 @@ package com.epicness.slimeland.menu.stuff;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_COLUMNS;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_GRID_STARTING_Y;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_GRID_X_PADDING;
-import static com.epicness.slimeland.menu.MenuConstants.SLIME_HEIGHT;
+import static com.epicness.slimeland.menu.MenuConstants.SLIME_OPTION_HEIGHT;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_ROWS;
 import static com.epicness.slimeland.menu.MenuConstants.SLIME_SPACING;
-import static com.epicness.slimeland.menu.MenuConstants.SLIME_WIDTH;
+import static com.epicness.slimeland.menu.MenuConstants.SLIME_OPTION_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -39,9 +39,9 @@ public class SlimeGrid implements Scrollable {
             for (int row = 0; row < SLIME_ROWS; row++) {
                 slimes[column][row] = new DualSprited(assets.getSlimeLeftHalf(), assets.getSlimeRightHalf());
                 DualSprited slime = slimes[column][row];
-                slime.setX(SLIME_GRID_X_PADDING + (SLIME_WIDTH + SLIME_SPACING) * column);
-                slime.setY(SLIME_GRID_STARTING_Y - (SLIME_HEIGHT + SLIME_SPACING) * row);
-                slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
+                slime.setX(SLIME_GRID_X_PADDING + (SLIME_OPTION_WIDTH + SLIME_SPACING) * column);
+                slime.setY(SLIME_GRID_STARTING_Y - (SLIME_OPTION_HEIGHT + SLIME_SPACING) * row);
+                slime.setSize(SLIME_OPTION_WIDTH, SLIME_OPTION_HEIGHT);
                 index = (column * SLIME_ROWS + row) * 2;
                 slime.setBackgroundColor(pairs[index]);
                 slime.setForegroundColor(pairs[index + 1]);
@@ -67,7 +67,7 @@ public class SlimeGrid implements Scrollable {
     public void setY(float y) {
         for (int column = 0; column < SLIME_COLUMNS; column++) {
             for (int row = 0; row < SLIME_ROWS; row++) {
-                slimes[column][row].setY(y - (SLIME_HEIGHT + SLIME_SPACING) * row);
+                slimes[column][row].setY(y - (SLIME_OPTION_HEIGHT + SLIME_SPACING) * row);
             }
         }
     }

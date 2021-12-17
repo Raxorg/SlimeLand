@@ -1,6 +1,7 @@
 package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.input.SharedInput;
@@ -11,6 +12,12 @@ import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.logic.decorative.CloudHandler;
 import com.epicness.slimeland.game.logic.decorative.MusicHandler;
+import com.epicness.slimeland.game.logic.machines.BuildMenuHandler;
+import com.epicness.slimeland.game.logic.machines.BuildingHandler;
+import com.epicness.slimeland.game.logic.slimes.HidingHandler;
+import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
+import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
+import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
 
 public class GameLogic extends Logic {
@@ -20,9 +27,15 @@ public class GameLogic extends Logic {
 
     private final BuildingHandler buildingHandler;
     private final BuildMenuHandler buildMenuHandler;
+
+    private final HidingHandler hidingHandler;
+    private final RoamingHandler roamingHandler;
+    private final SlimeHandler slimeHandler;
+
+    private final WaveHandler waveHandler;
+
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
-    private final SlimeHandler slimeHandler;
     private final StateHandler stateHandler;
 
     public GameLogic(SharedLogic sharedLogic) {
@@ -33,15 +46,24 @@ public class GameLogic extends Logic {
 
         buildingHandler = new BuildingHandler();
         buildMenuHandler = new BuildMenuHandler();
+
+        hidingHandler = new HidingHandler();
+        roamingHandler = new RoamingHandler();
+        slimeHandler = new SlimeHandler();
+
+        waveHandler = new WaveHandler();
+
         gameInputHandler = new GameInputHandler();
         gridHandler = new GridHandler();
-        slimeHandler = new SlimeHandler();
         stateHandler = new StateHandler();
 
         buildingHandler.setSharedLogic(sharedLogic);
 
         buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
+
+        slimeHandler.setLogic(this);
+
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
     }
@@ -57,6 +79,9 @@ public class GameLogic extends Logic {
 
         buildingHandler.loadState();
         buildMenuHandler.setup();
+
+        slimeHandler.spawnSlimes();
+
         gameInputHandler.setupInput();
         gridHandler.setup();
     }
@@ -67,9 +92,17 @@ public class GameLogic extends Logic {
 
     @Override
     public void update(float delta) {
-        buildMenuHandler.update(delta);
         cloudHandler.update(delta);
+
+        buildMenuHandler.update(delta);
+
+        waveHandler.update(delta);
+
         slimeHandler.update(delta);
+
+        if (Gdx.input.justTouched()) {
+            waveHandler.startWave();
+        }
     }
 
     @Override
@@ -84,6 +117,10 @@ public class GameLogic extends Logic {
         musicHandler.setAssets(gameAssets);
 
         buildingHandler.setAssets(gameAssets);
+
+        slimeHandler.setAssets(gameAssets);
+
+        waveHandler.setAssets(gameAssets);
     }
 
     @Override
@@ -94,9 +131,13 @@ public class GameLogic extends Logic {
     @Override
     public void setStuff(Stuff stuff) {
         GameStuff gameStuff = (GameStuff) stuff;
+        cloudHandler.setStuff(gameStuff);
+
         buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
-        cloudHandler.setStuff(gameStuff);
+
+        waveHandler.setStuff(gameStuff);
+
         gridHandler.setStuff(gameStuff);
         slimeHandler.setStuff(gameStuff);
         stateHandler.setStuff(gameStuff);
@@ -108,6 +149,14 @@ public class GameLogic extends Logic {
 
     public BuildMenuHandler getBuildMenuHandler() {
         return buildMenuHandler;
+    }
+
+    public HidingHandler getHidingHandler() {
+        return hidingHandler;
+    }
+
+    public RoamingHandler getRoamingHandler() {
+        return roamingHandler;
     }
 
     public GridHandler getGridHandler() {

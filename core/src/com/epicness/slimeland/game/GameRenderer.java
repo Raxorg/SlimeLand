@@ -21,9 +21,6 @@ public class GameRenderer extends Renderer {
 
         spriteBatch.begin();
         stuff.getGrid().draw(spriteBatch);
-        for (int i = 0; i < stuff.getBushes().size(); i++) {
-            stuff.getBushes().get(i).draw(spriteBatch);
-        }
         Cell[][] cells = stuff.getGrid().getCells();
         for (int column = 0; column < cells.length; column++) {
             for (int row = 0; row < cells[column].length; row++) {
@@ -34,8 +31,14 @@ public class GameRenderer extends Renderer {
             }
         }
         stuff.getCellSelector().draw(spriteBatch);
+        for (int i = 0; i < stuff.getBushes().size(); i++) {
+            stuff.getBushes().get(i).draw(spriteBatch);
+        }
         for (int i = 0; i < stuff.getSlimes().size; i++) {
             stuff.getSlimes().get(i).draw(spriteBatch);
+        }
+        for (int i = 0; i < stuff.getForeignSlimes().size; i++) {
+            stuff.getForeignSlimes().get(i).draw(spriteBatch);
         }
         for (int i = 0; i < stuff.getClouds().length; i++) {
             stuff.getClouds()[i].drawBackground(spriteBatch);

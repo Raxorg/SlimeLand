@@ -1,15 +1,15 @@
-package com.epicness.slimeland.game.logic;
+package com.epicness.slimeland.game.logic.machines;
 
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
-import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
+import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;

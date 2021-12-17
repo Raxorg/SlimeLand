@@ -1,9 +1,10 @@
-package com.epicness.slimeland.game.logic;
+package com.epicness.slimeland.game.logic.machines;
 
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_SPEED;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_WIDTH;
 
 import com.epicness.fundamentals.stuff.grid.Cell;
+import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildOption;
