@@ -79,6 +79,10 @@ public class SlimeGridHandler {
     }
 
     private void slimeSelected(DualSprited slime) {
+        if (slime.getBackgroundColor().equals(Color.BLACK)) {
+            selectedSlime = null;
+            return;
+        }
         if (selectedSlime == slime) {
             String color1 = stringFromColor(slime.getBackgroundColor());
             String color2 = stringFromColor(slime.getForegroundColor());
@@ -93,6 +97,28 @@ public class SlimeGridHandler {
 
     public void disableInput() {
         inputDisabled = true;
+    }
+
+    public void updateAvailableColors(String[] availableColorPairs) {
+        DualSprited[][] slimes = stuff.getSlimeGrid().getSlimes();
+        for (int column = 0; column < SLIME_COLUMNS; column++) {
+            slimeFor:
+            for (int row = 0; row < SLIME_ROWS; row++) {
+                DualSprited slime = slimes[column][row];
+                String slimeColor1 = stringFromColor(slime.getBackgroundColor());
+                String slimeColor2 = stringFromColor(slime.getForegroundColor());
+                for (int i = 0; i < availableColorPairs.length; i++) {
+                    String availableColorPair = availableColorPairs[i];
+                    String[] availableColors = availableColorPair.split("-");
+                    String color1 = availableColors[0];
+                    String color2 = availableColors[1];
+                    if (slimeColor1.equals(color1) && slimeColor2.equals(color2)) {
+                        continue slimeFor;
+                    }
+                }
+                slime.setColor(Color.BLACK);
+            }
+        }
     }
 
     // Structure

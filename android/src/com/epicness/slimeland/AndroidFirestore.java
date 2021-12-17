@@ -55,6 +55,9 @@ public class AndroidFirestore implements CoreFirestore {
             if (!task.isSuccessful()) {
                 errorListener.onResult("Internet error");
             }
+            if (task.getResult() == null || !task.getResult()) {
+                return;
+            }
             successListener.onResult(null);
         });
     }

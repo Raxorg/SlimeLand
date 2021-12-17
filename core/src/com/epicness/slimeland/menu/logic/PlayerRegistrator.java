@@ -47,7 +47,8 @@ public class PlayerRegistrator {
             sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
             sharedLogic.getTransitionHandler().allowTransition();
         }, availableColors -> {
-
+            String[] availableColorPairs = availableColors.split(",");
+            logic.getSlimeGridHandler().updateAvailableColors(availableColorPairs);
         }, errorMessage -> {
             stuff.getOverlay().setText(errorMessage);
             error = errorMessage;
