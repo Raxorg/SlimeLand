@@ -35,6 +35,7 @@ public class PlayerChecker {
         stuff.getOverlay().setText(WELCOME_BACK_MESSAGE + " " + name);
         stuff.getOverlay().setPosition(0f, 0f);
         input.setEnabled(true);
+        logic.getSlimeGridHandler().disableInput();
     }
 
     public void touchUp() {

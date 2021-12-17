@@ -20,7 +20,7 @@ public class SlimeGridHandler {
     private MenuStuff stuff;
     // Logic
     private DualSprited selectedSlime;
-    private boolean ignoreTouchUp;
+    private boolean ignoreTouchUp, inputDisabled;
 
     public void setup() {
         stuff.getSlimeSelector().setPosition(HIDDEN_X, HIDDEN_Y);
@@ -57,6 +57,9 @@ public class SlimeGridHandler {
     }
 
     public void touchUp(float x, float y) {
+        if (inputDisabled) {
+            return;
+        }
         if (ignoreTouchUp) {
             ignoreTouchUp = false;
             return;
@@ -86,6 +89,10 @@ public class SlimeGridHandler {
         float yPosition = slime.getY() + slime.getHeight() / 2f - CHECK_SIZE / 2f;
         stuff.getSlimeSelector().setPosition(slime.getX(), yPosition);
         selectedSlime = slime;
+    }
+
+    public void disableInput() {
+        inputDisabled = true;
     }
 
     // Structure

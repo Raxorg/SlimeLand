@@ -9,6 +9,7 @@ public class FirebaseUtils {
     // DQ: purple-gray
     // Zebra: white-purple
     // Lyze: red-teal
+    // Terrafort: cyan-magenta
 
     public static void work() {
         String result = "";
