@@ -2,9 +2,11 @@ package com.epicness.slimeland.game.logic;
 
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
+import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;
+import com.epicness.slimeland.game.stuff.machines.Machine;
 
 public class GridHandler {
 
@@ -31,11 +33,27 @@ public class GridHandler {
     }
 
     private void selectCell(Cell cell) {
-        if (cell.getProperties().get("content") != null) {
+        Machine machine = (Machine) cell.getProperties().get(MACHINE_PROPERTY);
+        if (machine != null) {
+            selectMachine(machine);
             return;
         }
         stuff.getCellSelector().setPosition(cell.getX(), cell.getY());
         logic.getBuildMenuHandler().show(cell);
+    }
+
+    private void selectMachine(Machine machine) {
+        switch (machine.getType()) {
+            case FACTORY:
+
+                break;
+            case WORKSHOP:
+
+                break;
+            case TOWER:
+
+                break;
+        }
     }
 
     private void deselectCell() {

@@ -5,7 +5,8 @@ public class AssetPaths {
     // Audio
     public static final String CHILL_MUSIC_PATH = "slimeland/audio/chill.mp3";
     // Fonts
-    public static final String BIGGER_PIXEL_FONT_PATH = "slimeland/fonts/pixelFont.fnt";
+    public static final String BIG_PIXEL_FONT_PATH = "slimeland/fonts/bigPixelFont.fnt";
+    public static final String MEDIUM_PIXEL_FONT_PATH = "slimeland/fonts/mediumPixelFont.fnt";
     // Sprites
     public static final String SLIME_LEFT_HALF_PATH = "slimeland/images/slimeLeftHalf.png";
     public static final String SLIME_RIGHT_HALF_PATH = "slimeland/images/slimeRightHalf.png";

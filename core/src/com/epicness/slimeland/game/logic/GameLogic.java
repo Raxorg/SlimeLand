@@ -3,7 +3,6 @@ package com.epicness.slimeland.game.logic;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.assets.Assets;
-import com.epicness.fundamentals.assets.SharedAssets;
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
@@ -76,11 +75,6 @@ public class GameLogic extends Logic {
     @Override
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
-    }
-
-    @Override
-    public void setSharedAssets(SharedAssets sharedAssets) {
-        buildingHandler.setSharedAssets(sharedAssets);
     }
 
     @Override

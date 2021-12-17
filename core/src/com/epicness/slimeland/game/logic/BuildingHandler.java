@@ -4,17 +4,16 @@ import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
-import static com.epicness.slimeland.game.GameConstants.FACTORY_ID;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
-import static com.epicness.slimeland.game.GameConstants.WORKSHOP_ID;
+import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
-import com.epicness.fundamentals.assets.SharedAssets;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;
+import com.epicness.slimeland.game.stuff.machines.MachineType;
 import com.epicness.slimeland.game.stuff.machines.Tower;
 import com.epicness.slimeland.game.stuff.machines.Workshop;
 
@@ -23,7 +22,6 @@ import java.util.Map;
 public class BuildingHandler {
 
     // Structure
-    private SharedAssets sharedAssets;
     private GameAssets assets;
     private SharedLogic sharedLogic;
     private GameLogic logic;
@@ -49,42 +47,43 @@ public class BuildingHandler {
     }
 
     private void buildFromPreferences(int machineID, Cell cell) {
-        Machine machine = buildMachine(machineID, cell);
+        Machine machine = buildMachine(MachineType.findWithID(machineID), cell);
         cell.getProperties().put(MACHINE_PROPERTY, machine);
     }
 
-    public void buildWithCharge(int machineID, Cell cell) {
+    public void buildWithCharge(MachineType machineType, Cell cell) {
         if (stuff.getBuildMenu().getBuildCharges() == 0) {
             return;
         }
-        Machine machine = buildMachine(machineID, cell);
+        Machine machine = buildMachine(machineType, cell);
         machine.setColors(logic.getStateHandler().getColor1(), logic.getStateHandler().getColor2());
         cell.getProperties().put(MACHINE_PROPERTY, machine);
-        saveToPreferences(cell, machineID);
+        saveToPreferences(cell, machineType);
         removeBuildCharge();
     }
 
-    private Machine buildMachine(int machineID, Cell cell) {
+    private Machine buildMachine(MachineType machineType, Cell cell) {
         Machine machine;
-        switch (machineID) {
-            case FACTORY_ID:
-                machine = new Tower(assets.getFactoryLeft(), assets.getFactoryRight());
+        switch (machineType) {
+            case FACTORY:
+                machine = new Factory(assets.getFactoryLeft(), assets.getFactoryRight(), assets.getMediumPixelFont());
                 break;
-            case WORKSHOP_ID:
+            case WORKSHOP:
                 machine = new Workshop(assets.getWorkshopExterior(), assets.getWorkshopInterior());
                 break;
+            case TOWER:
             default:
-                machine = new Factory(assets.getTowerLeft(), assets.getTowerRight(), sharedAssets.getPixelFont());
+                machine = new Tower(assets.getTowerLeft(), assets.getTowerRight());
                 break;
         }
         machine.setPosition(cell.getX(), cell.getY());
-        machine.setSize(CELL_SIZE);
+        machine.setSize(MACHINE_SIZE);
         return machine;
     }
 
-    private void saveToPreferences(Cell cell, int machineID) {
+    private void saveToPreferences(Cell cell, MachineType machineType) {
         String key = cell.getColumn() + "-" + cell.getRow();
-        sharedLogic.getPreferencesHandler().saveString(BUILDING_PREFS_PATH, key, machineID + "");
+        sharedLogic.getPreferencesHandler().saveString(BUILDING_PREFS_PATH, key, machineType.getMachineID() + "");
     }
 
     private void removeBuildCharge() {
@@ -94,10 +93,6 @@ public class BuildingHandler {
     }
 
     // Structure
-    public void setSharedAssets(SharedAssets sharedAssets) {
-        this.sharedAssets = sharedAssets;
-    }
-
     public void setAssets(GameAssets assets) {
         this.assets = assets;
     }

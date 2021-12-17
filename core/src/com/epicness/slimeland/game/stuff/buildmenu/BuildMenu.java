@@ -14,11 +14,13 @@ import static com.epicness.slimeland.game.GameConstants.FACTORY_ID;
 import static com.epicness.slimeland.game.GameConstants.OPTIONS;
 import static com.epicness.slimeland.game.GameConstants.TOWER_ID;
 import static com.epicness.slimeland.game.GameConstants.WORKSHOP_ID;
+import static com.epicness.slimeland.game.stuff.machines.MachineType.FACTORY;
+import static com.epicness.slimeland.game.stuff.machines.MachineType.TOWER;
+import static com.epicness.slimeland.game.stuff.machines.MachineType.WORKSHOP;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.epicness.fundamentals.assets.SharedAssets;
-import com.epicness.fundamentals.stuff.DualSprited;
 import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.fundamentals.stuff.SpritedText;
 import com.epicness.slimeland.game.GameAssets;
@@ -26,22 +28,22 @@ import com.epicness.slimeland.game.GameAssets;
 public class BuildMenu extends Sprited {
 
     private final SpritedText buildChargesFrame;
-    private final DualSprited[] options;
+    private final BuildOption[] options;
 
     public BuildMenu(SharedAssets sharedAssets, GameAssets assets) {
         super(sharedAssets.getPixel());
         setSize(BUILD_MENU_WIDTH, BUILD_MENU_HEIGHT);
         setColor(TRANSPARENT);
 
-        buildChargesFrame = new SpritedText(sharedAssets.getSquare(), assets.getPixelFont());
+        buildChargesFrame = new SpritedText(sharedAssets.getSquare(), assets.getBigPixelFont());
         buildChargesFrame.setY(BUILD_CHARGES_FRAME_Y);
         buildChargesFrame.setSize(BUILD_CHARGES_FRAME_SIZE);
         buildChargesFrame.setColor(WHITE_OPAQUE_TRANSPARENT);
 
-        options = new DualSprited[OPTIONS];
-        options[FACTORY_ID] = new DualSprited(assets.getFactoryLeft(), assets.getFactoryRight());
-        options[WORKSHOP_ID] = new DualSprited(assets.getWorkshopExterior(), assets.getWorkshopInterior());
-        options[TOWER_ID] = new DualSprited(assets.getTowerLeft(), assets.getTowerRight());
+        options = new BuildOption[OPTIONS];
+        options[FACTORY_ID] = new BuildOption(FACTORY, assets.getFactoryLeft(), assets.getFactoryRight());
+        options[WORKSHOP_ID] = new BuildOption(WORKSHOP, assets.getWorkshopExterior(), assets.getWorkshopInterior());
+        options[TOWER_ID] = new BuildOption(TOWER, assets.getTowerLeft(), assets.getTowerRight());
         for (int i = 0; i < options.length; i++) {
             options[i].setSize(BUILD_OPTION_SIZE);
             options[i].setY(BUILD_OPTION_SPACING * (i + 1) + BUILD_OPTION_SIZE * i);
@@ -90,7 +92,7 @@ public class BuildMenu extends Sprited {
         buildChargesFrame.setText(buildCharges + "");
     }
 
-    public DualSprited[] getOptions() {
+    public BuildOption[] getOptions() {
         return options;
     }
 }

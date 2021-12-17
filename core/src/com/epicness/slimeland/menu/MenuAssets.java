@@ -1,7 +1,7 @@
 package com.epicness.slimeland.menu;
 
 import static com.epicness.fundamentals.SharedConstants.PIXEL_FONT_PATH;
-import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
+import static com.epicness.slimeland.AssetPaths.BIG_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.CHECK_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
@@ -22,7 +22,7 @@ public class MenuAssets extends Assets {
     public void queueAssetLoading() {
         // Fonts
         assetManager.load(PIXEL_FONT_PATH, BitmapFont.class);
-        assetManager.load(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        assetManager.load(BIG_PIXEL_FONT_PATH, BitmapFont.class);
         // Sprites
         assetManager.load(SLIME_LEFT_HALF_PATH, Texture.class);
         assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
@@ -34,7 +34,7 @@ public class MenuAssets extends Assets {
         // Fonts
         pixelFont = assetManager.get(PIXEL_FONT_PATH, BitmapFont.class);
         pixelFont.getData().setScale(6f);
-        biggerPixelFont = assetManager.get(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        biggerPixelFont = assetManager.get(BIG_PIXEL_FONT_PATH, BitmapFont.class);
         biggerPixelFont.getData().setScale(10f);
         // Sprites
         slimeLeftHalf = new Sprite(assetManager.get(SLIME_LEFT_HALF_PATH, Texture.class));

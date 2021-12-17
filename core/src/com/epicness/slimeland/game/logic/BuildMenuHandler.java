@@ -3,10 +3,10 @@ package com.epicness.slimeland.game.logic;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_SPEED;
 import static com.epicness.slimeland.game.GameConstants.BUILD_MENU_WIDTH;
 
-import com.epicness.fundamentals.stuff.DualSprited;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
+import com.epicness.slimeland.game.stuff.buildmenu.BuildOption;
 
 public class BuildMenuHandler {
 
@@ -56,10 +56,11 @@ public class BuildMenuHandler {
     }
 
     public void touchUp(float x, float y) {
-        DualSprited[] options = stuff.getBuildMenu().getOptions();
+        BuildOption[] options = stuff.getBuildMenu().getOptions();
         for (int i = 0; i < options.length; i++) {
-            if (options[i].contains(x, y)) {
-                logic.getBuildingHandler().buildWithCharge(i, selectedCell);
+            BuildOption option = options[i];
+            if (option.contains(x, y)) {
+                logic.getBuildingHandler().buildWithCharge(option.getMachineType(), selectedCell);
                 return;
             }
         }

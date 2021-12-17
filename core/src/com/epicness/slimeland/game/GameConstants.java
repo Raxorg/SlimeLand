@@ -24,6 +24,8 @@ public class GameConstants {
     public static final float GRID_Y = CAMERA_HEIGHT / 2f - GRID_SIZE / 2f;
     // Cell properties
     public static final String MACHINE_PROPERTY = "Machine";
+    // Machines
+    public static final float MACHINE_SIZE = CELL_SIZE;
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;

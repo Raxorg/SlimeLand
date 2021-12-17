@@ -1,6 +1,6 @@
 package com.epicness.slimeland.game;
 
-import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
+import static com.epicness.slimeland.AssetPaths.BIG_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
 import static com.epicness.slimeland.AssetPaths.CHILL_MUSIC_PATH;
@@ -9,6 +9,7 @@ import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
 import static com.epicness.slimeland.AssetPaths.FACTORY_LEFT_PATH;
 import static com.epicness.slimeland.AssetPaths.FACTORY_RIGHT_PATH;
 import static com.epicness.slimeland.AssetPaths.GREEN_ORNAMENT_PATH;
+import static com.epicness.slimeland.AssetPaths.MEDIUM_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.ORANGE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.PURPLE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.RED_ORNAMENT_PATH;
@@ -30,7 +31,7 @@ public class GameAssets extends Assets {
     // Audio
     private Music chillMusic;
     // Fonts
-    private BitmapFont pixelFont;
+    private BitmapFont bigPixelFont, mediumPixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
     private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight;
@@ -41,7 +42,8 @@ public class GameAssets extends Assets {
         // Audio
         assetManager.load(CHILL_MUSIC_PATH, Music.class);
         // Fonts
-        assetManager.load(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        assetManager.load(BIG_PIXEL_FONT_PATH, BitmapFont.class);
+        assetManager.load(MEDIUM_PIXEL_FONT_PATH, BitmapFont.class);
         // Sprites
         assetManager.load(SLIME_LEFT_HALF_PATH, Texture.class);
         assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
@@ -68,8 +70,10 @@ public class GameAssets extends Assets {
         // Audio
         chillMusic = assetManager.get(CHILL_MUSIC_PATH, Music.class);
         // Fonts
-        pixelFont = assetManager.get(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
-        pixelFont.getData().setScale(5f);
+        bigPixelFont = assetManager.get(BIG_PIXEL_FONT_PATH, BitmapFont.class);
+        bigPixelFont.getData().setScale(5f);
+        mediumPixelFont = assetManager.get(MEDIUM_PIXEL_FONT_PATH, BitmapFont.class);
+        mediumPixelFont.getData().setScale(3f);
         // Sprites
         leftSlime = new Sprite(assetManager.get(SLIME_LEFT_HALF_PATH, Texture.class));
         rightSlime = new Sprite(assetManager.get(SLIME_RIGHT_HALF_PATH, Texture.class));
@@ -97,8 +101,12 @@ public class GameAssets extends Assets {
     }
 
     // Fonts
-    public BitmapFont getPixelFont() {
-        return pixelFont;
+    public BitmapFont getBigPixelFont() {
+        return bigPixelFont;
+    }
+
+    public BitmapFont getMediumPixelFont() {
+        return mediumPixelFont;
     }
 
     // Sprites
