@@ -21,6 +21,9 @@ public class GameRenderer extends Renderer {
 
         spriteBatch.begin();
         stuff.getGrid().draw(spriteBatch);
+        for (int i = 0; i < stuff.getBushes().size(); i++) {
+            stuff.getBushes().get(i).draw(spriteBatch);
+        }
         Cell[][] cells = stuff.getGrid().getCells();
         for (int column = 0; column < cells.length; column++) {
             for (int row = 0; row < cells[column].length; row++) {

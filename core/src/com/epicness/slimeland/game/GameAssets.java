@@ -2,6 +2,7 @@ package com.epicness.slimeland.game;
 
 import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
+import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_PATH;
 import static com.epicness.slimeland.AssetPaths.CLOUD_SHADOW_PATH;
 import static com.epicness.slimeland.AssetPaths.FACTORY_LEFT_PATH;
@@ -27,7 +28,7 @@ public class GameAssets extends Assets {
     // Fonts
     private BitmapFont pixelFont;
     // Sprites
-    private Sprite leftSlime, rightSlime, cloud, cloudShadow;
+    private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
     private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
@@ -40,6 +41,7 @@ public class GameAssets extends Assets {
         assetManager.load(SLIME_RIGHT_HALF_PATH, Texture.class);
         assetManager.load(CLOUD_PATH, Texture.class);
         assetManager.load(CLOUD_SHADOW_PATH, Texture.class);
+        assetManager.load(BUSH_PATH, Texture.class);
 
         assetManager.load(FACTORY_LEFT_PATH, Texture.class);
         assetManager.load(FACTORY_RIGHT_PATH, Texture.class);
@@ -65,6 +67,7 @@ public class GameAssets extends Assets {
         rightSlime = new Sprite(assetManager.get(SLIME_RIGHT_HALF_PATH, Texture.class));
         cloud = new Sprite(assetManager.get(CLOUD_PATH, Texture.class));
         cloudShadow = new Sprite(assetManager.get(CLOUD_SHADOW_PATH, Texture.class));
+        bush = new Sprite(assetManager.get(BUSH_PATH, Texture.class));
 
         factoryLeft = new Sprite(assetManager.get(FACTORY_LEFT_PATH, Texture.class));
         factoryRight = new Sprite(assetManager.get(FACTORY_RIGHT_PATH, Texture.class));
@@ -100,6 +103,10 @@ public class GameAssets extends Assets {
 
     public Sprite getCloudShadow() {
         return cloudShadow;
+    }
+
+    public Sprite getBush() {
+        return bush;
     }
 
     public Sprite getFactoryLeft() {
