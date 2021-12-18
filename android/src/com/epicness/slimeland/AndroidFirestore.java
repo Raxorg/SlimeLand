@@ -68,6 +68,10 @@ public class AndroidFirestore implements CoreFirestore {
 
     private void fetchData(DocumentReference documentReference, ResultListener<Map<String, Object>> dataListener) {
         documentReference.get(Source.SERVER).addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                dataListener.onResult(null);
+                return;
+            }
             DocumentSnapshot snapshot = task.getResult();
             if (snapshot == null) {
                 dataListener.onResult(null);

@@ -9,9 +9,7 @@ import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
 import static com.epicness.slimeland.game.GameConstants.BUSH_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.BUSH_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
-import static com.epicness.slimeland.game.GameConstants.CLOUD_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.CLOUD_SHADOW_OFFSET;
-import static com.epicness.slimeland.game.GameConstants.CLOUD_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.GRID_COLUMNS;
 import static com.epicness.slimeland.game.GameConstants.GRID_ROWS;
 import static com.epicness.slimeland.game.GameConstants.GRID_SIZE;
@@ -96,12 +94,10 @@ public class GameStuff extends Stuff {
     }
 
     private void initializeClouds(GameAssets assets) {
-        clouds = new Cloud[10];
+        clouds = new Cloud[20];
         for (int i = 0; i < clouds.length; i++) {
             clouds[i] = new Cloud(assets.getCloudShadow(), assets.getCloud(), CLOUD_SHADOW_OFFSET);
             clouds[i].setX(HIDDEN_X);
-            float scale = MathUtils.random(1f, 1.6f);
-            clouds[i].setSize(CLOUD_WIDTH * scale, CLOUD_HEIGHT * scale);
         }
     }
 

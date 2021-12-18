@@ -1,7 +1,6 @@
 package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.input.SharedInput;
@@ -36,6 +35,7 @@ public class GameLogic extends Logic {
 
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
+    private final MultiplayerHandler multiplayerHandler;
     private final StateHandler stateHandler;
 
     public GameLogic(SharedLogic sharedLogic) {
@@ -55,17 +55,18 @@ public class GameLogic extends Logic {
 
         gameInputHandler = new GameInputHandler();
         gridHandler = new GridHandler();
+        multiplayerHandler = new MultiplayerHandler();
         stateHandler = new StateHandler();
 
         buildingHandler.setSharedLogic(sharedLogic);
 
-        buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
 
         slimeHandler.setLogic(this);
 
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
+        stateHandler.setLogic(this);
     }
     /*
      * "Chill" Kevin MacLeod (incompetech.com)
@@ -84,6 +85,7 @@ public class GameLogic extends Logic {
 
         gameInputHandler.setupInput();
         gridHandler.setup();
+        multiplayerHandler.fetchPlayerInfo();
     }
 
     public void initState(String name, Color color1, Color color2) {
@@ -99,15 +101,12 @@ public class GameLogic extends Logic {
         waveHandler.update(delta);
 
         slimeHandler.update(delta);
-
-        if (Gdx.input.justTouched()) {
-            waveHandler.startWave();
-        }
     }
 
     @Override
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
+        multiplayerHandler.setGame(slimeGame);
     }
 
     @Override
@@ -143,6 +142,10 @@ public class GameLogic extends Logic {
         stateHandler.setStuff(gameStuff);
     }
 
+    public CloudHandler getCloudHandler() {
+        return cloudHandler;
+    }
+
     public BuildingHandler getBuildingHandler() {
         return buildingHandler;
     }
@@ -161,9 +164,5 @@ public class GameLogic extends Logic {
 
     public GridHandler getGridHandler() {
         return gridHandler;
-    }
-
-    public StateHandler getStateHandler() {
-        return stateHandler;
     }
 }

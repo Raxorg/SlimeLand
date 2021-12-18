@@ -6,10 +6,10 @@ import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
+import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
-import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;
@@ -24,8 +24,9 @@ public class BuildingHandler {
     // Structure
     private GameAssets assets;
     private SharedLogic sharedLogic;
-    private GameLogic logic;
     private GameStuff stuff;
+    // Logic
+    private Color color1, color2;
 
     public void loadState() {
         loadBuildCharges();
@@ -56,7 +57,7 @@ public class BuildingHandler {
             return;
         }
         Machine machine = buildMachine(machineType, cell);
-        machine.setColors(logic.getStateHandler().getColor1(), logic.getStateHandler().getColor2());
+        machine.setColors(color1, color2);
         cell.getProperties().put(MACHINE_PROPERTY, machine);
         saveToPreferences(cell, machineType);
         removeBuildCharge();
@@ -92,6 +93,11 @@ public class BuildingHandler {
         sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, newBuildCharges);
     }
 
+    public void setColors(Color color1, Color color2) {
+        this.color1 = color1;
+        this.color2 = color2;
+    }
+
     // Structure
     public void setAssets(GameAssets assets) {
         this.assets = assets;
@@ -99,10 +105,6 @@ public class BuildingHandler {
 
     public void setSharedLogic(SharedLogic sharedLogic) {
         this.sharedLogic = sharedLogic;
-    }
-
-    public void setLogic(GameLogic logic) {
-        this.logic = logic;
     }
 
     public void setStuff(GameStuff stuff) {
