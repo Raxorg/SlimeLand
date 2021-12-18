@@ -41,6 +41,7 @@ public class GameConstants {
     public static final float BUILD_OPTION_SIZE = BUILD_MENU_WIDTH / 2f;
     public static final float BUILD_OPTION_SPACING = (BUILD_MENU_HEIGHT - BUILD_OPTION_SIZE * (OPTIONS + 1)) / SPACES;
     public static final float BUILD_OPTION_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_OPTION_SIZE / 2f;
+
     public static final int FACTORY_ID = 0;
     public static final int WORKSHOP_ID = 1;
     public static final int TOWER_ID = 2;
