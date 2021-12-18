@@ -27,6 +27,11 @@ public class SharedScreen extends ScreenAdapter {
         renderer.render();
     }
 
+    @Override
+    public void pause() {
+        logic.pause();
+    }
+
     public OrthographicCamera getDynamicCamera() {
         return dynamicCamera;
     }

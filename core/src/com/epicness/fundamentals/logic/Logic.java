@@ -20,6 +20,10 @@ public abstract class Logic {
 
     public abstract void update(float delta);
 
+    public void pause() {
+
+    }
+
     public void setGame(Game game) {
 
     }
