@@ -5,9 +5,6 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 public class GameConstants {
 
-    // Preferences
-    public static final String SLIME_QUANTITY_PREF_KEY = "slimeQuantity";
-    public static final String BUILDING_PREFS_PATH = "EpicnessSlimeLandPrefsBuildings";
     // Clouds
     public static final float CLOUD_WIDTH = 104f;
     public static final float CLOUD_HEIGHT = CLOUD_WIDTH / 2f;
@@ -32,7 +29,7 @@ public class GameConstants {
     public static final float SLIME_MIN_SPEED = -400f;
     public static final float SLIME_MAX_SPEED = 400f;
     public static final float SLIME_HIDING_SPEED = 200f;
-
+    // Foreign slimes
     public static final float FOREIGN_SLIME_SPEED = 100f;
     // Build menu
     public static final float BUILD_MENU_WIDTH = CELL_SIZE * 2f;
@@ -47,8 +44,11 @@ public class GameConstants {
     public static final int FACTORY_ID = 0;
     public static final int WORKSHOP_ID = 1;
     public static final int TOWER_ID = 2;
+    public static final int ANTENNA_ID = 3;
     // Build menu counter
     public static final float BUILD_CHARGES_FRAME_SIZE = BUILD_MENU_WIDTH / 2f;
     public static final float BUILD_CHARGES_FRAME_Y = CAMERA_HEIGHT - BUILD_CHARGES_FRAME_SIZE - BUILD_OPTION_SPACING;
     public static final float BUILD_CHARGES_FRAME_X_OFFSET = BUILD_MENU_WIDTH / 2f - BUILD_CHARGES_FRAME_SIZE / 2f;
+    // Player info
+    public static final float PLAYER_INFO_HEIGHT = 100f;
 }

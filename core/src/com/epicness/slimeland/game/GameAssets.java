@@ -1,5 +1,7 @@
 package com.epicness.slimeland.game;
 
+import static com.epicness.slimeland.AssetPaths.ANTENNA_1_PATH;
+import static com.epicness.slimeland.AssetPaths.ANTENNA_2_PATH;
 import static com.epicness.slimeland.AssetPaths.BIG_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
@@ -34,7 +36,7 @@ public class GameAssets extends Assets {
     private BitmapFont bigPixelFont, mediumPixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
-    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight;
+    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight, antenna1, antenna2;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
     @Override
@@ -57,6 +59,8 @@ public class GameAssets extends Assets {
         assetManager.load(WORKSHOP_INTERIOR_PATH, Texture.class);
         assetManager.load(TOWER_LEFT_PATH, Texture.class);
         assetManager.load(TOWER_RIGHT_PATH, Texture.class);
+        assetManager.load(ANTENNA_1_PATH, Texture.class);
+        assetManager.load(ANTENNA_2_PATH, Texture.class);
 
         assetManager.load(BLUE_ORNAMENT_PATH, Texture.class);
         assetManager.load(GREEN_ORNAMENT_PATH, Texture.class);
@@ -87,6 +91,8 @@ public class GameAssets extends Assets {
         workshopInterior = new Sprite(assetManager.get(WORKSHOP_INTERIOR_PATH, Texture.class));
         towerLeft = new Sprite(assetManager.get(TOWER_LEFT_PATH, Texture.class));
         towerRight = new Sprite(assetManager.get(TOWER_RIGHT_PATH, Texture.class));
+        antenna1 = new Sprite(assetManager.get(ANTENNA_1_PATH, Texture.class));
+        antenna2 = new Sprite(assetManager.get(ANTENNA_2_PATH, Texture.class));
 
         blueOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
         greenOrnament = new Sprite(assetManager.get(BLUE_ORNAMENT_PATH, Texture.class));
@@ -152,6 +158,14 @@ public class GameAssets extends Assets {
 
     public Sprite getTowerRight() {
         return towerRight;
+    }
+
+    public Sprite getAntenna1() {
+        return antenna1;
+    }
+
+    public Sprite getAntenna2() {
+        return antenna2;
     }
 
     public Sprite getBlueOrnament() {

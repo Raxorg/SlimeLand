@@ -1,7 +1,7 @@
 package com.epicness.slimeland;
 
+import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
-import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
 
 import com.badlogic.gdx.Game;
 import com.epicness.firebase.CoreFirestore;

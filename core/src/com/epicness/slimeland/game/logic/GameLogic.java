@@ -1,11 +1,11 @@
 package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
+import com.epicness.fundamentals.logic.behaviors.ScrollBehavior;
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.game.GameAssets;
@@ -13,11 +13,13 @@ import com.epicness.slimeland.game.logic.decorative.CloudHandler;
 import com.epicness.slimeland.game.logic.decorative.MusicHandler;
 import com.epicness.slimeland.game.logic.machines.BuildMenuHandler;
 import com.epicness.slimeland.game.logic.machines.BuildingHandler;
+import com.epicness.slimeland.game.logic.multiplayer.MultiplayerHandler;
 import com.epicness.slimeland.game.logic.slimes.HidingHandler;
 import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
 import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
+import com.epicness.slimeland.menu.stuff.Player;
 
 public class GameLogic extends Logic {
 
@@ -36,7 +38,9 @@ public class GameLogic extends Logic {
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
     private final MultiplayerHandler multiplayerHandler;
-    private final StateHandler stateHandler;
+    private final StateLoader stateLoader;
+
+    private final ScrollBehavior scrollBehavior;
 
     public GameLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
@@ -56,7 +60,9 @@ public class GameLogic extends Logic {
         gameInputHandler = new GameInputHandler();
         gridHandler = new GridHandler();
         multiplayerHandler = new MultiplayerHandler();
-        stateHandler = new StateHandler();
+        stateLoader = new StateLoader();
+
+        scrollBehavior = new ScrollBehavior();
 
         buildingHandler.setSharedLogic(sharedLogic);
 
@@ -66,7 +72,7 @@ public class GameLogic extends Logic {
 
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
-        stateHandler.setLogic(this);
+        stateLoader.setLogic(this);
     }
     /*
      * "Chill" Kevin MacLeod (incompetech.com)
@@ -85,11 +91,10 @@ public class GameLogic extends Logic {
 
         gameInputHandler.setupInput();
         gridHandler.setup();
-        multiplayerHandler.fetchPlayerInfo();
     }
 
-    public void initState(String name, Color color1, Color color2) {
-        stateHandler.setup(name, color1, color2);
+    public void initState(Player player) {
+        stateLoader.setup(player);
     }
 
     @Override
@@ -139,7 +144,7 @@ public class GameLogic extends Logic {
 
         gridHandler.setStuff(gameStuff);
         slimeHandler.setStuff(gameStuff);
-        stateHandler.setStuff(gameStuff);
+        stateLoader.setStuff(gameStuff);
     }
 
     public CloudHandler getCloudHandler() {
@@ -154,6 +159,10 @@ public class GameLogic extends Logic {
         return buildMenuHandler;
     }
 
+    public MultiplayerHandler getMultiplayerHandler() {
+        return multiplayerHandler;
+    }
+
     public HidingHandler getHidingHandler() {
         return hidingHandler;
     }
@@ -164,5 +173,9 @@ public class GameLogic extends Logic {
 
     public GridHandler getGridHandler() {
         return gridHandler;
+    }
+
+    public ScrollBehavior getScrollBehavior() {
+        return scrollBehavior;
     }
 }

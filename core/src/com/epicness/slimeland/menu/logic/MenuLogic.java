@@ -49,7 +49,6 @@ public class MenuLogic extends Logic {
     public void initialLogic() {
         menuInputHandler.setupInput();
         playerChecker.checkPlayer();
-        playerRegistrator.init();
         slimeGridHandler.setup();
     }
 

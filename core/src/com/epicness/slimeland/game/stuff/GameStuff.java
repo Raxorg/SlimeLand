@@ -25,6 +25,7 @@ import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
+import com.epicness.slimeland.game.stuff.playerlist.PlayerList;
 import com.epicness.slimeland.game.stuff.slimes.Slime;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class GameStuff extends Stuff {
     private DelayedRemovalArray<Slime> slimes, foreignSlimes;
     private Cloud[] clouds;
     private BuildMenu buildMenu;
+    private PlayerList playerList;
 
     @Override
     public void initializeStuff() {
@@ -50,6 +52,7 @@ public class GameStuff extends Stuff {
         foreignSlimes = new DelayedRemovalArray<>();
         initializeClouds(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
+        playerList = new PlayerList(sharedAssets.getPixel());
     }
 
     private void initializeGrid() {
@@ -128,5 +131,9 @@ public class GameStuff extends Stuff {
 
     public BuildMenu getBuildMenu() {
         return buildMenu;
+    }
+
+    public PlayerList getPlayerList() {
+        return playerList;
     }
 }

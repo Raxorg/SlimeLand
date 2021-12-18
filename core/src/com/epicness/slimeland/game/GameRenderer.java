@@ -47,6 +47,7 @@ public class GameRenderer extends Renderer {
             stuff.getClouds()[i].drawForeground(spriteBatch);
         }
         stuff.getBuildMenu().draw(spriteBatch);
+        stuff.getPlayerList().draw(spriteBatch);
         spriteBatch.end();
     }
 }

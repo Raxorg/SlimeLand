@@ -24,6 +24,8 @@ public class AssetPaths {
     public static final String WORKSHOP_INTERIOR_PATH = "slimeland/images/machines/workshopInterior.png";
     public static final String TOWER_LEFT_PATH = "slimeland/images/machines/towerLeft.png";
     public static final String TOWER_RIGHT_PATH = "slimeland/images/machines/towerRight.png";
+    public static final String ANTENNA_1_PATH = "slimeland/images/machines/antenna1.png";
+    public static final String ANTENNA_2_PATH = "slimeland/images/machines/antenna2.png";
 
     public static final String BLUE_ORNAMENT_PATH = "slimeland/images/ornaments/blueOrnament.png";
     public static final String GREEN_ORNAMENT_PATH = "slimeland/images/ornaments/greenOrnament.png";

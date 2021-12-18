@@ -1,23 +1,29 @@
 package com.epicness.slimeland.game.logic;
 
+import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
 import com.badlogic.gdx.graphics.Color;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Machine;
+import com.epicness.slimeland.menu.stuff.Player;
 
-public class StateHandler {
+public class StateLoader {
 
     // Structure
     private GameLogic logic;
     private GameStuff stuff;
-    // Logic
-    private String name;
 
-    public void setup(String name, Color color1, Color color2) {
-        this.name = name;
+    public void setup(Player player) {
+        String[] colorArray = player.getColors().split("-");
+        Color color1 = colorFromString(colorArray[0]);
+        Color color2 = colorFromString(colorArray[1]);
 
+        applyColors(color1, color2);
+    }
+
+    private void applyColors(Color color1, Color color2) {
         logic.getCloudHandler().setColors(color1, color2);
         logic.getBuildingHandler().setColors(color1, color2);
 
@@ -35,10 +41,6 @@ public class StateHandler {
                 machine.setColors(color1, color2);
             }
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     // Structure

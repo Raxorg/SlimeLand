@@ -23,28 +23,25 @@ public class PlayerRegistrator {
     private MenuLogic logic;
     private MenuStuff stuff;
     // Logic
-    private Player player;
+    private String playerName, playerColors;
     private String error;
 
-    public void init() {
-        player = new Player();
-    }
-
     public void assignPlayerName(String name) {
-        player.setName(name);
+        playerName = name;
     }
 
     public void assignPlayerColors(String colors) {
-        player.setColors(colors);
+        playerColors = colors;
     }
 
     public void registerPlayer() {
         awaitResponse();
+        Player player = new Player(playerName, playerColors, 1);
         game.getFirestore().registerPlayer(player, success -> {
             logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
             logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
-            logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
-            sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player.getName(), player.getColors()));
+            logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, player.getSlimeQuantity());
+            sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player));
             sharedLogic.getTransitionHandler().allowTransition();
         }, availableColors -> {
             String[] availableColorPairs = availableColors.split(",");

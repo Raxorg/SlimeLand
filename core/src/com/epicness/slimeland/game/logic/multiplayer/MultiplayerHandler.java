@@ -1,4 +1,4 @@
-package com.epicness.slimeland.game.logic;
+package com.epicness.slimeland.game.logic.multiplayer;
 
 import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.game.stuff.GameStuff;

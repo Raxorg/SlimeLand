@@ -1,8 +1,8 @@
 package com.epicness.slimeland.game.logic.machines;
 
+import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
-import static com.epicness.slimeland.game.GameConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
@@ -11,6 +11,7 @@ import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.GameStuff;
+import com.epicness.slimeland.game.stuff.machines.Antenna;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;
 import com.epicness.slimeland.game.stuff.machines.MachineType;
@@ -73,8 +74,11 @@ public class BuildingHandler {
                 machine = new Workshop(assets.getWorkshopExterior(), assets.getWorkshopInterior());
                 break;
             case TOWER:
-            default:
                 machine = new Tower(assets.getTowerLeft(), assets.getTowerRight());
+                break;
+            case ANTENNA:
+            default:
+                machine = new Antenna(assets.getAntenna1(), assets.getAntenna2());
                 break;
         }
         machine.setPosition(cell.getX(), cell.getY());
