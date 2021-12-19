@@ -8,8 +8,8 @@ public abstract class Machine extends DualSprited {
 
     private final MachineType type;
 
-    public Machine(MachineType type, Sprite leftSprite, Sprite rightSprite) {
-        super(leftSprite, rightSprite);
+    public Machine(MachineType type, Sprite sprite1, Sprite sprite2) {
+        super(sprite1, sprite2);
         this.type = type;
     }
 

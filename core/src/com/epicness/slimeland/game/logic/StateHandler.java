@@ -8,6 +8,7 @@ import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;
@@ -36,6 +37,7 @@ public class StateHandler {
         logic.getCloudHandler().setColors(color1, color2);
         logic.getBuildingHandler().setColors(color1, color2);
         logic.getSlimeHandler().setColors(color1, color2);
+        logic.getBulletHandler().setColors(color1, color2);
 
         stuff.getBuildMenu().setColors(color1, color2);
         Cell[][] cells = stuff.getGrid().getCells();
@@ -47,6 +49,9 @@ public class StateHandler {
                 }
                 machine.setColors(color1, color2);
             }
+        }
+        for (int i = 0; i < stuff.getBullets().size; i++) {
+            stuff.getBullets().get(i).setColor(MathUtils.randomBoolean() ? color1 : color2);
         }
     }
 

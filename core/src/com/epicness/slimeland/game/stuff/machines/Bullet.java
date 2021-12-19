@@ -1,7 +1,5 @@
 package com.epicness.slimeland.game.stuff.machines;
 
-import static com.epicness.slimeland.game.GameConstants.BULLET_MAX_SIZE;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.epicness.fundamentals.stuff.Sprited;
@@ -18,6 +16,10 @@ public class Bullet extends Sprited {
         super(sprite);
         this.tower = tower;
         setSize(0f);
+    }
+
+    public Tower getTower() {
+        return tower;
     }
 
     public float getSize() {
@@ -44,10 +46,8 @@ public class Bullet extends Sprited {
         return origin;
     }
 
-    public void updateOrigin() {
-        float originX = tower.getX() + tower.getWidth() / 2f - BULLET_MAX_SIZE / 2f;
-        float originY = tower.getY() + tower.getHeight() * 0.725f - BULLET_MAX_SIZE / 2f;
-        origin = new Vector2(originX, originY);
+    public void setOrigin(float x, float y) {
+        origin = new Vector2(x, y);
     }
 
     public Slime getTarget() {

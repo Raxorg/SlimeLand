@@ -3,15 +3,29 @@ package com.epicness.slimeland.game.logic.towerdefense;
 import static com.epicness.slimeland.game.GameConstants.BULLET_GROWTH_RATE;
 import static com.epicness.slimeland.game.GameConstants.BULLET_MAX_SIZE;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Bullet;
+import com.epicness.slimeland.game.stuff.machines.Tower;
 
 public class BulletHandler {
 
     // Structure
     private GameStuff stuff;
+    // Logic
+    private Color color1, color2;
+
+    public void setupBullets() {
+        for (int i = 0; i < stuff.getBullets().size; i++) {
+            Bullet bullet = stuff.getBullets().get(i);
+            Tower tower = bullet.getTower();
+            float originX = tower.getX() + tower.getWidth() / 2f - BULLET_MAX_SIZE / 2f;
+            float originY = tower.getY() + tower.getHeight() * 0.725f - BULLET_MAX_SIZE / 2f;
+            bullet.setOrigin(originX, originY);
+        }
+    }
 
     public void update(float delta) {
         DelayedRemovalArray<Bullet> bullets = stuff.getBullets();
@@ -26,7 +40,6 @@ public class BulletHandler {
             bullet.setSize(bullet.getSize() + delta * BULLET_GROWTH_RATE);
         } else if (bullet.getProgress() == 0f) {
             bullet.setSize(BULLET_MAX_SIZE);
-            bullet.updateOrigin();
         }
     }
 
@@ -46,11 +59,17 @@ public class BulletHandler {
         if (bullet.getProgress() >= 1f) {
             bullet.setSize(0f);
             bullet.setProgress(0f);
+            Color color = MathUtils.randomBoolean() ? color1 : color2;
+            bullet.setColor(color);
         }
     }
 
-    // Structure
+    public void setColors(Color color1, Color color2) {
+        this.color1 = color1;
+        this.color2 = color2;
+    }
 
+    // Structure
     public void setStuff(GameStuff stuff) {
         this.stuff = stuff;
     }

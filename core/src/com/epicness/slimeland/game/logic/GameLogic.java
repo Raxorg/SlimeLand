@@ -104,6 +104,8 @@ public class GameLogic extends Logic {
         // Multiplayer
         multiplayerHandler.fetchPlayerInfo();
         playerListHandler.hide();
+        // Tower Defense
+        bulletHandler.setupBullets();
 
         gameInputHandler.setupInput();
         gridHandler.setup();
@@ -201,6 +203,7 @@ public class GameLogic extends Logic {
         return playerListHandler;
     }
 
+    // Slimes
     public HidingHandler getHidingHandler() {
         return hidingHandler;
     }
@@ -211,6 +214,11 @@ public class GameLogic extends Logic {
 
     public SlimeHandler getSlimeHandler() {
         return slimeHandler;
+    }
+
+    // Tower Defense
+    public BulletHandler getBulletHandler() {
+        return bulletHandler;
     }
 
     public GridHandler getGridHandler() {
