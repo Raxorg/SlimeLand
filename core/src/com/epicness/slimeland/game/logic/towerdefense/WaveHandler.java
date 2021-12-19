@@ -34,6 +34,7 @@ public class WaveHandler {
     private float[] spawnIntervals;
     private int[] spawnedSlimes;
     private String thisPlayerName;
+    private boolean ended;
 
     public void startWave() {
         int towers = countTowers();
@@ -47,6 +48,7 @@ public class WaveHandler {
             stuff.getSlimes().get(i).setBehavior(SlimeBehavior.HIDING);
         }
         logic.getTowerHandler().setOnWave(true);
+        ended = false;
     }
 
     private int countTowers() {
@@ -126,6 +128,9 @@ public class WaveHandler {
     }
 
     private void checkWave() {
+        if (ended) {
+            return;
+        }
         for (int i = 0; i < spawnedSlimes.length; i++) {
             if (spawnedSlimes[i] != WAVE_SIZE) {
                 return;
@@ -135,6 +140,7 @@ public class WaveHandler {
             stuff.getSlimes().get(i).setBehavior(SlimeBehavior.ROAMING);
         }
         logic.getTowerHandler().setOnWave(false);
+        ended = true;
     }
 
     public void setThisPlayerName(String thisPlayerName) {

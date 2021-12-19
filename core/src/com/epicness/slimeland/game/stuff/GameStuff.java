@@ -17,6 +17,8 @@ import static com.epicness.slimeland.game.GameConstants.GRID_ROWS;
 import static com.epicness.slimeland.game.GameConstants.GRID_SIZE;
 import static com.epicness.slimeland.game.GameConstants.GRID_X;
 import static com.epicness.slimeland.game.GameConstants.GRID_Y;
+import static com.epicness.slimeland.game.GameConstants.TOWER_STATS_HEIGHT;
+import static com.epicness.slimeland.game.GameConstants.TOWER_STATS_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -45,6 +47,7 @@ public class GameStuff extends Stuff {
     private DelayedRemovalArray<ForeignSlime> foreignSlimes;
     private DelayedRemovalArray<Bullet> bullets;
     private Cloud[] clouds;
+    private SpritedText towerStats;
     private BuildMenu buildMenu;
     private PlayerList playerList;
     private SpritedText overlay;
@@ -60,6 +63,7 @@ public class GameStuff extends Stuff {
         foreignSlimes = new DelayedRemovalArray<>();
         bullets = new DelayedRemovalArray<>();
         initializeClouds(assets);
+        initializeTowerStats(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
         playerList = new PlayerList(sharedAssets, assets);
         initializeOverlay(assets);
@@ -114,6 +118,12 @@ public class GameStuff extends Stuff {
         }
     }
 
+    private void initializeTowerStats(GameAssets assets) {
+        towerStats = new SpritedText(sharedAssets.getPixel(), assets.getBigPixelFont());
+        towerStats.setSize(TOWER_STATS_WIDTH, TOWER_STATS_HEIGHT);
+        towerStats.setColor(TRANSPARENT);
+    }
+
     private void initializeOverlay(GameAssets assets) {
         overlay = new SpritedText(sharedAssets.getPixel(), assets.getBiggerPixelFont());
         overlay.setPosition(HIDDEN_X, HIDDEN_Y);
@@ -149,6 +159,10 @@ public class GameStuff extends Stuff {
 
     public Cloud[] getClouds() {
         return clouds;
+    }
+
+    public SpritedText getTowerStats() {
+        return towerStats;
     }
 
     public BuildMenu getBuildMenu() {

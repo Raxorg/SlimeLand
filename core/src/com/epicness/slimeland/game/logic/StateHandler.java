@@ -4,7 +4,9 @@ import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
 import static com.epicness.slimeland.SlimeConstants.ANTENNA_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.KILLS_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
+import static com.epicness.slimeland.SlimeConstants.TD_LEVEL_KEY;
 import static com.epicness.slimeland.SlimeConstants.TOWER_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
@@ -98,6 +100,24 @@ public class StateHandler {
 
     public void setTowerCooldown(int towerCooldown) {
         sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, TOWER_COOLDOWN_PREF_KEY, towerCooldown);
+    }
+
+    // TD Level
+    public int getTDLevel() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, TD_LEVEL_KEY);
+    }
+
+    public void setTDLevel(int level) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, TD_LEVEL_KEY, level);
+    }
+
+    // Kills
+    public int getKills() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, KILLS_PREF_KEY);
+    }
+
+    public void setKills(int kills) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, KILLS_PREF_KEY, kills);
     }
 
     // Structure

@@ -46,6 +46,7 @@ public class GameRenderer extends Renderer {
         for (int i = 0; i < stuff.getClouds().length; i++) {
             stuff.getClouds()[i].drawBackground(spriteBatch);
         }
+        stuff.getTowerStats().draw(spriteBatch);
         for (int i = 0; i < stuff.getClouds().length; i++) {
             stuff.getClouds()[i].drawForeground(spriteBatch);
         }

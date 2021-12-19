@@ -7,19 +7,14 @@ import com.epicness.slimeland.game.stuff.slimes.ForeignSlime;
 
 public class Bullet extends Sprited {
 
-    private final Tower tower;
     private float size, progress;
-    private Vector2 origin;
+    private final Vector2 origin;
     private ForeignSlime target;
 
-    public Bullet(Sprite sprite, Tower tower) {
+    public Bullet(Sprite sprite, Vector2 origin) {
         super(sprite);
-        this.tower = tower;
+        this.origin = origin;
         setSize(0f);
-    }
-
-    public Tower getTower() {
-        return tower;
     }
 
     public float getSize() {
@@ -29,8 +24,8 @@ public class Bullet extends Sprited {
     @Override
     public void setSize(float size) {
         super.setSize(size);
-        setX(tower.getX() + tower.getWidth() / 2f - size / 2f);
-        setY(tower.getY() + tower.getHeight() * 0.725f - size / 2f);
+        setX(origin.x - size / 2f);
+        setY(origin.y - size / 2f);
         this.size = size;
     }
 
@@ -44,10 +39,6 @@ public class Bullet extends Sprited {
 
     public Vector2 getOrigin() {
         return origin;
-    }
-
-    public void setOrigin(float x, float y) {
-        origin = new Vector2(x, y);
     }
 
     public ForeignSlime getTarget() {

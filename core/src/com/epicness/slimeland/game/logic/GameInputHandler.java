@@ -19,6 +19,7 @@ public class GameInputHandler extends InputHandler {
     @Override
     public void touchUp(float x, float y) {
         GameLogic logic = (GameLogic) this.logic;
+        logic.getTowerStatsHandler().touchUp();
         if (logic.getMultiplayerHandler().touchUp()) {
             return;
         }

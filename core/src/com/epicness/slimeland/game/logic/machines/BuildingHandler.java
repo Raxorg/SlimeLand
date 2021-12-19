@@ -4,13 +4,11 @@ import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Antenna;
-import com.epicness.slimeland.game.stuff.machines.Bullet;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;
 import com.epicness.slimeland.game.stuff.machines.MachineType;
@@ -74,11 +72,9 @@ public class BuildingHandler {
                 break;
             case TOWER:
                 machine = new Tower(assets.getTowerBottom(), assets.getTowerTop(), assets.getMediumPixelFont());
-                Bullet bullet = new Bullet(assets.getTowerBullet(), (Tower) machine);
-                if (color1 != null && color2 != null) {
-                    bullet.setColor(MathUtils.randomBoolean() ? color1 : color2);
-                }
-                stuff.getBullets().add(bullet);
+                machine.setPosition(cell.getX(), cell.getY());
+                machine.setSize(MACHINE_SIZE);
+                logic.getBulletHandler().spawnBullet((Tower) machine);
                 break;
             case ANTENNA:
             default:
@@ -94,6 +90,12 @@ public class BuildingHandler {
         String coordinates = cell.getColumn() + "-" + cell.getRow();
         logic.getStateHandler().storeBuilding(coordinates, machineType.getMachineID());
         logic.getStateHandler().setBuildCharges(buildCharges);
+    }
+
+    public void addBuildCharge() {
+        int buildCharges = logic.getStateHandler().getBuildCharges() + 1;
+        logic.getStateHandler().setBuildCharges(buildCharges);
+
     }
 
     public void setColors(Color color1, Color color2) {

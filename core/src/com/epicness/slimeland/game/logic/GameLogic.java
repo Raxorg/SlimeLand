@@ -22,6 +22,7 @@ import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
 import com.epicness.slimeland.game.logic.towerdefense.BulletHandler;
 import com.epicness.slimeland.game.logic.towerdefense.TowerHandler;
+import com.epicness.slimeland.game.logic.towerdefense.TowerStatsHandler;
 import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.menu.stuff.Player;
@@ -45,6 +46,7 @@ public class GameLogic extends Logic {
     // Tower Defense
     private final BulletHandler bulletHandler;
     private final TowerHandler towerHandler;
+    private final TowerStatsHandler towerStatsHandler;
     private final WaveHandler waveHandler;
 
     private final GameInputHandler gameInputHandler;
@@ -72,6 +74,7 @@ public class GameLogic extends Logic {
         // Tower Defense
         bulletHandler = new BulletHandler();
         towerHandler = new TowerHandler();
+        towerStatsHandler = new TowerStatsHandler();
         waveHandler = new WaveHandler();
 
         gameInputHandler = new GameInputHandler();
@@ -92,7 +95,9 @@ public class GameLogic extends Logic {
         // Slimes
         slimeHandler.setLogic(this);
         // Tower Defense
+        bulletHandler.setLogic(this);
         towerHandler.setLogic(this);
+        towerStatsHandler.setLogic(this);
         waveHandler.setLogic(this);
 
         gameInputHandler.setLogic(this);
@@ -115,8 +120,9 @@ public class GameLogic extends Logic {
         // Multiplayer
         playerListHandler.hide();
         // Tower Defense
-        bulletHandler.setupBullets();
         towerHandler.loadTowerCooldown();
+        towerStatsHandler.loadTowerStats();
+        towerStatsHandler.hide();
 
         gameInputHandler.setupInput();
         gridHandler.setup();
@@ -148,6 +154,8 @@ public class GameLogic extends Logic {
     @Override
     public void pause() {
         antennaHandler.saveAntennaCooldown();
+        towerHandler.saveTowerCooldown();
+        towerStatsHandler.saveTowerStats();
     }
 
     @Override
@@ -172,7 +180,8 @@ public class GameLogic extends Logic {
         playerListHandler.setAssets(gameAssets);
         // Slimes
         slimeHandler.setAssets(gameAssets);
-
+        // Tower Defense
+        bulletHandler.setAssets(gameAssets);
         waveHandler.setAssets(gameAssets);
     }
 
@@ -197,6 +206,7 @@ public class GameLogic extends Logic {
         // Tower Defense
         bulletHandler.setStuff(gameStuff);
         towerHandler.setStuff(gameStuff);
+        towerStatsHandler.setStuff(gameStuff);
         waveHandler.setStuff(gameStuff);
 
         gridHandler.setStuff(gameStuff);
@@ -250,6 +260,10 @@ public class GameLogic extends Logic {
 
     public TowerHandler getTowerHandler() {
         return towerHandler;
+    }
+
+    public TowerStatsHandler getTowerStatsHandler() {
+        return towerStatsHandler;
     }
 
     public WaveHandler getWaveHandler() {

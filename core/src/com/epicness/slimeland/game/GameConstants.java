@@ -33,7 +33,7 @@ public class GameConstants {
     public static final float SLIME_MAX_SPEED = 400f;
     public static final float SLIME_HIDING_SPEED = 200f;
     // Foreign slimes
-    public static final float FOREIGN_SLIME_SPEED = 100f;
+    public static final float FOREIGN_SLIME_SPEED = 150f;
     // Build menu
     public static final float BUILD_MENU_WIDTH = CELL_SIZE * 2f;
     public static final float BUILD_MENU_HEIGHT = CAMERA_HEIGHT;
@@ -91,6 +91,9 @@ public class GameConstants {
     public static final float LIST_AGILITY_LABEL_OFFSET_X = LIST_STRENGTH_LABEL_OFFSET_X + LIST_STRENGTH_LABEL_WIDTH;
     public static final float LIST_AGILITY_LABEL_WIDTH = AGILITY_COLUMN_WIDTH;
     // Tower Defense
-    public static final float INITIAL_SPAWN_INTERVAL = 4f;
+    public static final float INITIAL_SPAWN_INTERVAL = 3f;
     public static final int WAVE_SIZE = 10;
+    // Tower stats
+    public static final float TOWER_STATS_WIDTH = CAMERA_WIDTH;
+    public static final float TOWER_STATS_HEIGHT = GRID_Y;
 }

@@ -3,6 +3,7 @@ package com.epicness.slimeland.game.logic.towerdefense;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.TOWER_ID;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
@@ -67,10 +68,15 @@ public class TowerHandler {
             timer = 90f;
             updateTimers();
         }
+        logic.getTowerStatsHandler().show();
     }
 
     public void setOnWave(boolean onWave) {
         this.onWave = onWave;
+    }
+
+    public void saveTowerCooldown() {
+        logic.getStateHandler().setTowerCooldown(MathUtils.ceil(timer));
     }
 
     // Structure

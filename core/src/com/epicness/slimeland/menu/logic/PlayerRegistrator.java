@@ -12,6 +12,7 @@ import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.SLIME_AGILITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.SLIME_QUANTITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.SLIME_STRENGTH_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.TD_LEVEL_KEY;
 import static com.epicness.slimeland.SlimeConstants.TOWER_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.game.GameConstants.ANTENNA_ID;
 
@@ -71,6 +72,8 @@ public class PlayerRegistrator {
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, TOWER_COOLDOWN_PREF_KEY, 0);
 
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, KILLS_PREF_KEY, 0);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, TD_LEVEL_KEY, 1);
+
         logic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, "3-3", ANTENNA_ID);
     }
 
