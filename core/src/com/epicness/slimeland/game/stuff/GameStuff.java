@@ -4,8 +4,10 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
 import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 import static com.epicness.fundamentals.SharedConstants.DIRT;
 import static com.epicness.fundamentals.SharedConstants.LIGHT_DIRT;
+import static com.epicness.fundamentals.SharedConstants.OPAQUE_TRANSPARENT;
 import static com.epicness.fundamentals.SharedConstants.TRANSPARENT;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
 import static com.epicness.slimeland.game.GameConstants.BUSH_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.BUSH_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.CELL_SIZE;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.fundamentals.stuff.Sprited;
+import com.epicness.fundamentals.stuff.SpritedText;
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
@@ -42,6 +45,7 @@ public class GameStuff extends Stuff {
     private Cloud[] clouds;
     private BuildMenu buildMenu;
     private PlayerList playerList;
+    private SpritedText overlay;
 
     @Override
     public void initializeStuff() {
@@ -56,6 +60,7 @@ public class GameStuff extends Stuff {
         initializeClouds(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
         playerList = new PlayerList(sharedAssets, assets);
+        initializeOverlay(assets);
     }
 
     private void initializeGrid() {
@@ -107,6 +112,14 @@ public class GameStuff extends Stuff {
         }
     }
 
+    private void initializeOverlay(GameAssets assets) {
+        overlay = new SpritedText(sharedAssets.getPixel(), assets.getBiggerPixelFont());
+        overlay.setPosition(HIDDEN_X, HIDDEN_Y);
+        overlay.setSize(CAMERA_WIDTH, CAMERA_HEIGHT);
+        overlay.setColor(OPAQUE_TRANSPARENT);
+        overlay.setText("Thonking");
+    }
+
     // Getters
     public Grid getGrid() {
         return grid;
@@ -142,5 +155,9 @@ public class GameStuff extends Stuff {
 
     public PlayerList getPlayerList() {
         return playerList;
+    }
+
+    public SpritedText getOverlay() {
+        return overlay;
     }
 }

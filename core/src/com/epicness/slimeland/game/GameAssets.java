@@ -2,6 +2,7 @@ package com.epicness.slimeland.game;
 
 import static com.epicness.slimeland.AssetPaths.ANTENNA_1_PATH;
 import static com.epicness.slimeland.AssetPaths.ANTENNA_2_PATH;
+import static com.epicness.slimeland.AssetPaths.BIGGER_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BIG_PIXEL_FONT_PATH;
 import static com.epicness.slimeland.AssetPaths.BLUE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.BUSH_PATH;
@@ -35,7 +36,7 @@ public class GameAssets extends Assets {
     // Audio
     private Music chillMusic;
     // Fonts
-    private BitmapFont bigPixelFont, mediumPixelFont;
+    private BitmapFont biggerPixelFont, bigPixelFont, mediumPixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
     private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerBottom, towerTop, towerOption, towerBullet,
@@ -47,6 +48,7 @@ public class GameAssets extends Assets {
         // Audio
         assetManager.load(CHILL_MUSIC_PATH, Music.class);
         // Fonts
+        assetManager.load(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
         assetManager.load(BIG_PIXEL_FONT_PATH, BitmapFont.class);
         assetManager.load(MEDIUM_PIXEL_FONT_PATH, BitmapFont.class);
         // Sprites
@@ -79,6 +81,8 @@ public class GameAssets extends Assets {
         // Audio
         chillMusic = assetManager.get(CHILL_MUSIC_PATH, Music.class);
         // Fonts
+        biggerPixelFont = assetManager.get(BIGGER_PIXEL_FONT_PATH, BitmapFont.class);
+        biggerPixelFont.getData().setScale(10f);
         bigPixelFont = assetManager.get(BIG_PIXEL_FONT_PATH, BitmapFont.class);
         bigPixelFont.getData().setScale(5f);
         mediumPixelFont = assetManager.get(MEDIUM_PIXEL_FONT_PATH, BitmapFont.class);
@@ -115,6 +119,10 @@ public class GameAssets extends Assets {
     }
 
     // Fonts
+    public BitmapFont getBiggerPixelFont() {
+        return biggerPixelFont;
+    }
+
     public BitmapFont getBigPixelFont() {
         return bigPixelFont;
     }

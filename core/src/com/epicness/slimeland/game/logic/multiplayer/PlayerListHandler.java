@@ -27,6 +27,7 @@ public class PlayerListHandler {
     private GameLogic logic;
     private GameStuff stuff;
     // Logic
+    private String thisPlayerName;
     private boolean showingList;
 
     public void updateScrolling() {
@@ -37,7 +38,7 @@ public class PlayerListHandler {
     public void addPlayer(String playerName, Color color1, Color color2, int slimeQuantity, int slimeStrength, int slimeAgility) {
         DelayedRemovalArray<PlayerInfo> playerInfos = stuff.getPlayerList().getPlayerInfos();
         Color backgroundColor = playerInfos.size % 2 == 0 ? TRANSPARENT : OPAQUE_TRANSPARENT;
-        boolean thisPlayer = logic.getStateHandler().getPlayerName().equals(playerName);
+        boolean thisPlayer = playerName.equals(thisPlayerName);
         if (thisPlayer) {
             backgroundColor = backgroundColor.cpy().lerp(WHITE_OPAQUE_TRANSPARENT, 0.6f);
         }
@@ -76,6 +77,10 @@ public class PlayerListHandler {
             return false;
         }
         return true;
+    }
+
+    public void setThisPlayerName(String thisPlayerName) {
+        this.thisPlayerName = thisPlayerName;
     }
 
     // Structure

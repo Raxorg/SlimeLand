@@ -4,6 +4,7 @@ import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.logic.GameLogic;
@@ -74,11 +75,14 @@ public class BuildingHandler {
             case TOWER:
                 machine = new Tower(assets.getTowerBottom(), assets.getTowerTop());
                 Bullet bullet = new Bullet(assets.getTowerBullet(), (Tower) machine);
+                if (color1 != null && color2 != null) {
+                    bullet.setColor(MathUtils.randomBoolean() ? color1 : color2);
+                }
                 stuff.getBullets().add(bullet);
                 break;
             case ANTENNA:
             default:
-                machine = new Antenna(assets.getAntenna1(), assets.getAntenna2());
+                machine = new Antenna(assets.getAntenna1(), assets.getAntenna2(), assets.getMediumPixelFont());
                 break;
         }
         machine.setPosition(cell.getX(), cell.getY());

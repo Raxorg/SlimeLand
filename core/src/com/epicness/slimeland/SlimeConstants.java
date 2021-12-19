@@ -13,6 +13,8 @@ public class SlimeConstants {
     public static final String SLIME_STRENGTH_PREF_KEY = "slimeStrength";
     public static final String SLIME_AGILITY_PREF_KEY = "slimeAgility";
 
+    public static final String ANTENNA_COOLDOWN_PREF_KEY = "antennaCooldown";
+
     public static final String BUILD_CHARGES_PREF_KEY = "buildCharges";
     public static final String BUILDING_PREFS_PATH = "EpicnessSlimeLandPrefsBuildings";
     // Other

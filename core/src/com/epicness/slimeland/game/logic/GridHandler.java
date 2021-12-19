@@ -55,7 +55,7 @@ public class GridHandler {
 
                 break;
             case ANTENNA:
-                logic.getPlayerListHandler().show();
+                logic.getAntennaHandler().antennaTouched();
                 break;
         }
     }

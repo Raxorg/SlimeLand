@@ -1,9 +1,9 @@
 package com.epicness.slimeland.game.logic;
 
 import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
+import static com.epicness.slimeland.SlimeConstants.ANTENNA_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
-import static com.epicness.slimeland.SlimeConstants.NAME_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
@@ -24,11 +24,13 @@ public class StateHandler {
     private GameLogic logic;
     private GameStuff stuff;
 
+    // Player state
     public void loadPlayerState(Player player) {
         String[] colorArray = player.getColors().split("-");
         Color color1 = colorFromString(colorArray[0]);
         Color color2 = colorFromString(colorArray[1]);
 
+        logic.getPlayerListHandler().setThisPlayerName(player.getName());
         applyColors(color1, color2);
         logic.getSlimeHandler().spawnSlimes(player.getSlimeQuantity());
     }
@@ -55,10 +57,6 @@ public class StateHandler {
         }
     }
 
-    public String getPlayerName() {
-        return sharedLogic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
-    }
-
     // Build charges
     public int getBuildCharges() {
         return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY);
@@ -80,6 +78,15 @@ public class StateHandler {
 
     public void storeBuilding(String coordinates, int machineID) {
         sharedLogic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, coordinates, machineID);
+    }
+
+    // Antenna cooldown
+    public int getAntennaCooldown() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, ANTENNA_COOLDOWN_PREF_KEY);
+    }
+
+    public void setAntennaCooldown(int antennaCooldown) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, ANTENNA_COOLDOWN_PREF_KEY, antennaCooldown);
     }
 
     // Structure

@@ -1,8 +1,11 @@
 package com.epicness.slimeland.game.logic.multiplayer;
 
 import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
+import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
 
 import com.badlogic.gdx.graphics.Color;
+import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
@@ -13,6 +16,7 @@ public class MultiplayerHandler {
 
     // Structure
     private SlimeGame game;
+    private SharedInput input;
     private GameLogic logic;
     private GameStuff stuff;
     // Logic
@@ -20,6 +24,8 @@ public class MultiplayerHandler {
     private boolean update;
 
     public void fetchPlayerInfo() {
+        input.setEnabled(false);
+        stuff.getOverlay().setPosition(0f, 0f);
         game.getFirestore().fetchPlayerData(playerData -> {
             if (playerData == null) {
                 handleFailure();
@@ -35,12 +41,15 @@ public class MultiplayerHandler {
             return;
         }
         updatePlayerData(playerData);
+        stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);
+        logic.getPlayerListHandler().show();
+        input.setEnabled(true);
         update = false;
     }
 
     private void handleFailure() {
-        System.out.println("FAILURE FETCHING PLAYER DATA");
-        System.out.println("SOMETHING WENT WRONG");
+        stuff.getOverlay().setText("SOMETHING WENT WRONG");
+        input.setEnabled(true);
     }
 
     private void updatePlayerData(Map<String, Object> playerData) {
@@ -61,9 +70,24 @@ public class MultiplayerHandler {
         logic.getPlayerListHandler().updateScrolling();
     }
 
+    public boolean touchUp() {
+        if (stuff.getOverlay().getY() == HIDDEN_Y) {
+            return false;
+        }
+        if (!stuff.getOverlay().getText().equals("SOMETHING WENT WRONG")) {
+            return false;
+        }
+        stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);
+        return true;
+    }
+
     // Structure
     public void setGame(SlimeGame game) {
         this.game = game;
+    }
+
+    public void setInput(SharedInput input) {
+        this.input = input;
     }
 
     public void setLogic(GameLogic logic) {

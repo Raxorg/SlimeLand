@@ -1,5 +1,6 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.slimeland.SlimeConstants.ANTENNA_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.COLORS_PREF_KEY;
@@ -43,13 +44,7 @@ public class PlayerRegistrator {
         awaitResponse();
         Player player = new Player(playerName, playerColors, 1, 1, 1);
         game.getFirestore().registerPlayer(player, success -> {
-            logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
-            logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
-            logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
-            logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY, 1);
-            logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_STRENGTH_PREF_KEY, 1);
-            logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_AGILITY_PREF_KEY, 1);
-            logic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, "3-3", ANTENNA_ID);
+            storeNewPlayerInformation(player);
             sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player));
             sharedLogic.getTransitionHandler().allowTransition();
         }, availableColors -> {
@@ -60,6 +55,17 @@ public class PlayerRegistrator {
             error = errorMessage;
             input.setEnabled(true);
         });
+    }
+
+    private void storeNewPlayerInformation(Player player) {
+        logic.getPreferencesHandler().saveString(PREFS_PATH, NAME_PREF_KEY, player.getName());
+        logic.getPreferencesHandler().saveString(PREFS_PATH, COLORS_PREF_KEY, player.getColors());
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, 1);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY, 1);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_STRENGTH_PREF_KEY, 1);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_AGILITY_PREF_KEY, 1);
+        logic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, "3-3", ANTENNA_ID);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, ANTENNA_COOLDOWN_PREF_KEY, 0);
     }
 
     private void awaitResponse() {

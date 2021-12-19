@@ -51,6 +51,7 @@ public class GameRenderer extends Renderer {
         }
         stuff.getBuildMenu().draw(spriteBatch);
         stuff.getPlayerList().draw(spriteBatch);
+        stuff.getOverlay().draw(spriteBatch);
         spriteBatch.end();
     }
 }

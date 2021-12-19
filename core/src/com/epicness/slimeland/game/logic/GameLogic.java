@@ -12,6 +12,7 @@ import com.epicness.slimeland.SlimeGame;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.logic.decorative.CloudHandler;
 import com.epicness.slimeland.game.logic.decorative.MusicHandler;
+import com.epicness.slimeland.game.logic.machines.AntennaHandler;
 import com.epicness.slimeland.game.logic.machines.BuildMenuHandler;
 import com.epicness.slimeland.game.logic.machines.BuildingHandler;
 import com.epicness.slimeland.game.logic.multiplayer.MultiplayerHandler;
@@ -30,6 +31,7 @@ public class GameLogic extends Logic {
     private final CloudHandler cloudHandler;
     private final MusicHandler musicHandler;
     // Machines
+    private final AntennaHandler antennaHandler;
     private final BuildingHandler buildingHandler;
     private final BuildMenuHandler buildMenuHandler;
     // Multiplayer
@@ -55,6 +57,7 @@ public class GameLogic extends Logic {
         cloudHandler = new CloudHandler();
         musicHandler = new MusicHandler();
         // Machines
+        antennaHandler = new AntennaHandler();
         buildingHandler = new BuildingHandler();
         buildMenuHandler = new BuildMenuHandler();
         // Multiplayer
@@ -77,6 +80,7 @@ public class GameLogic extends Logic {
         stateHandler.setSharedLogic(sharedLogic);
 
         // Machines
+        antennaHandler.setLogic(this);
         buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
         // Multiplayer
@@ -100,6 +104,7 @@ public class GameLogic extends Logic {
         musicHandler.playMusic();
         // Machines
         buildingHandler.loadState();
+        antennaHandler.loadAntennaCooldown();
         buildMenuHandler.setup();
         // Multiplayer
         playerListHandler.hide();
@@ -119,6 +124,7 @@ public class GameLogic extends Logic {
         // Decorative
         cloudHandler.update(delta);
         // Machines
+        antennaHandler.update(delta);
         buildMenuHandler.update(delta);
         // Multiplayer
         multiplayerHandler.update();
@@ -129,6 +135,11 @@ public class GameLogic extends Logic {
         waveHandler.update(delta);
         // Behaviors
         scrollBehavior.update(delta);
+    }
+
+    @Override
+    public void pause() {
+        antennaHandler.saveAntennaCooldown();
     }
 
     @Override
@@ -159,6 +170,8 @@ public class GameLogic extends Logic {
 
     @Override
     public void setInput(SharedInput input) {
+        multiplayerHandler.setInput(input);
+
         gameInputHandler.setInput(input);
     }
 
@@ -166,7 +179,8 @@ public class GameLogic extends Logic {
     public void setStuff(Stuff stuff) {
         GameStuff gameStuff = (GameStuff) stuff;
         cloudHandler.setStuff(gameStuff);
-
+        // Machines
+        antennaHandler.setStuff(gameStuff);
         buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
         // Multiplayer
@@ -183,6 +197,11 @@ public class GameLogic extends Logic {
 
     public CloudHandler getCloudHandler() {
         return cloudHandler;
+    }
+
+    // Machines
+    public AntennaHandler getAntennaHandler() {
+        return antennaHandler;
     }
 
     public BuildingHandler getBuildingHandler() {
