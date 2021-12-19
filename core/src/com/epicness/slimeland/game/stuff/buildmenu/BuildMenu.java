@@ -43,7 +43,7 @@ public class BuildMenu extends Sprited {
         options = new BuildOption[OPTIONS];
         options[FACTORY_ID] = new BuildOption(FACTORY, assets.getFactoryLeft(), assets.getFactoryRight());
         options[WORKSHOP_ID] = new BuildOption(WORKSHOP, assets.getWorkshopExterior(), assets.getWorkshopInterior());
-        options[TOWER_ID] = new BuildOption(TOWER, assets.getTowerBottom(), assets.getTowerTop());
+        options[TOWER_ID] = new BuildOption(TOWER, assets.getTowerOption(), assets.getTowerTop());
         for (int i = 0; i < options.length; i++) {
             options[i].setSize(BUILD_OPTION_SIZE);
             options[i].setY(BUILD_OPTION_SPACING * (i + 1) + BUILD_OPTION_SIZE * i);

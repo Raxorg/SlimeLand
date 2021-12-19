@@ -102,7 +102,6 @@ public class GameLogic extends Logic {
         buildingHandler.loadState();
         buildMenuHandler.setup();
         // Multiplayer
-        multiplayerHandler.fetchPlayerInfo();
         playerListHandler.hide();
         // Tower Defense
         bulletHandler.setupBullets();

@@ -19,6 +19,7 @@ import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_BOTTOM_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_BULLET_PATH;
+import static com.epicness.slimeland.AssetPaths.TOWER_OPTION_PATH;
 import static com.epicness.slimeland.AssetPaths.TOWER_TOP_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_EXTERIOR_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_INTERIOR_PATH;
@@ -37,7 +38,8 @@ public class GameAssets extends Assets {
     private BitmapFont bigPixelFont, mediumPixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
-    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerBottom, towerTop, towerBullet, antenna1, antenna2;
+    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerBottom, towerTop, towerOption, towerBullet,
+            antenna1, antenna2;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
     @Override
@@ -60,6 +62,7 @@ public class GameAssets extends Assets {
         assetManager.load(WORKSHOP_INTERIOR_PATH, Texture.class);
         assetManager.load(TOWER_BOTTOM_PATH, Texture.class);
         assetManager.load(TOWER_TOP_PATH, Texture.class);
+        assetManager.load(TOWER_OPTION_PATH, Texture.class);
         assetManager.load(TOWER_BULLET_PATH, Texture.class);
         assetManager.load(ANTENNA_1_PATH, Texture.class);
         assetManager.load(ANTENNA_2_PATH, Texture.class);
@@ -93,6 +96,7 @@ public class GameAssets extends Assets {
         workshopInterior = new Sprite(assetManager.get(WORKSHOP_INTERIOR_PATH, Texture.class));
         towerBottom = new Sprite(assetManager.get(TOWER_BOTTOM_PATH, Texture.class));
         towerTop = new Sprite(assetManager.get(TOWER_TOP_PATH, Texture.class));
+        towerOption = new Sprite(assetManager.get(TOWER_OPTION_PATH, Texture.class));
         towerBullet = new Sprite(assetManager.get(TOWER_BULLET_PATH, Texture.class));
 
         antenna1 = new Sprite(assetManager.get(ANTENNA_1_PATH, Texture.class));
@@ -162,6 +166,10 @@ public class GameAssets extends Assets {
 
     public Sprite getTowerTop() {
         return towerTop;
+    }
+
+    public Sprite getTowerOption() {
+        return towerOption;
     }
 
     public Sprite getTowerBullet() {
