@@ -5,9 +5,6 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 public class MenuConstants {
 
-    // Preferences
-    public static final String NAME_PREF_KEY = "name";
-    public static final String COLORS_PREF_KEY = "colors";
     // Overlay
     public static final String WELCOME_BACK_MESSAGE = "Welcome back";
     // Choose text

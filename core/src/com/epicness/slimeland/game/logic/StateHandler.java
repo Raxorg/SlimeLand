@@ -1,21 +1,29 @@
 package com.epicness.slimeland.game.logic;
 
 import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
+import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
+import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.NAME_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 
 import com.badlogic.gdx.graphics.Color;
+import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Machine;
 import com.epicness.slimeland.menu.stuff.Player;
 
-public class StateLoader {
+import java.util.Map;
+
+public class StateHandler {
 
     // Structure
+    private SharedLogic sharedLogic;
     private GameLogic logic;
     private GameStuff stuff;
 
-    public void setup(Player player) {
+    public void loadPlayerState(Player player) {
         String[] colorArray = player.getColors().split("-");
         Color color1 = colorFromString(colorArray[0]);
         Color color2 = colorFromString(colorArray[1]);
@@ -43,7 +51,38 @@ public class StateLoader {
         }
     }
 
+    public String getPlayerName() {
+        return sharedLogic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
+    }
+
+    // Build charges
+    public int getBuildCharges() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY);
+    }
+
+    public void setBuildCharges(int buildCharges) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, buildCharges);
+        applyBuildCharges(buildCharges);
+    }
+
+    private void applyBuildCharges(int buildCharges) {
+        stuff.getBuildMenu().setBuildCharges(buildCharges);
+    }
+
+    // Buildings
+    public Map<String, ?> getBuildingData() {
+        return sharedLogic.getPreferencesHandler().loadData(BUILDING_PREFS_PATH);
+    }
+
+    public void storeBuilding(String coordinates, int machineID) {
+        sharedLogic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, coordinates, machineID);
+    }
+
     // Structure
+    public void setSharedLogic(SharedLogic sharedLogic) {
+        this.sharedLogic = sharedLogic;
+    }
+
     public void setLogic(GameLogic logic) {
         this.logic = logic;
     }

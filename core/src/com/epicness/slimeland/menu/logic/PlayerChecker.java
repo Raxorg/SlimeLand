@@ -1,11 +1,13 @@
 package com.epicness.slimeland.menu.logic;
 
+import static com.epicness.slimeland.SlimeConstants.COLORS_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
+import static com.epicness.slimeland.SlimeConstants.NAME_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
+import static com.epicness.slimeland.SlimeConstants.SLIME_AGILITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.SLIME_QUANTITY_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.COLORS_PREF_KEY;
-import static com.epicness.slimeland.menu.MenuConstants.NAME_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.SLIME_STRENGTH_PREF_KEY;
 import static com.epicness.slimeland.menu.MenuConstants.WELCOME_BACK_MESSAGE;
 
 import com.epicness.fundamentals.input.SharedInput;
@@ -24,7 +26,7 @@ public class PlayerChecker {
     // Logic
     private String name;
     private String colors;
-    private int slimeQuantity;
+    private int slimeQuantity, slimeStrength, slimeAgility;
 
     public void checkPlayer() {
         input.setEnabled(false);
@@ -40,6 +42,8 @@ public class PlayerChecker {
     private void restorePlayerState() {
         name = logic.getPreferencesHandler().loadString(PREFS_PATH, NAME_PREF_KEY);
         slimeQuantity = logic.getPreferencesHandler().loadInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY);
+        slimeStrength = logic.getPreferencesHandler().loadInteger(PREFS_PATH, SLIME_STRENGTH_PREF_KEY);
+        slimeAgility = logic.getPreferencesHandler().loadInteger(PREFS_PATH, SLIME_AGILITY_PREF_KEY);
         stuff.getOverlay().setText(WELCOME_BACK_MESSAGE + " " + name);
         stuff.getOverlay().setPosition(0f, 0f);
         input.setEnabled(true);
@@ -48,7 +52,7 @@ public class PlayerChecker {
 
     public void touchUp() {
         if (stuff.getOverlay().getText().startsWith(WELCOME_BACK_MESSAGE)) {
-            Player player = new Player(name, colors, slimeQuantity);
+            Player player = new Player(name, colors, slimeQuantity, slimeStrength, slimeAgility);
             sharedLogic.getTransitionHandler().startTransition(new GameInitializer(player));
             sharedLogic.getTransitionHandler().allowTransition();
         }

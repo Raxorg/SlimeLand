@@ -1,15 +1,12 @@
 package com.epicness.slimeland.game.logic.machines;
 
-import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
-import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
-import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_SIZE;
 
 import com.badlogic.gdx.graphics.Color;
-import com.epicness.fundamentals.logic.SharedLogic;
 import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.slimeland.game.GameAssets;
+import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Antenna;
 import com.epicness.slimeland.game.stuff.machines.Factory;
@@ -24,7 +21,7 @@ public class BuildingHandler {
 
     // Structure
     private GameAssets assets;
-    private SharedLogic sharedLogic;
+    private GameLogic logic;
     private GameStuff stuff;
     // Logic
     private Color color1, color2;
@@ -32,19 +29,19 @@ public class BuildingHandler {
     public void loadState() {
         loadBuildCharges();
 
-        Map<String, ?> buildingData = sharedLogic.getPreferencesHandler().loadData(BUILDING_PREFS_PATH);
+        Map<String, ?> buildingData = logic.getStateHandler().getBuildingData();
         for (Map.Entry<String, ?> entry : buildingData.entrySet()) {
             String[] positionInfo = entry.getKey().split("-");
             int column = Integer.parseInt(positionInfo[0]);
             int row = Integer.parseInt(positionInfo[1]);
             Cell cell = stuff.getGrid().getCells()[column][row];
-            int machineID = Integer.parseInt((String) entry.getValue());
+            int machineID = (int) entry.getValue();
             buildFromPreferences(machineID, cell);
         }
     }
 
     private void loadBuildCharges() {
-        int buildCharges = sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY);
+        int buildCharges = logic.getStateHandler().getBuildCharges();
         stuff.getBuildMenu().setBuildCharges(buildCharges);
     }
 
@@ -60,8 +57,8 @@ public class BuildingHandler {
         Machine machine = buildMachine(machineType, cell);
         machine.setColors(color1, color2);
         cell.getProperties().put(MACHINE_PROPERTY, machine);
-        saveToPreferences(cell, machineType);
-        removeBuildCharge();
+        int newBuildCharges = stuff.getBuildMenu().getBuildCharges() - 1;
+        saveState(cell, machineType, newBuildCharges);
     }
 
     private Machine buildMachine(MachineType machineType, Cell cell) {
@@ -86,15 +83,10 @@ public class BuildingHandler {
         return machine;
     }
 
-    private void saveToPreferences(Cell cell, MachineType machineType) {
-        String key = cell.getColumn() + "-" + cell.getRow();
-        sharedLogic.getPreferencesHandler().saveString(BUILDING_PREFS_PATH, key, machineType.getMachineID() + "");
-    }
-
-    private void removeBuildCharge() {
-        int newBuildCharges = stuff.getBuildMenu().getBuildCharges() - 1;
-        stuff.getBuildMenu().setBuildCharges(newBuildCharges);
-        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, BUILD_CHARGES_PREF_KEY, newBuildCharges);
+    private void saveState(Cell cell, MachineType machineType, int buildCharges) {
+        String coordinates = cell.getColumn() + "-" + cell.getRow();
+        logic.getStateHandler().storeBuilding(coordinates, machineType.getMachineID());
+        logic.getStateHandler().setBuildCharges(buildCharges);
     }
 
     public void setColors(Color color1, Color color2) {
@@ -107,8 +99,8 @@ public class BuildingHandler {
         this.assets = assets;
     }
 
-    public void setSharedLogic(SharedLogic sharedLogic) {
-        this.sharedLogic = sharedLogic;
+    public void setLogic(GameLogic logic) {
+        this.logic = logic;
     }
 
     public void setStuff(GameStuff stuff) {

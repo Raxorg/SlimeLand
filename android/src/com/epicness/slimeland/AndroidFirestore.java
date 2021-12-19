@@ -49,7 +49,11 @@ public class AndroidFirestore implements CoreFirestore {
             }
             // Name and colors available, update database with the new player
             transaction.update(colors, "availableColors", newAvailableColors);
-            transaction.update(players, player.getName(), player.getColors());
+            String playerInfo = player.getColors() + ","
+                    + player.getSlimeQuantity() + ","
+                    + player.getSlimeStrength() + ","
+                    + player.getSlimeAgility();
+            transaction.update(players, player.getName(), playerInfo);
             return true;
         }).addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {

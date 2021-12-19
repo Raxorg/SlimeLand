@@ -43,7 +43,7 @@ public class GameLogic extends Logic {
 
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
-    private final StateLoader stateLoader;
+    private final StateHandler stateHandler;
 
     private final ScrollBehavior scrollBehavior;
 
@@ -62,26 +62,29 @@ public class GameLogic extends Logic {
         hidingHandler = new HidingHandler();
         roamingHandler = new RoamingHandler();
         slimeHandler = new SlimeHandler();
-
+        // Tower Defense
         waveHandler = new WaveHandler();
 
         gameInputHandler = new GameInputHandler();
         gridHandler = new GridHandler();
-        stateLoader = new StateLoader();
+        stateHandler = new StateHandler();
 
         scrollBehavior = new ScrollBehavior();
 
-        buildingHandler.setSharedLogic(sharedLogic);
+        stateHandler.setSharedLogic(sharedLogic);
 
+        // Machines
+        buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
         // Multiplayer
+        multiplayerHandler.setLogic(this);
         playerListHandler.setLogic(this);
         // Slimes
         slimeHandler.setLogic(this);
 
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
-        stateLoader.setLogic(this);
+        stateHandler.setLogic(this);
     }
     /*
      * "Chill" Kevin MacLeod (incompetech.com)
@@ -92,14 +95,13 @@ public class GameLogic extends Logic {
     @Override
     public void initialLogic() {
         musicHandler.playMusic();
-
+        // Machines
         buildingHandler.loadState();
         buildMenuHandler.setup();
         // Multiplayer
-        playerListHandler.addPlayer();
-        playerListHandler.updateScrolling();
+        multiplayerHandler.fetchPlayerInfo();
         playerListHandler.hide();
-
+        // Slimes
         slimeHandler.spawnSlimes();
 
         gameInputHandler.setupInput();
@@ -107,7 +109,7 @@ public class GameLogic extends Logic {
     }
 
     public void initState(Player player) {
-        stateLoader.setup(player);
+        stateHandler.loadPlayerState(player);
     }
 
     @Override
@@ -162,13 +164,14 @@ public class GameLogic extends Logic {
         buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
         // Multiplayer
+        multiplayerHandler.setStuff(gameStuff);
         playerListHandler.setStuff(gameStuff);
-
+        // Tower Defense
         waveHandler.setStuff(gameStuff);
 
         gridHandler.setStuff(gameStuff);
         slimeHandler.setStuff(gameStuff);
-        stateLoader.setStuff(gameStuff);
+        stateHandler.setStuff(gameStuff);
     }
 
     public CloudHandler getCloudHandler() {
@@ -202,6 +205,10 @@ public class GameLogic extends Logic {
 
     public GridHandler getGridHandler() {
         return gridHandler;
+    }
+
+    public StateHandler getStateHandler() {
+        return stateHandler;
     }
 
     public ScrollBehavior getScrollBehavior() {

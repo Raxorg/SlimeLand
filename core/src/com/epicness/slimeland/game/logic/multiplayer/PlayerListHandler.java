@@ -3,6 +3,7 @@ package com.epicness.slimeland.game.logic.multiplayer;
 import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
 import static com.epicness.fundamentals.SharedConstants.OPAQUE_TRANSPARENT;
 import static com.epicness.fundamentals.SharedConstants.TRANSPARENT;
+import static com.epicness.fundamentals.SharedConstants.WHITE_OPAQUE_TRANSPARENT;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
 import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_HEIGHT;
 import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_X;
@@ -33,26 +34,25 @@ public class PlayerListHandler {
         logic.getScrollBehavior().setup(stuff.getPlayerList(), PLAYER_LIST_MIN_Y, maxY);
     }
 
-    public void addPlayer() {
+    public void addPlayer(String playerName, Color color1, Color color2, int slimeQuantity, int slimeStrength, int slimeAgility) {
         DelayedRemovalArray<PlayerInfo> playerInfos = stuff.getPlayerList().getPlayerInfos();
-        for (int i = 0; i < 20; i++) {
-            Color backgroundColor = playerInfos.size % 2 == 0 ? TRANSPARENT : OPAQUE_TRANSPARENT;
-            PlayerInfo playerInfo = new PlayerInfo(
-                    sharedAssets.getPixel(),
-                    assets.getMediumPixelFont(),
-                    assets.getLeftSlime(), assets.getRightSlime(),
-                    "WWWWWWWWWWW" + i,
-                    Color.RED, Color.YELLOW,
-                    20,
-                    300,
-                    634,
-                    backgroundColor
-            );
-            playerInfo.setX(PLAYER_INFO_X);
-            playerInfo.setY(CAMERA_HEIGHT - PLAYER_INFO_HEIGHT * 2f - PLAYER_INFO_HEIGHT * i);
-            playerInfos.add(playerInfo);
+        Color backgroundColor = playerInfos.size % 2 == 0 ? TRANSPARENT : OPAQUE_TRANSPARENT;
+        boolean thisPlayer = logic.getStateHandler().getPlayerName().equals(playerName);
+        if (thisPlayer) {
+            backgroundColor = backgroundColor.cpy().lerp(WHITE_OPAQUE_TRANSPARENT, 0.6f);
         }
-        updateScrolling();
+        PlayerInfo playerInfo = new PlayerInfo(
+                sharedAssets.getPixel(),
+                assets.getMediumPixelFont(),
+                assets.getLeftSlime(), assets.getRightSlime(),
+                playerName,
+                color1, color2,
+                slimeQuantity, slimeStrength, slimeAgility,
+                backgroundColor
+        );
+        playerInfo.setX(showingList ? PLAYER_INFO_X : HIDDEN_X);
+        playerInfo.setY(CAMERA_HEIGHT - PLAYER_INFO_HEIGHT * 2f - PLAYER_INFO_HEIGHT * playerInfos.size);
+        playerInfos.add(playerInfo);
     }
 
     public void show() {

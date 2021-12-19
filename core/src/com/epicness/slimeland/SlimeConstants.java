@@ -7,8 +7,13 @@ public class SlimeConstants {
 
     // Preferences
     public static final String PREFS_PATH = "EpicnessSlimeLandPrefs";
-    public static final String BUILD_CHARGES_PREF_KEY = "buildCharges";
+    public static final String NAME_PREF_KEY = "name";
+    public static final String COLORS_PREF_KEY = "colors";
     public static final String SLIME_QUANTITY_PREF_KEY = "slimeQuantity";
+    public static final String SLIME_STRENGTH_PREF_KEY = "slimeStrength";
+    public static final String SLIME_AGILITY_PREF_KEY = "slimeAgility";
+
+    public static final String BUILD_CHARGES_PREF_KEY = "buildCharges";
     public static final String BUILDING_PREFS_PATH = "EpicnessSlimeLandPrefsBuildings";
     // Other
     public static final float HIDDEN_X = CAMERA_WIDTH * 2f;
