@@ -52,7 +52,7 @@ public class GridHandler {
 
                 break;
             case TOWER:
-
+                logic.getTowerHandler().towerTouched();
                 break;
             case ANTENNA:
                 logic.getAntennaHandler().antennaTouched();

@@ -90,4 +90,7 @@ public class GameConstants {
     public static final float LIST_STRENGTH_LABEL_WIDTH = STRENGTH_COLUMN_WIDTH;
     public static final float LIST_AGILITY_LABEL_OFFSET_X = LIST_STRENGTH_LABEL_OFFSET_X + LIST_STRENGTH_LABEL_WIDTH;
     public static final float LIST_AGILITY_LABEL_WIDTH = AGILITY_COLUMN_WIDTH;
+    // Tower Defense
+    public static final float INITIAL_SPAWN_INTERVAL = 4f;
+    public static final int WAVE_SIZE = 10;
 }

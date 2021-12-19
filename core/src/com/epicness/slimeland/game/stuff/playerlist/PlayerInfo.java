@@ -113,4 +113,12 @@ public class PlayerInfo implements Scrollable {
         strength.setX(x + STRENGTH_COLUMN_OFFSET_X);
         agility.setX(x + AGILITY_COLUMN_OFFSET_X);
     }
+
+    public String getName() {
+        return name.getText();
+    }
+
+    public DualSprited getSlime() {
+        return slime;
+    }
 }

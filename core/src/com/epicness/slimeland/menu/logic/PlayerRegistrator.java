@@ -6,11 +6,13 @@ import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.COLORS_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_X;
 import static com.epicness.slimeland.SlimeConstants.HIDDEN_Y;
+import static com.epicness.slimeland.SlimeConstants.KILLS_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.NAME_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.SLIME_AGILITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.SLIME_QUANTITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.SLIME_STRENGTH_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.TOWER_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.game.GameConstants.ANTENNA_ID;
 
 import com.epicness.fundamentals.input.SharedInput;
@@ -64,8 +66,12 @@ public class PlayerRegistrator {
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY, 1);
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_STRENGTH_PREF_KEY, 1);
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_AGILITY_PREF_KEY, 1);
-        logic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, "3-3", ANTENNA_ID);
+
         logic.getPreferencesHandler().saveInteger(PREFS_PATH, ANTENNA_COOLDOWN_PREF_KEY, 0);
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, TOWER_COOLDOWN_PREF_KEY, 0);
+
+        logic.getPreferencesHandler().saveInteger(PREFS_PATH, KILLS_PREF_KEY, 0);
+        logic.getPreferencesHandler().saveInteger(BUILDING_PREFS_PATH, "3-3", ANTENNA_ID);
     }
 
     private void awaitResponse() {

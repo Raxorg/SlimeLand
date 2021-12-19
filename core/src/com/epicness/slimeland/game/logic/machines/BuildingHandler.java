@@ -73,7 +73,7 @@ public class BuildingHandler {
                 machine = new Workshop(assets.getWorkshopExterior(), assets.getWorkshopInterior());
                 break;
             case TOWER:
-                machine = new Tower(assets.getTowerBottom(), assets.getTowerTop());
+                machine = new Tower(assets.getTowerBottom(), assets.getTowerTop(), assets.getMediumPixelFont());
                 Bullet bullet = new Bullet(assets.getTowerBullet(), (Tower) machine);
                 if (color1 != null && color2 != null) {
                     bullet.setColor(MathUtils.randomBoolean() ? color1 : color2);

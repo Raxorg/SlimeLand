@@ -21,6 +21,7 @@ import com.epicness.slimeland.game.logic.slimes.HidingHandler;
 import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
 import com.epicness.slimeland.game.logic.towerdefense.BulletHandler;
+import com.epicness.slimeland.game.logic.towerdefense.TowerHandler;
 import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.menu.stuff.Player;
@@ -43,6 +44,7 @@ public class GameLogic extends Logic {
     private final SlimeHandler slimeHandler;
     // Tower Defense
     private final BulletHandler bulletHandler;
+    private final TowerHandler towerHandler;
     private final WaveHandler waveHandler;
 
     private final GameInputHandler gameInputHandler;
@@ -69,6 +71,7 @@ public class GameLogic extends Logic {
         slimeHandler = new SlimeHandler();
         // Tower Defense
         bulletHandler = new BulletHandler();
+        towerHandler = new TowerHandler();
         waveHandler = new WaveHandler();
 
         gameInputHandler = new GameInputHandler();
@@ -88,6 +91,9 @@ public class GameLogic extends Logic {
         playerListHandler.setLogic(this);
         // Slimes
         slimeHandler.setLogic(this);
+        // Tower Defense
+        towerHandler.setLogic(this);
+        waveHandler.setLogic(this);
 
         gameInputHandler.setLogic(this);
         gridHandler.setLogic(this);
@@ -110,6 +116,7 @@ public class GameLogic extends Logic {
         playerListHandler.hide();
         // Tower Defense
         bulletHandler.setupBullets();
+        towerHandler.loadTowerCooldown();
 
         gameInputHandler.setupInput();
         gridHandler.setup();
@@ -132,6 +139,7 @@ public class GameLogic extends Logic {
         slimeHandler.update(delta);
         // Tower Defense
         bulletHandler.update(delta);
+        towerHandler.update(delta);
         waveHandler.update(delta);
         // Behaviors
         scrollBehavior.update(delta);
@@ -188,6 +196,7 @@ public class GameLogic extends Logic {
         playerListHandler.setStuff(gameStuff);
         // Tower Defense
         bulletHandler.setStuff(gameStuff);
+        towerHandler.setStuff(gameStuff);
         waveHandler.setStuff(gameStuff);
 
         gridHandler.setStuff(gameStuff);
@@ -237,6 +246,14 @@ public class GameLogic extends Logic {
     // Tower Defense
     public BulletHandler getBulletHandler() {
         return bulletHandler;
+    }
+
+    public TowerHandler getTowerHandler() {
+        return towerHandler;
+    }
+
+    public WaveHandler getWaveHandler() {
+        return waveHandler;
     }
 
     public GridHandler getGridHandler() {

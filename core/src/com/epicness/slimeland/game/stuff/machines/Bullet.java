@@ -3,14 +3,14 @@ package com.epicness.slimeland.game.stuff.machines;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.epicness.fundamentals.stuff.Sprited;
-import com.epicness.slimeland.game.stuff.slimes.Slime;
+import com.epicness.slimeland.game.stuff.slimes.ForeignSlime;
 
 public class Bullet extends Sprited {
 
     private final Tower tower;
     private float size, progress;
     private Vector2 origin;
-    private Slime target;
+    private ForeignSlime target;
 
     public Bullet(Sprite sprite, Tower tower) {
         super(sprite);
@@ -50,11 +50,11 @@ public class Bullet extends Sprited {
         origin = new Vector2(x, y);
     }
 
-    public Slime getTarget() {
+    public ForeignSlime getTarget() {
         return target;
     }
 
-    public void setTarget(Slime target) {
+    public void setTarget(ForeignSlime target) {
         this.target = target;
     }
 }

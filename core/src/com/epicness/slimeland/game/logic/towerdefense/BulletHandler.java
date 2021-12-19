@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Bullet;
 import com.epicness.slimeland.game.stuff.machines.Tower;
+import com.epicness.slimeland.game.stuff.slimes.ForeignSlime;
 
 public class BulletHandler {
 
@@ -29,10 +30,13 @@ public class BulletHandler {
 
     public void update(float delta) {
         DelayedRemovalArray<Bullet> bullets = stuff.getBullets();
+        stuff.getForeignSlimes().begin();
         for (int i = 0; i < bullets.size; i++) {
             growBullet(bullets.get(i), delta);
+            selectTarget(bullets.get(i));
             handleShot(bullets.get(i), delta);
         }
+        stuff.getForeignSlimes().end();
     }
 
     private void growBullet(Bullet bullet, float delta) {
@@ -41,6 +45,17 @@ public class BulletHandler {
         } else if (bullet.getProgress() == 0f) {
             bullet.setSize(BULLET_MAX_SIZE);
         }
+    }
+
+    private void selectTarget(Bullet bullet) {
+        DelayedRemovalArray<ForeignSlime> foreignSlimes = stuff.getForeignSlimes();
+        if (foreignSlimes.isEmpty()) {
+            return;
+        }
+        if (bullet.getTarget() != null) {
+            return;
+        }
+        bullet.setTarget(foreignSlimes.random());
     }
 
     private void handleShot(Bullet bullet, float delta) {
@@ -61,6 +76,8 @@ public class BulletHandler {
             bullet.setProgress(0f);
             Color color = MathUtils.randomBoolean() ? color1 : color2;
             bullet.setColor(color);
+            stuff.getForeignSlimes().removeValue(bullet.getTarget(), true);
+            bullet.setTarget(null);
         }
     }
 
