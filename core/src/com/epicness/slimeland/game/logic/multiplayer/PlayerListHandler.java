@@ -43,7 +43,7 @@ public class PlayerListHandler {
         }
         PlayerInfo playerInfo = new PlayerInfo(
                 sharedAssets.getPixel(),
-                assets.getMediumPixelFont(),
+                assets.getBigPixelFont(),
                 assets.getLeftSlime(), assets.getRightSlime(),
                 playerName,
                 color1, color2,

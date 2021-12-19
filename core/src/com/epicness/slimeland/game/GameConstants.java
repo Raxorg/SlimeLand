@@ -61,29 +61,33 @@ public class GameConstants {
     public static final float PLAYER_INFO_X = PLAYER_LIST_X;
     public static final float PLAYER_INFO_WIDTH = PLAYER_LIST_WIDTH;
     public static final float PLAYER_INFO_HEIGHT = 100f;
-    public static final float PLAYER_INFO_NAME_WIDTH = PLAYER_INFO_WIDTH / 3f;
-    public static final float PLAYER_INFO_SLIME_WIDTH = PLAYER_INFO_WIDTH / 6f;
-    public static final float PLAYER_INFO_QUANTITY_WIDTH = PLAYER_INFO_WIDTH / 6f;
-    public static final float PLAYER_INFO_STRENGTH_WIDTH = PLAYER_INFO_WIDTH / 6f;
-    public static final float PLAYER_INFO_AGILITY_WIDTH = PLAYER_INFO_WIDTH / 6f;
-    public static final float PLAYER_INFO_NAME_OFFSET_X = 0f;
-    public static final float PLAYER_INFO_SLIME_OFFSET_X = PLAYER_INFO_NAME_WIDTH + PLAYER_INFO_SLIME_WIDTH / 2f - SLIME_WIDTH / 2f;
-    public static final float PLAYER_INFO_QUANTITY_OFFSET_X = PLAYER_INFO_NAME_WIDTH + PLAYER_INFO_SLIME_WIDTH;
-    public static final float PLAYER_INFO_STRENGTH_OFFSET_X = PLAYER_INFO_QUANTITY_OFFSET_X + PLAYER_INFO_QUANTITY_WIDTH;
-    public static final float PLAYER_INFO_AGILITY_OFFSET_X = PLAYER_INFO_STRENGTH_OFFSET_X + PLAYER_INFO_STRENGTH_WIDTH;
+
+    public static final float NAME_COLUMN_WIDTH = PLAYER_INFO_WIDTH / 3f;
+    public static final float SLIME_COLUMN_WIDTH = PLAYER_INFO_WIDTH / 6f;
+    public static final float QUANTITY_COLUMN_WIDTH = PLAYER_INFO_WIDTH / 6f;
+    public static final float STRENGTH_COLUMN_WIDTH = PLAYER_INFO_WIDTH / 6f;
+    public static final float AGILITY_COLUMN_WIDTH = PLAYER_INFO_WIDTH / 6f;
+
+    public static final float NAME_COLUMN_OFFSET_X = 0f;
+    public static final float PLAYER_INFO_SLIME_WIDTH = 75f;
+    public static final float PLAYER_INFO_SLIME_HEIGHT = PLAYER_INFO_SLIME_WIDTH * 0.7f;
+    public static final float SLIME_COLUMN_OFFSET_X = NAME_COLUMN_WIDTH + SLIME_COLUMN_WIDTH / 2f - PLAYER_INFO_SLIME_WIDTH / 2f;
+    public static final float QUANTITY_COLUMN_OFFSET_X = NAME_COLUMN_WIDTH + SLIME_COLUMN_WIDTH;
+    public static final float STRENGTH_COLUMN_OFFSET_X = QUANTITY_COLUMN_OFFSET_X + QUANTITY_COLUMN_WIDTH;
+    public static final float AGILITY_COLUMN_OFFSET_X = STRENGTH_COLUMN_OFFSET_X + STRENGTH_COLUMN_WIDTH;
 
     public static final float PLAYER_LIST_MIN_Y = CAMERA_HEIGHT - PLAYER_INFO_HEIGHT * 2f;
 
     public static final float LIST_HEADER_HEIGHT = 100f;
     public static final float LIST_HEADER_Y = CAMERA_HEIGHT - LIST_HEADER_HEIGHT;
     public static final float LIST_PLAYER_LABEL_OFFSET_X = 0f;
-    public static final float LIST_PLAYER_LABEL_WIDTH = PLAYER_INFO_NAME_WIDTH;
+    public static final float LIST_PLAYER_LABEL_WIDTH = NAME_COLUMN_WIDTH;
     public static final float LIST_COLORS_LABEL_OFFSET_X = LIST_PLAYER_LABEL_WIDTH;
-    public static final float LIST_COLORS_LABEL_WIDTH = PLAYER_INFO_SLIME_WIDTH;
+    public static final float LIST_COLORS_LABEL_WIDTH = SLIME_COLUMN_WIDTH;
     public static final float LIST_ARMY_LABEL_OFFSET_X = LIST_COLORS_LABEL_OFFSET_X + LIST_COLORS_LABEL_WIDTH;
-    public static final float LIST_ARMY_LABEL_WIDTH = PLAYER_INFO_QUANTITY_WIDTH;
+    public static final float LIST_ARMY_LABEL_WIDTH = QUANTITY_COLUMN_WIDTH;
     public static final float LIST_STRENGTH_LABEL_OFFSET_X = LIST_ARMY_LABEL_OFFSET_X + LIST_ARMY_LABEL_WIDTH;
-    public static final float LIST_STRENGTH_LABEL_WIDTH = PLAYER_INFO_STRENGTH_WIDTH;
+    public static final float LIST_STRENGTH_LABEL_WIDTH = STRENGTH_COLUMN_WIDTH;
     public static final float LIST_AGILITY_LABEL_OFFSET_X = LIST_STRENGTH_LABEL_OFFSET_X + LIST_STRENGTH_LABEL_WIDTH;
-    public static final float LIST_AGILITY_LABEL_WIDTH = PLAYER_INFO_AGILITY_WIDTH;
+    public static final float LIST_AGILITY_LABEL_WIDTH = AGILITY_COLUMN_WIDTH;
 }

@@ -104,8 +104,6 @@ public class GameLogic extends Logic {
         // Multiplayer
         multiplayerHandler.fetchPlayerInfo();
         playerListHandler.hide();
-        // Slimes
-        slimeHandler.spawnSlimes();
 
         gameInputHandler.setupInput();
         gridHandler.setup();
@@ -209,6 +207,10 @@ public class GameLogic extends Logic {
 
     public RoamingHandler getRoamingHandler() {
         return roamingHandler;
+    }
+
+    public SlimeHandler getSlimeHandler() {
+        return slimeHandler;
     }
 
     public GridHandler getGridHandler() {

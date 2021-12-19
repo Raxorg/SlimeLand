@@ -1,18 +1,18 @@
 package com.epicness.slimeland.game.stuff.playerlist;
 
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_AGILITY_OFFSET_X;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_AGILITY_WIDTH;
+import static com.epicness.slimeland.game.GameConstants.AGILITY_COLUMN_OFFSET_X;
+import static com.epicness.slimeland.game.GameConstants.AGILITY_COLUMN_WIDTH;
+import static com.epicness.slimeland.game.GameConstants.NAME_COLUMN_OFFSET_X;
+import static com.epicness.slimeland.game.GameConstants.NAME_COLUMN_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_HEIGHT;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_NAME_OFFSET_X;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_NAME_WIDTH;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_QUANTITY_OFFSET_X;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_QUANTITY_WIDTH;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_SLIME_OFFSET_X;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_STRENGTH_OFFSET_X;
-import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_STRENGTH_WIDTH;
+import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_SLIME_HEIGHT;
+import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_SLIME_WIDTH;
 import static com.epicness.slimeland.game.GameConstants.PLAYER_INFO_WIDTH;
-import static com.epicness.slimeland.game.GameConstants.SLIME_HEIGHT;
-import static com.epicness.slimeland.game.GameConstants.SLIME_WIDTH;
+import static com.epicness.slimeland.game.GameConstants.QUANTITY_COLUMN_OFFSET_X;
+import static com.epicness.slimeland.game.GameConstants.QUANTITY_COLUMN_WIDTH;
+import static com.epicness.slimeland.game.GameConstants.SLIME_COLUMN_OFFSET_X;
+import static com.epicness.slimeland.game.GameConstants.STRENGTH_COLUMN_OFFSET_X;
+import static com.epicness.slimeland.game.GameConstants.STRENGTH_COLUMN_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -39,33 +39,33 @@ public class PlayerInfo implements Scrollable {
 
         name = new Text(font);
         name.setText(playerName);
-        name.setTextTargetWidth(PLAYER_INFO_NAME_WIDTH);
+        name.setTextTargetWidth(NAME_COLUMN_WIDTH);
         name.setHorizontalAlignment(Align.center);
         name.setCenterVertical(true);
         name.setColor(Color.YELLOW.cpy().lerp(Color.WHITE, 0.7f));
 
         slime = new DualSprited(leftSlime, rightSlime);
-        slime.setSize(SLIME_WIDTH, SLIME_HEIGHT);
+        slime.setSize(PLAYER_INFO_SLIME_WIDTH, PLAYER_INFO_SLIME_HEIGHT);
         slime.setBackgroundColor(leftColor);
         slime.setForegroundColor(rightColor);
 
         quantity = new Text(font);
         quantity.setText(slimeQuantity + "");
-        quantity.setTextTargetWidth(PLAYER_INFO_QUANTITY_WIDTH);
+        quantity.setTextTargetWidth(QUANTITY_COLUMN_WIDTH);
         quantity.setHorizontalAlignment(Align.center);
         quantity.setCenterVertical(true);
         quantity.setColor(Color.BLUE.cpy().lerp(Color.WHITE, 0.7f));
 
         strength = new Text(font);
         strength.setText(slimeStrength + "");
-        strength.setTextTargetWidth(PLAYER_INFO_STRENGTH_WIDTH);
+        strength.setTextTargetWidth(STRENGTH_COLUMN_WIDTH);
         strength.setHorizontalAlignment(Align.center);
         strength.setCenterVertical(true);
         strength.setColor(Color.RED.cpy().lerp(Color.WHITE, 0.7f));
 
         agility = new Text(font);
         agility.setText(slimeAgility + "");
-        agility.setTextTargetWidth(PLAYER_INFO_AGILITY_WIDTH);
+        agility.setTextTargetWidth(AGILITY_COLUMN_WIDTH);
         agility.setHorizontalAlignment(Align.center);
         agility.setCenterVertical(true);
         agility.setColor(Color.GREEN.cpy().lerp(Color.WHITE, 0.7f));
@@ -107,10 +107,10 @@ public class PlayerInfo implements Scrollable {
 
     public void setX(float x) {
         background.setX(x);
-        name.setX(x + PLAYER_INFO_NAME_OFFSET_X);
-        slime.setX(x + PLAYER_INFO_SLIME_OFFSET_X);
-        quantity.setX(x + PLAYER_INFO_QUANTITY_OFFSET_X);
-        strength.setX(x + PLAYER_INFO_STRENGTH_OFFSET_X);
-        agility.setX(x + PLAYER_INFO_AGILITY_OFFSET_X);
+        name.setX(x + NAME_COLUMN_OFFSET_X);
+        slime.setX(x + SLIME_COLUMN_OFFSET_X);
+        quantity.setX(x + QUANTITY_COLUMN_OFFSET_X);
+        strength.setX(x + STRENGTH_COLUMN_OFFSET_X);
+        agility.setX(x + AGILITY_COLUMN_OFFSET_X);
     }
 }

@@ -29,15 +29,14 @@ public class StateHandler {
         Color color2 = colorFromString(colorArray[1]);
 
         applyColors(color1, color2);
+        logic.getSlimeHandler().spawnSlimes(player.getSlimeQuantity());
     }
 
     private void applyColors(Color color1, Color color2) {
         logic.getCloudHandler().setColors(color1, color2);
         logic.getBuildingHandler().setColors(color1, color2);
+        logic.getSlimeHandler().setColors(color1, color2);
 
-        for (int i = 0; i < stuff.getSlimes().size; i++) {
-            stuff.getSlimes().get(i).setColors(color1, color2);
-        }
         stuff.getBuildMenu().setColors(color1, color2);
         Cell[][] cells = stuff.getGrid().getCells();
         for (int column = 0; column < cells.length; column++) {
