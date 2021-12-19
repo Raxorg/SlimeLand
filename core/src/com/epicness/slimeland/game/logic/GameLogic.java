@@ -2,6 +2,7 @@ package com.epicness.slimeland.game.logic;
 
 import com.badlogic.gdx.Game;
 import com.epicness.fundamentals.assets.Assets;
+import com.epicness.fundamentals.assets.SharedAssets;
 import com.epicness.fundamentals.input.SharedInput;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
@@ -14,6 +15,7 @@ import com.epicness.slimeland.game.logic.decorative.MusicHandler;
 import com.epicness.slimeland.game.logic.machines.BuildMenuHandler;
 import com.epicness.slimeland.game.logic.machines.BuildingHandler;
 import com.epicness.slimeland.game.logic.multiplayer.MultiplayerHandler;
+import com.epicness.slimeland.game.logic.multiplayer.PlayerListHandler;
 import com.epicness.slimeland.game.logic.slimes.HidingHandler;
 import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
@@ -23,11 +25,15 @@ import com.epicness.slimeland.menu.stuff.Player;
 
 public class GameLogic extends Logic {
 
+    // Decorative
     private final CloudHandler cloudHandler;
     private final MusicHandler musicHandler;
-
+    // Machines
     private final BuildingHandler buildingHandler;
     private final BuildMenuHandler buildMenuHandler;
+    // Multiplayer
+    private final MultiplayerHandler multiplayerHandler;
+    private final PlayerListHandler playerListHandler;
 
     private final HidingHandler hidingHandler;
     private final RoamingHandler roamingHandler;
@@ -37,20 +43,22 @@ public class GameLogic extends Logic {
 
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
-    private final MultiplayerHandler multiplayerHandler;
     private final StateLoader stateLoader;
 
     private final ScrollBehavior scrollBehavior;
 
     public GameLogic(SharedLogic sharedLogic) {
         super(sharedLogic);
-
+        // Decorative
         cloudHandler = new CloudHandler();
         musicHandler = new MusicHandler();
-
+        // Machines
         buildingHandler = new BuildingHandler();
         buildMenuHandler = new BuildMenuHandler();
-
+        // Multiplayer
+        multiplayerHandler = new MultiplayerHandler();
+        playerListHandler = new PlayerListHandler();
+        // Slimes
         hidingHandler = new HidingHandler();
         roamingHandler = new RoamingHandler();
         slimeHandler = new SlimeHandler();
@@ -59,7 +67,6 @@ public class GameLogic extends Logic {
 
         gameInputHandler = new GameInputHandler();
         gridHandler = new GridHandler();
-        multiplayerHandler = new MultiplayerHandler();
         stateLoader = new StateLoader();
 
         scrollBehavior = new ScrollBehavior();
@@ -67,7 +74,9 @@ public class GameLogic extends Logic {
         buildingHandler.setSharedLogic(sharedLogic);
 
         buildMenuHandler.setLogic(this);
-
+        // Multiplayer
+        playerListHandler.setLogic(this);
+        // Slimes
         slimeHandler.setLogic(this);
 
         gameInputHandler.setLogic(this);
@@ -86,6 +95,10 @@ public class GameLogic extends Logic {
 
         buildingHandler.loadState();
         buildMenuHandler.setup();
+        // Multiplayer
+        playerListHandler.addPlayer();
+        playerListHandler.updateScrolling();
+        playerListHandler.hide();
 
         slimeHandler.spawnSlimes();
 
@@ -106,6 +119,8 @@ public class GameLogic extends Logic {
         waveHandler.update(delta);
 
         slimeHandler.update(delta);
+
+        scrollBehavior.update(delta);
     }
 
     @Override
@@ -115,13 +130,20 @@ public class GameLogic extends Logic {
     }
 
     @Override
+    public void setSharedAssets(SharedAssets sharedAssets) {
+        playerListHandler.setSharedAssets(sharedAssets);
+    }
+
+    @Override
     public void setAssets(Assets assets) {
         GameAssets gameAssets = (GameAssets) assets;
 
         musicHandler.setAssets(gameAssets);
 
         buildingHandler.setAssets(gameAssets);
-
+        // Multiplayer
+        playerListHandler.setAssets(gameAssets);
+        // Slimes
         slimeHandler.setAssets(gameAssets);
 
         waveHandler.setAssets(gameAssets);
@@ -139,6 +161,8 @@ public class GameLogic extends Logic {
 
         buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
+        // Multiplayer
+        playerListHandler.setStuff(gameStuff);
 
         waveHandler.setStuff(gameStuff);
 
@@ -159,8 +183,13 @@ public class GameLogic extends Logic {
         return buildMenuHandler;
     }
 
+    // Multiplayer
     public MultiplayerHandler getMultiplayerHandler() {
         return multiplayerHandler;
+    }
+
+    public PlayerListHandler getPlayerListHandler() {
+        return playerListHandler;
     }
 
     public HidingHandler getHidingHandler() {

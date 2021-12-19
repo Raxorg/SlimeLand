@@ -52,7 +52,7 @@ public class GameStuff extends Stuff {
         foreignSlimes = new DelayedRemovalArray<>();
         initializeClouds(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
-        playerList = new PlayerList(sharedAssets.getPixel());
+        playerList = new PlayerList(sharedAssets, assets);
     }
 
     private void initializeGrid() {

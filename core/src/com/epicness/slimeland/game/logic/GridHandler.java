@@ -35,6 +35,7 @@ public class GridHandler {
     private void selectCell(Cell cell) {
         Machine machine = (Machine) cell.getProperties().get(MACHINE_PROPERTY);
         if (machine != null) {
+            deselectCell();
             selectMachine(machine);
             return;
         }
@@ -52,6 +53,9 @@ public class GridHandler {
                 break;
             case TOWER:
 
+                break;
+            case ANTENNA:
+                logic.getPlayerListHandler().show();
                 break;
         }
     }
