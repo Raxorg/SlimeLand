@@ -23,6 +23,9 @@ public class GameConstants {
     public static final String MACHINE_PROPERTY = "Machine";
     // Machines
     public static final float MACHINE_SIZE = CELL_SIZE;
+
+    public static final float BULLET_MAX_SIZE = 40f;
+    public static final float BULLET_GROWTH_RATE = BULLET_MAX_SIZE / 2f;
     // Slimes
     public static final float SLIME_WIDTH = 50f;
     public static final float SLIME_HEIGHT = SLIME_WIDTH * 0.7f;
@@ -68,7 +71,6 @@ public class GameConstants {
     public static final float PLAYER_INFO_QUANTITY_OFFSET_X = PLAYER_INFO_NAME_WIDTH + PLAYER_INFO_SLIME_WIDTH;
     public static final float PLAYER_INFO_STRENGTH_OFFSET_X = PLAYER_INFO_QUANTITY_OFFSET_X + PLAYER_INFO_QUANTITY_WIDTH;
     public static final float PLAYER_INFO_AGILITY_OFFSET_X = PLAYER_INFO_STRENGTH_OFFSET_X + PLAYER_INFO_STRENGTH_WIDTH;
-
 
     public static final float PLAYER_LIST_MIN_Y = CAMERA_HEIGHT - PLAYER_INFO_HEIGHT * 2f;
 

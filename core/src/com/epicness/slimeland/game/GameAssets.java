@@ -17,8 +17,9 @@ import static com.epicness.slimeland.AssetPaths.PURPLE_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.RED_ORNAMENT_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_LEFT_HALF_PATH;
 import static com.epicness.slimeland.AssetPaths.SLIME_RIGHT_HALF_PATH;
-import static com.epicness.slimeland.AssetPaths.TOWER_LEFT_PATH;
-import static com.epicness.slimeland.AssetPaths.TOWER_RIGHT_PATH;
+import static com.epicness.slimeland.AssetPaths.TOWER_BOTTOM_PATH;
+import static com.epicness.slimeland.AssetPaths.TOWER_BULLET_PATH;
+import static com.epicness.slimeland.AssetPaths.TOWER_TOP_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_EXTERIOR_PATH;
 import static com.epicness.slimeland.AssetPaths.WORKSHOP_INTERIOR_PATH;
 
@@ -36,7 +37,7 @@ public class GameAssets extends Assets {
     private BitmapFont bigPixelFont, mediumPixelFont;
     // Sprites
     private Sprite leftSlime, rightSlime, cloud, cloudShadow, bush;
-    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerLeft, towerRight, antenna1, antenna2;
+    private Sprite factoryLeft, factoryRight, workshopExterior, workshopInterior, towerBottom, towerTop, towerBullet, antenna1, antenna2;
     private Sprite blueOrnament, greenOrnament, orangeOrnament, purpleOrnament, redOrnament;
 
     @Override
@@ -57,8 +58,9 @@ public class GameAssets extends Assets {
         assetManager.load(FACTORY_INTERIOR_PATH, Texture.class);
         assetManager.load(WORKSHOP_EXTERIOR_PATH, Texture.class);
         assetManager.load(WORKSHOP_INTERIOR_PATH, Texture.class);
-        assetManager.load(TOWER_LEFT_PATH, Texture.class);
-        assetManager.load(TOWER_RIGHT_PATH, Texture.class);
+        assetManager.load(TOWER_BOTTOM_PATH, Texture.class);
+        assetManager.load(TOWER_TOP_PATH, Texture.class);
+        assetManager.load(TOWER_BULLET_PATH, Texture.class);
         assetManager.load(ANTENNA_1_PATH, Texture.class);
         assetManager.load(ANTENNA_2_PATH, Texture.class);
 
@@ -89,8 +91,10 @@ public class GameAssets extends Assets {
         factoryRight = new Sprite(assetManager.get(FACTORY_INTERIOR_PATH, Texture.class));
         workshopExterior = new Sprite(assetManager.get(WORKSHOP_EXTERIOR_PATH, Texture.class));
         workshopInterior = new Sprite(assetManager.get(WORKSHOP_INTERIOR_PATH, Texture.class));
-        towerLeft = new Sprite(assetManager.get(TOWER_LEFT_PATH, Texture.class));
-        towerRight = new Sprite(assetManager.get(TOWER_RIGHT_PATH, Texture.class));
+        towerBottom = new Sprite(assetManager.get(TOWER_BOTTOM_PATH, Texture.class));
+        towerTop = new Sprite(assetManager.get(TOWER_TOP_PATH, Texture.class));
+        towerBullet = new Sprite(assetManager.get(TOWER_BULLET_PATH, Texture.class));
+
         antenna1 = new Sprite(assetManager.get(ANTENNA_1_PATH, Texture.class));
         antenna2 = new Sprite(assetManager.get(ANTENNA_2_PATH, Texture.class));
 
@@ -152,12 +156,16 @@ public class GameAssets extends Assets {
         return workshopInterior;
     }
 
-    public Sprite getTowerLeft() {
-        return towerLeft;
+    public Sprite getTowerBottom() {
+        return towerBottom;
     }
 
-    public Sprite getTowerRight() {
-        return towerRight;
+    public Sprite getTowerTop() {
+        return towerTop;
+    }
+
+    public Sprite getTowerBullet() {
+        return towerBullet;
     }
 
     public Sprite getAntenna1() {

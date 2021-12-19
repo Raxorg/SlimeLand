@@ -15,6 +15,9 @@ public class MultiplayerHandler {
     private SlimeGame game;
     private GameLogic logic;
     private GameStuff stuff;
+    // Logic
+    private Map<String, Object> playerData;
+    private boolean update;
 
     public void fetchPlayerInfo() {
         game.getFirestore().fetchPlayerData(playerData -> {
@@ -22,8 +25,17 @@ public class MultiplayerHandler {
                 handleFailure();
                 return;
             }
-            updatePlayerData(playerData);
+            this.playerData = playerData;
+            update = true;
         });
+    }
+
+    public void update() {
+        if (!update) {
+            return;
+        }
+        updatePlayerData(playerData);
+        update = false;
     }
 
     private void handleFailure() {

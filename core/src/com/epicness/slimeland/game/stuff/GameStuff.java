@@ -25,6 +25,7 @@ import com.epicness.fundamentals.stuff.grid.Cell;
 import com.epicness.fundamentals.stuff.grid.Grid;
 import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.stuff.buildmenu.BuildMenu;
+import com.epicness.slimeland.game.stuff.machines.Bullet;
 import com.epicness.slimeland.game.stuff.playerlist.PlayerList;
 import com.epicness.slimeland.game.stuff.slimes.Slime;
 
@@ -37,6 +38,7 @@ public class GameStuff extends Stuff {
     private Sprited cellSelector;
     private List<Sprited> bushes;
     private DelayedRemovalArray<Slime> slimes, foreignSlimes;
+    private DelayedRemovalArray<Bullet> bullets;
     private Cloud[] clouds;
     private BuildMenu buildMenu;
     private PlayerList playerList;
@@ -50,6 +52,7 @@ public class GameStuff extends Stuff {
         initializeBushes(assets);
         slimes = new DelayedRemovalArray<>();
         foreignSlimes = new DelayedRemovalArray<>();
+        bullets = new DelayedRemovalArray<>();
         initializeClouds(assets);
         buildMenu = new BuildMenu(sharedAssets, assets);
         playerList = new PlayerList(sharedAssets, assets);
@@ -123,6 +126,10 @@ public class GameStuff extends Stuff {
 
     public DelayedRemovalArray<Slime> getForeignSlimes() {
         return foreignSlimes;
+    }
+
+    public DelayedRemovalArray<Bullet> getBullets() {
+        return bullets;
     }
 
     public Cloud[] getClouds() {

@@ -9,6 +9,7 @@ import com.epicness.slimeland.game.GameAssets;
 import com.epicness.slimeland.game.logic.GameLogic;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.game.stuff.machines.Antenna;
+import com.epicness.slimeland.game.stuff.machines.Bullet;
 import com.epicness.slimeland.game.stuff.machines.Factory;
 import com.epicness.slimeland.game.stuff.machines.Machine;
 import com.epicness.slimeland.game.stuff.machines.MachineType;
@@ -71,7 +72,9 @@ public class BuildingHandler {
                 machine = new Workshop(assets.getWorkshopExterior(), assets.getWorkshopInterior());
                 break;
             case TOWER:
-                machine = new Tower(assets.getTowerLeft(), assets.getTowerRight());
+                machine = new Tower(assets.getTowerBottom(), assets.getTowerTop());
+                Bullet bullet = new Bullet(assets.getTowerBullet(), (Tower) machine);
+                stuff.getBullets().add(bullet);
                 break;
             case ANTENNA:
             default:

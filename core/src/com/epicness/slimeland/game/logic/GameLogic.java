@@ -19,6 +19,7 @@ import com.epicness.slimeland.game.logic.multiplayer.PlayerListHandler;
 import com.epicness.slimeland.game.logic.slimes.HidingHandler;
 import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
+import com.epicness.slimeland.game.logic.towerdefense.BulletHandler;
 import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
 import com.epicness.slimeland.menu.stuff.Player;
@@ -34,17 +35,18 @@ public class GameLogic extends Logic {
     // Multiplayer
     private final MultiplayerHandler multiplayerHandler;
     private final PlayerListHandler playerListHandler;
-
+    // Slimes
     private final HidingHandler hidingHandler;
     private final RoamingHandler roamingHandler;
     private final SlimeHandler slimeHandler;
-
+    // Tower Defense
+    private final BulletHandler bulletHandler;
     private final WaveHandler waveHandler;
 
     private final GameInputHandler gameInputHandler;
     private final GridHandler gridHandler;
     private final StateHandler stateHandler;
-
+    // Behaviors
     private final ScrollBehavior scrollBehavior;
 
     public GameLogic(SharedLogic sharedLogic) {
@@ -63,6 +65,7 @@ public class GameLogic extends Logic {
         roamingHandler = new RoamingHandler();
         slimeHandler = new SlimeHandler();
         // Tower Defense
+        bulletHandler = new BulletHandler();
         waveHandler = new WaveHandler();
 
         gameInputHandler = new GameInputHandler();
@@ -114,14 +117,18 @@ public class GameLogic extends Logic {
 
     @Override
     public void update(float delta) {
+        // Decorative
         cloudHandler.update(delta);
-
+        // Machines
         buildMenuHandler.update(delta);
-
-        waveHandler.update(delta);
-
+        // Multiplayer
+        multiplayerHandler.update();
+        // Slimes
         slimeHandler.update(delta);
-
+        // Tower Defense
+        bulletHandler.update(delta);
+        waveHandler.update(delta);
+        // Behaviors
         scrollBehavior.update(delta);
     }
 
@@ -167,6 +174,7 @@ public class GameLogic extends Logic {
         multiplayerHandler.setStuff(gameStuff);
         playerListHandler.setStuff(gameStuff);
         // Tower Defense
+        bulletHandler.setStuff(gameStuff);
         waveHandler.setStuff(gameStuff);
 
         gridHandler.setStuff(gameStuff);
