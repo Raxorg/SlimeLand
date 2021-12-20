@@ -19,6 +19,7 @@ public class MenuLogic extends Logic {
     private final PlayerChecker playerChecker;
     private final PlayerRegistrator playerRegistrator;
     private final SlimeGridHandler slimeGridHandler;
+    private final VersionChecker versionChecker;
 
     private final PreferencesHandler preferencesHandler;
     private final ScrollBehavior scrollBehavior;
@@ -31,6 +32,7 @@ public class MenuLogic extends Logic {
         playerChecker = new PlayerChecker();
         playerRegistrator = new PlayerRegistrator();
         slimeGridHandler = new SlimeGridHandler();
+        versionChecker = new VersionChecker();
 
         preferencesHandler = new PreferencesHandler();
         scrollBehavior = new ScrollBehavior();
@@ -43,12 +45,13 @@ public class MenuLogic extends Logic {
         playerChecker.setLogic(this);
         playerRegistrator.setLogic(this);
         slimeGridHandler.setLogic(this);
+        versionChecker.setLogic(this);
     }
 
     @Override
     public void initialLogic() {
         menuInputHandler.setupInput();
-        playerChecker.checkPlayer();
+        versionChecker.checkVersion();
         slimeGridHandler.setup();
     }
 
@@ -66,6 +69,7 @@ public class MenuLogic extends Logic {
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
         playerRegistrator.setGame(slimeGame);
+        versionChecker.setSlimeGame(slimeGame);
     }
 
     @Override
@@ -74,6 +78,7 @@ public class MenuLogic extends Logic {
         namePrompter.setInput(input);
         playerChecker.setInput(input);
         playerRegistrator.setInput(input);
+        versionChecker.setInput(input);
     }
 
     @Override
@@ -87,6 +92,7 @@ public class MenuLogic extends Logic {
         playerChecker.setStuff(menuStuff);
         playerRegistrator.setStuff(menuStuff);
         slimeGridHandler.setStuff(menuStuff);
+        versionChecker.setStuff(menuStuff);
     }
 
     public NamePrompter getNamePrompter() {

@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface CoreFirestore {
 
+    void fetchVersion(ResultListener<String> versionListener);
+
     void registerPlayer(Player player, ResultListener<Void> successListener, ResultListener<String> colorsListener,
                         ResultListener<String> errorListener);
 

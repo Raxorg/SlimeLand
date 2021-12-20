@@ -29,7 +29,6 @@ public class PlayerChecker {
     private int slimeQuantity, slimeStrength, slimeAgility;
 
     public void checkPlayer() {
-        input.setEnabled(false);
         colors = logic.getPreferencesHandler().loadString(PREFS_PATH, COLORS_PREF_KEY);
         if (colors.equals("")) {
             stuff.getOverlay().setPosition(HIDDEN_X, HIDDEN_Y);

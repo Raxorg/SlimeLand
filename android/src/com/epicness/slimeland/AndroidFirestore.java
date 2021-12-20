@@ -15,13 +15,30 @@ import java.util.Map;
 public class AndroidFirestore implements CoreFirestore {
 
     private final FirebaseFirestore database;
-    private final DocumentReference players, colors;
+    private final DocumentReference players, colors, meta;
 
     public AndroidFirestore() {
         database = FirebaseFirestore.getInstance();
         CollectionReference gameInfo = database.collection("gameInfo");
         players = gameInfo.document("players");
         colors = gameInfo.document("colors");
+        meta = gameInfo.document("meta");
+    }
+
+    @Override
+    public void fetchVersion(ResultListener<String> versionListener) {
+        meta.get(Source.SERVER).addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                versionListener.onResult(null);
+                return;
+            }
+            DocumentSnapshot documentSnapshot = task.getResult();
+            if (documentSnapshot == null) {
+                versionListener.onResult(null);
+                return;
+            }
+            versionListener.onResult(documentSnapshot.getString("version"));
+        });
     }
 
     @Override
