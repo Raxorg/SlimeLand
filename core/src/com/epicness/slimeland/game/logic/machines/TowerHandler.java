@@ -1,4 +1,4 @@
-package com.epicness.slimeland.game.logic.towerdefense;
+package com.epicness.slimeland.game.logic.machines;
 
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
 import static com.epicness.slimeland.game.GameConstants.TOWER_ID;

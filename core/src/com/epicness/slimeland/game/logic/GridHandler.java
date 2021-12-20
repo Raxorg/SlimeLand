@@ -46,7 +46,7 @@ public class GridHandler {
     private void selectMachine(Machine machine) {
         switch (machine.getType()) {
             case FACTORY:
-
+                logic.getFactoryHandler().factoryTouched();
                 break;
             case WORKSHOP:
 

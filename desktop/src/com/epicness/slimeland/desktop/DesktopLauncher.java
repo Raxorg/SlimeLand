@@ -30,5 +30,10 @@ public class DesktopLauncher {
         public void fetchPlayerData(ResultListener<Map<String, Object>> playerDataListener) {
 
         }
+
+        @Override
+        public void incrementArmy(String playerName, ResultListener<Boolean> successListener) {
+
+        }
     }
 }

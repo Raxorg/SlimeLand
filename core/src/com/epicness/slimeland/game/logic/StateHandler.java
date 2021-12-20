@@ -4,8 +4,10 @@ import static com.epicness.fundamentals.utils.ColorUtils.colorFromString;
 import static com.epicness.slimeland.SlimeConstants.ANTENNA_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.BUILDING_PREFS_PATH;
 import static com.epicness.slimeland.SlimeConstants.BUILD_CHARGES_PREF_KEY;
+import static com.epicness.slimeland.SlimeConstants.FACTORY_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.KILLS_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.PREFS_PATH;
+import static com.epicness.slimeland.SlimeConstants.SLIME_QUANTITY_PREF_KEY;
 import static com.epicness.slimeland.SlimeConstants.TD_LEVEL_KEY;
 import static com.epicness.slimeland.SlimeConstants.TOWER_COOLDOWN_PREF_KEY;
 import static com.epicness.slimeland.game.GameConstants.MACHINE_PROPERTY;
@@ -33,6 +35,7 @@ public class StateHandler {
         Color color1 = colorFromString(colorArray[0]);
         Color color2 = colorFromString(colorArray[1]);
 
+        logic.getFactoryHandler().setThisPlayerName(player.getName());
         logic.getPlayerListHandler().setThisPlayerName(player.getName());
         logic.getWaveHandler().setThisPlayerName(player.getName());
         applyColors(color1, color2);
@@ -59,6 +62,15 @@ public class StateHandler {
         for (int i = 0; i < stuff.getBullets().size; i++) {
             stuff.getBullets().get(i).setColor(MathUtils.randomBoolean() ? color1 : color2);
         }
+    }
+
+    // Army
+    public int getSlimeQuantity() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY);
+    }
+
+    public void setSlimeQuantity(int slimeQuantity) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, SLIME_QUANTITY_PREF_KEY, slimeQuantity);
     }
 
     // Build charges
@@ -91,6 +103,15 @@ public class StateHandler {
 
     public void setAntennaCooldown(int antennaCooldown) {
         sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, ANTENNA_COOLDOWN_PREF_KEY, antennaCooldown);
+    }
+
+    // Factory cooldown
+    public int getFactoryCooldown() {
+        return sharedLogic.getPreferencesHandler().loadInteger(PREFS_PATH, FACTORY_COOLDOWN_PREF_KEY);
+    }
+
+    public void setFactoryCooldown(int factoryCooldown) {
+        sharedLogic.getPreferencesHandler().saveInteger(PREFS_PATH, FACTORY_COOLDOWN_PREF_KEY, factoryCooldown);
     }
 
     // Tower cooldown

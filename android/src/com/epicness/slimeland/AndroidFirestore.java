@@ -86,6 +86,38 @@ public class AndroidFirestore implements CoreFirestore {
         });
     }
 
+    @Override
+    public void incrementArmy(String playerName, ResultListener<Boolean> successListener) {
+        database.runTransaction(transaction -> {
+            DocumentSnapshot playersSnapshot = transaction.get(players);
+            String playerInfo = playersSnapshot.getString(playerName);
+            if (playerInfo == null) {
+                return false;
+            }
+            String[] playerInfos = playerInfo.split(",");
+            playerInfos[1] = String.valueOf(Integer.parseInt(playerInfos[1]) + 1);
+            String newPlayerInfo = "";
+            for (int i = 0; i < playerInfos.length; i++) {
+                newPlayerInfo = newPlayerInfo.concat(playerInfos[i]);
+                if (i != playerInfos.length - 1) {
+                    newPlayerInfo = newPlayerInfo.concat(",");
+                }
+            }
+            transaction.update(players, playerName, newPlayerInfo);
+            return true;
+        }).addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                successListener.onResult(false);
+                return;
+            }
+            if (task.getResult() == null || !task.getResult()) {
+                successListener.onResult(false);
+                return;
+            }
+            successListener.onResult(true);
+        });
+    }
+
     public void addDocument(CollectionReference collectionReference, String documentPath, Object data,
                             String errorMessage, ResultListener<Boolean> listener) {
         collectionReference.document(documentPath).set(data).addOnCompleteListener(task -> {

@@ -18,11 +18,9 @@ public class Factory extends Machine {
     public Factory(Sprite leftSprite, Sprite rightSprite, BitmapFont font) {
         super(FACTORY, leftSprite, rightSprite);
         countdown = new Text(font);
-        countdown.setText("60");
         countdown.setTextTargetWidth(MACHINE_SIZE);
         countdown.setHorizontalAlignment(Align.center);
         countdown.setCenterVertical(true);
-        timer = 60f;
     }
 
     @Override
@@ -43,6 +41,10 @@ public class Factory extends Machine {
 
     public void setTimer(float timer) {
         this.timer = timer;
+        if (timer <= 0f) {
+            countdown.setText("");
+            return;
+        }
         countdown.setText(MathUtils.ceil(timer) + "");
     }
 }

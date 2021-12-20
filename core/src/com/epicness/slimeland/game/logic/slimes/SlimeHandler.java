@@ -57,6 +57,10 @@ public class SlimeHandler {
         this.color2 = color2;
     }
 
+    public void saveSlimeQuantity() {
+        logic.getStateHandler().setSlimeQuantity(stuff.getSlimes().size);
+    }
+
     // Structure
     public void setAssets(GameAssets assets) {
         this.assets = assets;

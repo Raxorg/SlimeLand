@@ -10,4 +10,6 @@ public interface CoreFirestore {
                         ResultListener<String> errorListener);
 
     void fetchPlayerData(ResultListener<Map<String, Object>> playerDataListener);
+
+    void incrementArmy(String playerName, ResultListener<Boolean> successListener);
 }

@@ -15,13 +15,14 @@ import com.epicness.slimeland.game.logic.decorative.MusicHandler;
 import com.epicness.slimeland.game.logic.machines.AntennaHandler;
 import com.epicness.slimeland.game.logic.machines.BuildMenuHandler;
 import com.epicness.slimeland.game.logic.machines.BuildingHandler;
+import com.epicness.slimeland.game.logic.machines.FactoryHandler;
+import com.epicness.slimeland.game.logic.machines.TowerHandler;
 import com.epicness.slimeland.game.logic.multiplayer.MultiplayerHandler;
 import com.epicness.slimeland.game.logic.multiplayer.PlayerListHandler;
 import com.epicness.slimeland.game.logic.slimes.HidingHandler;
 import com.epicness.slimeland.game.logic.slimes.RoamingHandler;
 import com.epicness.slimeland.game.logic.slimes.SlimeHandler;
 import com.epicness.slimeland.game.logic.towerdefense.BulletHandler;
-import com.epicness.slimeland.game.logic.towerdefense.TowerHandler;
 import com.epicness.slimeland.game.logic.towerdefense.TowerStatsHandler;
 import com.epicness.slimeland.game.logic.towerdefense.WaveHandler;
 import com.epicness.slimeland.game.stuff.GameStuff;
@@ -36,6 +37,8 @@ public class GameLogic extends Logic {
     private final AntennaHandler antennaHandler;
     private final BuildingHandler buildingHandler;
     private final BuildMenuHandler buildMenuHandler;
+    private final FactoryHandler factoryHandler;
+    private final TowerHandler towerHandler;
     // Multiplayer
     private final MultiplayerHandler multiplayerHandler;
     private final PlayerListHandler playerListHandler;
@@ -45,7 +48,6 @@ public class GameLogic extends Logic {
     private final SlimeHandler slimeHandler;
     // Tower Defense
     private final BulletHandler bulletHandler;
-    private final TowerHandler towerHandler;
     private final TowerStatsHandler towerStatsHandler;
     private final WaveHandler waveHandler;
 
@@ -64,6 +66,8 @@ public class GameLogic extends Logic {
         antennaHandler = new AntennaHandler();
         buildingHandler = new BuildingHandler();
         buildMenuHandler = new BuildMenuHandler();
+        factoryHandler = new FactoryHandler();
+        towerHandler = new TowerHandler();
         // Multiplayer
         multiplayerHandler = new MultiplayerHandler();
         playerListHandler = new PlayerListHandler();
@@ -73,7 +77,6 @@ public class GameLogic extends Logic {
         slimeHandler = new SlimeHandler();
         // Tower Defense
         bulletHandler = new BulletHandler();
-        towerHandler = new TowerHandler();
         towerStatsHandler = new TowerStatsHandler();
         waveHandler = new WaveHandler();
 
@@ -89,6 +92,8 @@ public class GameLogic extends Logic {
         antennaHandler.setLogic(this);
         buildingHandler.setLogic(this);
         buildMenuHandler.setLogic(this);
+        factoryHandler.setLogic(this);
+        towerHandler.setLogic(this);
         // Multiplayer
         multiplayerHandler.setLogic(this);
         playerListHandler.setLogic(this);
@@ -96,7 +101,6 @@ public class GameLogic extends Logic {
         slimeHandler.setLogic(this);
         // Tower Defense
         bulletHandler.setLogic(this);
-        towerHandler.setLogic(this);
         towerStatsHandler.setLogic(this);
         waveHandler.setLogic(this);
 
@@ -117,10 +121,11 @@ public class GameLogic extends Logic {
         buildingHandler.loadState();
         antennaHandler.loadAntennaCooldown();
         buildMenuHandler.setup();
+        factoryHandler.loadFactoryCooldown();
+        towerHandler.loadTowerCooldown();
         // Multiplayer
         playerListHandler.hide();
         // Tower Defense
-        towerHandler.loadTowerCooldown();
         towerStatsHandler.loadTowerStats();
         towerStatsHandler.hide();
 
@@ -139,13 +144,14 @@ public class GameLogic extends Logic {
         // Machines
         antennaHandler.update(delta);
         buildMenuHandler.update(delta);
+        factoryHandler.update(delta);
+        towerHandler.update(delta);
         // Multiplayer
         multiplayerHandler.update();
         // Slimes
         slimeHandler.update(delta);
         // Tower Defense
         bulletHandler.update(delta);
-        towerHandler.update(delta);
         waveHandler.update(delta);
         // Behaviors
         scrollBehavior.update(delta);
@@ -154,13 +160,18 @@ public class GameLogic extends Logic {
     @Override
     public void pause() {
         antennaHandler.saveAntennaCooldown();
+        factoryHandler.saveFactoryCooldown();
         towerHandler.saveTowerCooldown();
         towerStatsHandler.saveTowerStats();
+        slimeHandler.saveSlimeQuantity();
     }
 
     @Override
     public void setGame(Game game) {
         SlimeGame slimeGame = (SlimeGame) game;
+
+        factoryHandler.setGame(slimeGame);
+
         multiplayerHandler.setGame(slimeGame);
     }
 
@@ -187,6 +198,8 @@ public class GameLogic extends Logic {
 
     @Override
     public void setInput(SharedInput input) {
+        factoryHandler.setInput(input);
+
         multiplayerHandler.setInput(input);
 
         gameInputHandler.setInput(input);
@@ -200,12 +213,13 @@ public class GameLogic extends Logic {
         antennaHandler.setStuff(gameStuff);
         buildingHandler.setStuff(gameStuff);
         buildMenuHandler.setStuff(gameStuff);
+        factoryHandler.setStuff(gameStuff);
+        towerHandler.setStuff(gameStuff);
         // Multiplayer
         multiplayerHandler.setStuff(gameStuff);
         playerListHandler.setStuff(gameStuff);
         // Tower Defense
         bulletHandler.setStuff(gameStuff);
-        towerHandler.setStuff(gameStuff);
         towerStatsHandler.setStuff(gameStuff);
         waveHandler.setStuff(gameStuff);
 
@@ -229,6 +243,14 @@ public class GameLogic extends Logic {
 
     public BuildMenuHandler getBuildMenuHandler() {
         return buildMenuHandler;
+    }
+
+    public FactoryHandler getFactoryHandler() {
+        return factoryHandler;
+    }
+
+    public TowerHandler getTowerHandler() {
+        return towerHandler;
     }
 
     // Multiplayer
@@ -256,10 +278,6 @@ public class GameLogic extends Logic {
     // Tower Defense
     public BulletHandler getBulletHandler() {
         return bulletHandler;
-    }
-
-    public TowerHandler getTowerHandler() {
-        return towerHandler;
     }
 
     public TowerStatsHandler getTowerStatsHandler() {
