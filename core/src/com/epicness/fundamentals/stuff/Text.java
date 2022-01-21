@@ -44,15 +44,16 @@ public class Text implements Buttonable, Scrollable {
         );
     }
 
-    protected void calculateSize() {
-        bounds.height = TextUtils.getTextHeight(getFont(), text, bounds.width, horizontalAlignment, true, truncate);
-    }
-
     @Override
     public boolean contains(float x, float y) {
         return bounds.contains(x, y);
     }
 
+    protected void calculateSize() {
+        bounds.height = TextUtils.getTextHeight(getFont(), text, bounds.width, horizontalAlignment, true, truncate);
+    }
+
+    // Getters & Setters
     @Override
     public float getY() {
         return bounds.y;

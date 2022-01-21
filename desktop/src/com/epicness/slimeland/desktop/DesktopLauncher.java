@@ -21,6 +21,11 @@ public class DesktopLauncher {
     static class DesktopFirestore implements CoreFirestore {
 
         @Override
+        public void fetchVersion(ResultListener<String> versionListener) {
+
+        }
+
+        @Override
         public void registerPlayer(Player player, ResultListener<Void> successListener, ResultListener<String> colorsListener,
                                    ResultListener<String> errorListener) {
 

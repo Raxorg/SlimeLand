@@ -1,5 +1,7 @@
 package com.epicness.fundamentals;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.epicness.fundamentals.assets.Assets;
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.renderer.Renderer;
@@ -20,7 +22,7 @@ public abstract class Initializer {
     public void initialize(SharedResources sharedResources) {
         SharedScreen screen = sharedResources.getScreen();
 
-        logic.setGame(sharedResources.getGame());
+        logic.setGame((Game) Gdx.app.getApplicationListener());
         logic.setSharedAssets(sharedResources.getAssets());
         logic.setAssets(assets);
         logic.setInput(sharedResources.getInput());

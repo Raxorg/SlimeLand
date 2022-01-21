@@ -102,7 +102,11 @@ public class WaveHandler {
     private ForeignSlime randomizeSlime() {
         DelayedRemovalArray<PlayerInfo> playerInfos = stuff.getPlayerList().getPlayerInfos();
         if (playerInfos.isEmpty() || playerInfos.size == 1) {
-            return new ForeignSlime(assets.getLeftSlime(), assets.getRightSlime(), "", Color.WHITE, Color.WHITE);
+            return new ForeignSlime(
+                    assets.getLeftSlime(), assets.getRightSlime(),
+                    assets.getMediumPixelFont(), "",
+                    Color.WHITE, Color.WHITE
+            );
         }
         PlayerInfo playerInfo;
         do {
@@ -111,7 +115,11 @@ public class WaveHandler {
         String name = playerInfo.getName();
         Color color1 = playerInfo.getSlime().getBackgroundColor();
         Color color2 = playerInfo.getSlime().getForegroundColor();
-        return new ForeignSlime(assets.getLeftSlime(), assets.getRightSlime(), name, color1, color2);
+        return new ForeignSlime(
+                assets.getLeftSlime(), assets.getRightSlime(),
+                assets.getMediumPixelFont(), name,
+                color1, color2
+        );
     }
 
     private void moveSlimes(float delta) {

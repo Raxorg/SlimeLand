@@ -2,7 +2,6 @@ package com.epicness.slimeland.splash;
 
 import com.epicness.fundamentals.logic.Logic;
 import com.epicness.fundamentals.logic.SharedLogic;
-import com.epicness.slimeland.menu.MenuAssets;
 import com.epicness.slimeland.menu.MenuInitializer;
 
 public class SplashLogic extends Logic {

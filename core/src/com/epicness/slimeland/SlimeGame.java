@@ -17,7 +17,7 @@ public class SlimeGame extends Game {
 
     @Override
     public void create() {
-        new SplashInitializer().initialize(new SharedResources(this));
+        new SplashInitializer().initialize(new SharedResources());
         //new PreferencesHandler().clearData(PREFS_PATH);
         //new PreferencesHandler().clearData(BUILDING_PREFS_PATH);
     }
